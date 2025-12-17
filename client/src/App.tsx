@@ -16,6 +16,7 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import FairPlay from "./pages/FairPlay";
 import ResponsiblePlay from "./pages/ResponsiblePlay";
+import Dashboard from "./pages/Dashboard";
 import Scoreboard from "./pages/Scoreboard";
 
 function Router() {
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/team-builder" component={TeamBuilder} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/terms" component={Terms} />

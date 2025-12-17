@@ -3,9 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export default function Login() {
+  const [, setLocation] = useLocation();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate login success
+    setLocation("/dashboard");
+  };
+
   return (
     <Layout>
       <div className="container flex items-center justify-center min-h-[80vh] py-16">
@@ -17,24 +25,24 @@ export default function Login() {
             <p className="text-muted-foreground">Enter your credentials to access your account</p>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" placeholder="name@example.com" type="email" className="bg-black/20 border-white/10 text-white" />
+                <Input id="email" placeholder="name@example.com" type="email" className="bg-black/20 border-white/10 text-white" required />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
                   <Link href="/forgot-password">
-                    <a className="text-xs text-primary hover:underline">Forgot password?</a>
+                    <span className="text-xs text-primary hover:underline cursor-pointer">Forgot password?</span>
                   </Link>
                 </div>
-                <Input id="password" type="password" className="bg-black/20 border-white/10 text-white" />
+                <Input id="password" type="password" className="bg-black/20 border-white/10 text-white" required />
               </div>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold text-lg h-12">
+              <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold text-lg h-12">
                 LOGIN
               </Button>
-            </div>
+            </form>
             
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
@@ -59,7 +67,7 @@ export default function Login() {
             <div className="text-center text-sm text-muted-foreground">
               Don't have an account?{" "}
               <Link href="/register">
-                <a className="text-primary hover:underline font-bold">Register</a>
+                <span className="text-primary hover:underline font-bold cursor-pointer">Register</span>
               </Link>
             </div>
           </CardContent>

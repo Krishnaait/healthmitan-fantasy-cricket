@@ -7,6 +7,17 @@ import { Link } from "wouter";
 export default function Home() {
   return (
     <Layout>
+      {/* Live Match Ticker */}
+      <div className="bg-black/80 border-b border-white/10 py-2 overflow-hidden whitespace-nowrap">
+        <div className="inline-block animate-marquee">
+          <span className="mx-8 text-sm font-mono text-primary">LIVE: IND vs AUS - IND 145/3 (18.2)</span>
+          <span className="mx-8 text-sm font-mono text-white">UPCOMING: ENG vs SA - Starts in 2h 30m</span>
+          <span className="mx-8 text-sm font-mono text-secondary">RESULT: NZ vs PAK - NZ won by 15 runs</span>
+          <span className="mx-8 text-sm font-mono text-primary">LIVE: MI vs CSK - MI 45/0 (5.1)</span>
+          <span className="mx-8 text-sm font-mono text-white">UPCOMING: KKR vs RCB - Starts in 5h 15m</span>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-16">
         {/* Background Image with Overlay */}
@@ -99,6 +110,35 @@ export default function Home() {
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -z-10"></div>
             <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-secondary/10 rounded-full blur-[100px] -z-10"></div>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 container">
+        <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white text-center mb-16">
+          TRUSTED BY <span className="text-primary">CHAMPIONS</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { name: "Rahul S.", role: "Pro Player", quote: "The analytics on CricketIQ are unmatched. It helped me win my first mega contest!" },
+            { name: "Priya M.", role: "Cricket Fan", quote: "I love the fair play policy. It feels safe and transparent compared to other apps." },
+            { name: "Amit K.", role: "Strategist", quote: "The team builder interface is so intuitive. Building squads feels like being a real captain." }
+          ].map((t, i) => (
+            <Card key={i} className="bg-white/5 border-white/10 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="flex gap-1 mb-4">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg key={star} className="w-5 h-5 text-yellow-500 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-6 italic">"{t.quote}"</p>
+                <div>
+                  <div className="font-bold text-white">{t.name}</div>
+                  <div className="text-xs text-primary">{t.role}</div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 

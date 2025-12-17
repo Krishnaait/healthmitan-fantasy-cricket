@@ -9,3 +9,10 @@
 - [x] Update `Layout.tsx` footer links
 - [x] Enhance Landing Page (`Home.tsx`) with more details and sections
 - [x] Verify all links and buttons are working correctly
+- [x] Revamp `About.tsx` with Vision, Mission, Do's/Don'ts, Core Values
+- [x] Create `Dashboard.tsx` (User Dashboard)
+- [x] Update `Login.tsx` to redirect to Dashboard
+- [x] Update `Register.tsx` to redirect to Dashboard
+- [x] Add Live Match Ticker to `Home.tsx`
+- [x] Add Testimonials section to `Home.tsx`
+- [x] Perform full site audit for bugs and lag
