@@ -26,3 +26,4 @@
 - [x] Remove money references from `Matches.tsx` (Entry Fee -> Free Entry)
 - [ ] Update `ResponsiblePlay.tsx` to focus on time management instead of financial loss
 - [ ] Update `Terms.tsx` and `FairPlay.tsx` to remove financial terms
+- [x] Hide stats overview section in `Dashboard.tsx`

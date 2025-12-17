@@ -23,7 +23,7 @@ export default function Dashboard() {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" style={{display: 'none'}}>
           <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
