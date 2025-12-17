@@ -59,7 +59,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Mission & Vision Grid */}
+        {/* Mission & Vision Grid - Elaborated */}
         <div className="container mb-24">
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-gradient-to-br from-white/5 to-transparent border-white/10 backdrop-blur-sm overflow-hidden group hover:border-primary/50 transition-all duration-500">
@@ -71,8 +71,11 @@ export default function About() {
                   <Target className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-3xl font-bold font-rajdhani text-white mb-6">Our Mission</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed flex-grow mb-4">
+                  To democratize cricket analytics and strategy. We aim to create a safe, educational, and entertaining ecosystem where fans of all ages can test their cricketing acumen without financial barriers.
+                </p>
                 <p className="text-lg text-muted-foreground leading-relaxed flex-grow">
-                  To democratize cricket analytics and strategy. We aim to create a safe, educational, and entertaining ecosystem where fans of all ages can test their cricketing acumen without financial barriers. We strive to elevate the conversation around cricket from passive viewing to active analysis.
+                  We strive to elevate the conversation around cricket from passive viewing to active analysis, empowering every user to think like a team captain and make data-driven decisions that enhance their appreciation of the sport.
                 </p>
               </CardContent>
             </Card>
@@ -86,8 +89,11 @@ export default function About() {
                   <Lightbulb className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-3xl font-bold font-rajdhani text-white mb-6">Our Vision</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed flex-grow mb-4">
+                  To become the global standard for educational fantasy sports. We envision a world where CricketIQ is the training ground for the next generation of cricket analysts, commentators, and coaches.
+                </p>
                 <p className="text-lg text-muted-foreground leading-relaxed flex-grow">
-                  To become the global standard for educational fantasy sports. We envision a world where CricketIQ is the training ground for the next generation of cricket analysts, commentators, and coaches. A community where knowledge is celebrated, and every match is an opportunity to learn.
+                  We see a future where our community of "Cricket Strategists" sets the benchmark for insightful cricket discussion, where knowledge is celebrated, and every match is an opportunity to learn, grow, and connect with fellow enthusiasts worldwide.
                 </p>
               </CardContent>
             </Card>
