@@ -143,11 +143,11 @@ export default function About() {
               <Card className="relative bg-black/40 border-white/10 backdrop-blur-xl p-8">
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div className="p-4 bg-white/5 rounded-lg">
-                    <div className="text-3xl font-bold text-primary mb-1">50K+</div>
+                    <div className="text-3xl font-bold text-primary mb-1">50+</div>
                     <div className="text-xs text-muted-foreground uppercase tracking-wider">Active Users</div>
                   </div>
                   <div className="p-4 bg-white/5 rounded-lg">
-                    <div className="text-3xl font-bold text-primary mb-1">1M+</div>
+                    <div className="text-3xl font-bold text-primary mb-1">20+</div>
                     <div className="text-xs text-muted-foreground uppercase tracking-wider">Contests Joined</div>
                   </div>
                   <div className="p-4 bg-white/5 rounded-lg">
