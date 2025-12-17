@@ -24,6 +24,10 @@
 - [x] Remove money references from `Home.tsx` and update "Play Anywhere" section
 - [x] Remove money references from `About.tsx` (Zero Commission -> Fair Competition)
 - [x] Remove money references from `Matches.tsx` (Entry Fee -> Free Entry)
-- [ ] Update `ResponsiblePlay.tsx` to focus on time management instead of financial loss
-- [ ] Update `Terms.tsx` and `FairPlay.tsx` to remove financial terms
 - [x] Hide stats overview section in `Dashboard.tsx`
+- [x] Replace "Play Anywhere" section in `Home.tsx` with "Featured Tournaments"
+- [x] Create `AuthContext.tsx` to manage login state (simulated)
+- [x] Update `Layout.tsx` to show Login/Register OR Dashboard/Logout based on auth state
+- [x] Update `Login.tsx` and `Register.tsx` to use `AuthContext`
+- [x] Add "Profile Settings" tab to `Dashboard.tsx` with editable form
+- [x] Perform full site audit (Register -> Dashboard -> Edit Profile -> Logout)

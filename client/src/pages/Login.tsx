@@ -4,14 +4,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "wouter";
+import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 export default function Login() {
   const [, setLocation] = useLocation();
+  const { login } = useAuth();
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate login success
-    setLocation("/dashboard");
+    login({
+      name: email.split('@')[0],
+      email: email,
+      teamName: `${email.split('@')[0]}'s XI`
+    });
   };
 
   return (
@@ -28,7 +36,15 @@ export default function Login() {
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" placeholder="name@example.com" type="email" className="bg-black/20 border-white/10 text-white" required />
+                <Input 
+                  id="email" 
+                  placeholder="name@example.com" 
+                  type="email" 
+                  className="bg-black/20 border-white/10 text-white" 
+                  required 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">

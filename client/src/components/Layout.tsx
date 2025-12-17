@@ -1,12 +1,14 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Shield, Trophy, Users, BarChart2, Menu, X } from "lucide-react";
+import { Shield, Trophy, Users, BarChart2, Menu, X, LogOut, User } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isAuthenticated, logout, user } = useAuth();
 
   const navItems = [
     { label: "Home", path: "/" },
@@ -46,16 +48,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {item.label}
               </Link>
             ))}
-            <Link href="/login">
-              <Button variant="outline" className="ml-4 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary font-rajdhani font-bold tracking-wider">
-                LOGIN
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-                REGISTER
-              </Button>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link href="/dashboard">
+                  <Button variant="ghost" className="ml-4 text-white hover:text-primary hover:bg-white/5 font-rajdhani font-bold flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    {user?.name || 'DASHBOARD'}
+                  </Button>
+                </Link>
+                <Button 
+                  variant="outline" 
+                  className="ml-2 border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300 font-rajdhani font-bold"
+                  onClick={logout}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  LOGOUT
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button variant="outline" className="ml-4 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary font-rajdhani font-bold tracking-wider">
+                    LOGIN
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                    REGISTER
+                  </Button>
+                </Link>
+              </>
+            )}
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -84,12 +107,32 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
             <div className="flex gap-4 mt-2">
-              <Link href="/login" className="flex-1">
-                <Button variant="outline" className="w-full border-primary/50 text-primary">LOGIN</Button>
-              </Link>
-              <Link href="/register" className="flex-1">
-                <Button className="w-full bg-primary text-primary-foreground">REGISTER</Button>
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <Link href="/dashboard" className="flex-1" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="outline" className="w-full border-primary/50 text-primary">DASHBOARD</Button>
+                  </Link>
+                  <Button 
+                    variant="ghost" 
+                    className="flex-1 text-red-400 hover:bg-red-500/10"
+                    onClick={() => {
+                      logout();
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    LOGOUT
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link href="/login" className="flex-1" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="outline" className="w-full border-primary/50 text-primary">LOGIN</Button>
+                  </Link>
+                  <Link href="/register" className="flex-1" onClick={() => setMobileMenuOpen(false)}>
+                    <Button className="w-full bg-primary text-primary-foreground">REGISTER</Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

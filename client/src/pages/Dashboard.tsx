@@ -2,18 +2,51 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Star, Trophy, Users, Clock, ChevronRight, Plus, Zap } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Star, Trophy, Users, Clock, ChevronRight, Plus, Zap, Settings, Save } from "lucide-react";
 import { Link } from "wouter";
+import { useAuth } from "@/contexts/AuthContext";
+import { useState, useEffect } from "react";
 
 export default function Dashboard() {
+  const { user, login } = useAuth();
+  const [profileData, setProfileData] = useState({
+    name: "",
+    email: "",
+    teamName: ""
+  });
+
+  useEffect(() => {
+    if (user) {
+      setProfileData({
+        name: user.name,
+        email: user.email,
+        teamName: user.teamName
+      });
+    }
+  }, [user]);
+
+  const handleSaveProfile = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (user) {
+      login({
+        ...user,
+        name: profileData.name,
+        teamName: profileData.teamName
+      });
+      // Show success message (could add toast here)
+    }
+  };
+
   return (
     <Layout>
       <div className="container py-8">
         {/* Welcome Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold font-rajdhani text-white">WELCOME BACK, <span className="text-primary">CHAMPION</span></h1>
-            <p className="text-muted-foreground">Here's what's happening with your fantasy career.</p>
+            <h1 className="text-3xl font-bold font-rajdhani text-white">WELCOME BACK, <span className="text-primary">{user?.name?.toUpperCase() || 'CHAMPION'}</span></h1>
+            <p className="text-muted-foreground">Team: <span className="text-white font-bold">{user?.teamName || 'My Team'}</span></p>
           </div>
           <Link href="/matches">
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
@@ -65,6 +98,7 @@ export default function Dashboard() {
             <TabsTrigger value="upcoming" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Upcoming Matches</TabsTrigger>
             <TabsTrigger value="live" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Live Contests</TabsTrigger>
             <TabsTrigger value="completed" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Completed</TabsTrigger>
+            <TabsTrigger value="settings" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Profile Settings</TabsTrigger>
           </TabsList>
 
           <TabsContent value="upcoming" className="space-y-4">
@@ -124,6 +158,53 @@ export default function Dashboard() {
               <Trophy className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p>View your past performance history.</p>
             </div>
+          </TabsContent>
+
+          <TabsContent value="settings">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm max-w-2xl">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
+                  <Settings className="w-5 h-5 text-primary" />
+                  Edit Profile
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSaveProfile} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="displayName" className="text-white">Display Name</Label>
+                    <Input 
+                      id="displayName" 
+                      value={profileData.name} 
+                      onChange={(e) => setProfileData({...profileData, name: e.target.value})}
+                      className="bg-black/20 border-white/10 text-white"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="teamName" className="text-white">Team Name</Label>
+                    <Input 
+                      id="teamName" 
+                      value={profileData.teamName} 
+                      onChange={(e) => setProfileData({...profileData, teamName: e.target.value})}
+                      className="bg-black/20 border-white/10 text-white"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="displayEmail" className="text-white">Email Address</Label>
+                    <Input 
+                      id="displayEmail" 
+                      value={profileData.email} 
+                      disabled
+                      className="bg-black/20 border-white/10 text-muted-foreground cursor-not-allowed"
+                    />
+                    <p className="text-xs text-muted-foreground">Email cannot be changed</p>
+                  </div>
+                  <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold">
+                    <Save className="w-4 h-4 mr-2" />
+                    SAVE CHANGES
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>

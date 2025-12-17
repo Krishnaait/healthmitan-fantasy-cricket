@@ -175,51 +175,87 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Key Features Section */}
-      <section className="py-24 relative bg-black/20">
+      {/* Featured Tournaments Section */}
+      <section className="py-20 bg-black/40 border-y border-white/5">
         <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white mb-6">
-              YOUR PATH TO <span className="text-primary">VICTORY</span>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold font-rajdhani text-white mb-4">
+              FEATURED <span className="text-primary">TOURNAMENTS</span>
             </h2>
-            <p className="text-muted-foreground text-lg">
-              Start your journey to becoming a fantasy cricket champion in three simple steps.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Participate in the world's biggest cricket leagues. From international showdowns to domestic T20 leagues, we cover it all.
             </p>
           </div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Create Your Team",
-                desc: "Use your cricket knowledge to pick the best 11 players from the match.",
-                icon: <Users className="w-10 h-10 text-primary" />,
-                color: "border-primary/20 bg-primary/5"
-              },
-              {
-                title: "Join Contests",
-                desc: "Compete in various contests, from free entry to high-stakes leagues.",
-                icon: <Trophy className="w-10 h-10 text-secondary" />,
-                color: "border-secondary/20 bg-secondary/5"
-              },
-              {
-                title: "Climb Ranks",
-                desc: "Top the global leaderboards and earn exclusive badges and recognition.",
-                icon: <Zap className="w-10 h-10 text-purple-400" />,
-                color: "border-purple-500/20 bg-purple-500/5"
-              }
-            ].map((feature, i) => (
-              <Card key={i} className={`backdrop-blur-sm border ${feature.color} hover:bg-white/5 transition-all duration-300 group`}>
-                <CardContent className="p-8 text-center">
-                  <div className="w-20 h-20 mx-auto rounded-full bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold font-rajdhani text-white mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.desc}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
+              <div className="h-48 bg-gradient-to-br from-blue-900 to-black relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Trophy className="w-16 h-16 text-white/20 group-hover:text-primary/50 transition-colors duration-300" />
+                </div>
+              </div>
+              <div className="relative z-20 p-6 -mt-12">
+                <div className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3 border border-primary/20">
+                  LIVE NOW
+                </div>
+                <h3 className="text-2xl font-bold font-rajdhani text-white mb-2">Indian T20 League</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  The biggest T20 carnival is here. Create your dream team and compete with millions.
+                </p>
+                <Link href="/matches">
+                  <Button className="w-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white border border-white/10">
+                    View Matches <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
+              <div className="h-48 bg-gradient-to-br from-green-900 to-black relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Shield className="w-16 h-16 text-white/20 group-hover:text-green-400/50 transition-colors duration-300" />
+                </div>
+              </div>
+              <div className="relative z-20 p-6 -mt-12">
+                <div className="inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold mb-3 border border-green-500/20">
+                  UPCOMING
+                </div>
+                <h3 className="text-2xl font-bold font-rajdhani text-white mb-2">World Cup 2025</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  The ultimate glory awaits. Predict the champions and win exclusive rewards.
+                </p>
+                <Link href="/matches">
+                  <Button className="w-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white border border-white/10">
+                    View Schedule <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
+              <div className="h-48 bg-gradient-to-br from-purple-900 to-black relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Zap className="w-16 h-16 text-white/20 group-hover:text-purple-400/50 transition-colors duration-300" />
+                </div>
+              </div>
+              <div className="relative z-20 p-6 -mt-12">
+                <div className="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold mb-3 border border-purple-500/20">
+                  POPULAR
+                </div>
+                <h3 className="text-2xl font-bold font-rajdhani text-white mb-2">Big Bash League</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Experience the thrill of Australian T20 cricket. High scoring matches guaranteed.
+                </p>
+                <Link href="/matches">
+                  <Button className="w-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white border border-white/10">
+                    Join Contest <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

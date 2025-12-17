@@ -5,14 +5,27 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "wouter";
+import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 export default function Register() {
   const [, setLocation] = useLocation();
+  const { login } = useAuth();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate registration success
-    setLocation("/dashboard");
+    login({
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      teamName: `${formData.firstName}'s XI`
+    });
   };
 
   return (
@@ -30,20 +43,49 @@ export default function Register() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First name</Label>
-                  <Input id="firstName" placeholder="John" className="bg-black/20 border-white/10 text-white" required />
+                  <Input 
+                    id="firstName" 
+                    placeholder="John" 
+                    className="bg-black/20 border-white/10 text-white" 
+                    required 
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last name</Label>
-                  <Input id="lastName" placeholder="Doe" className="bg-black/20 border-white/10 text-white" required />
+                  <Input 
+                    id="lastName" 
+                    placeholder="Doe" 
+                    className="bg-black/20 border-white/10 text-white" 
+                    required 
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" placeholder="name@example.com" type="email" className="bg-black/20 border-white/10 text-white" required />
+                <Input 
+                  id="email" 
+                  placeholder="name@example.com" 
+                  type="email" 
+                  className="bg-black/20 border-white/10 text-white" 
+                  required 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" className="bg-black/20 border-white/10 text-white" required />
+                <Input 
+                  id="password" 
+                  type="password" 
+                  className="bg-black/20 border-white/10 text-white" 
+                  required 
+                  value={formData.password}
+                  onChange={(e) => setFormData({...formData, password: e.target.value})}
+                />
               </div>
               
               <div className="flex items-start space-x-2 pt-2">
