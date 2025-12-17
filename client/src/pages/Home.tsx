@@ -12,9 +12,9 @@ export default function Home() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/hero-bg.jpg" 
-            alt="Tactical Cricket Stadium" 
-            className="w-full h-full object-cover opacity-40"
+            src="/images/hero-realistic.jpg" 
+            alt="Realistic Cricket Stadium Night Match" 
+            className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_100%)]"></div>
@@ -98,6 +98,30 @@ export default function Home() {
             {/* Decorative Elements */}
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -z-10"></div>
             <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-secondary/10 rounded-full blur-[100px] -z-10"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gradient-to-b from-background to-background/50 border-b border-white/5">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <h3 className="text-4xl font-bold font-rajdhani text-primary mb-2">10M+</h3>
+              <p className="text-muted-foreground">Registered Users</p>
+            </div>
+            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <h3 className="text-4xl font-bold font-rajdhani text-secondary mb-2">₹50Cr+</h3>
+              <p className="text-muted-foreground">Winnings Distributed</p>
+            </div>
+            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <h3 className="text-4xl font-bold font-rajdhani text-purple-400 mb-2">24/7</h3>
+              <p className="text-muted-foreground">Customer Support</p>
+            </div>
+            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <h3 className="text-4xl font-bold font-rajdhani text-green-400 mb-2">100%</h3>
+              <p className="text-muted-foreground">Secure & Legal</p>
+            </div>
           </div>
         </div>
       </section>

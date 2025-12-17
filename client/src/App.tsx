@@ -12,7 +12,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Legal from "./pages/Legal";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import FairPlay from "./pages/FairPlay";
+import ResponsiblePlay from "./pages/ResponsiblePlay";
 import Scoreboard from "./pages/Scoreboard";
 
 function Router() {
@@ -26,10 +29,10 @@ function Router() {
       <Route path="/register" component={Register} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
-      <Route path="/terms" component={Legal} />
-      <Route path="/privacy" component={Legal} />
-      <Route path="/fair-play" component={Legal} />
-      <Route path="/responsible-play" component={Legal} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/fair-play" component={FairPlay} />
+      <Route path="/responsible-play" component={ResponsiblePlay} />
       <Route path="/scoreboard" component={Scoreboard} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
