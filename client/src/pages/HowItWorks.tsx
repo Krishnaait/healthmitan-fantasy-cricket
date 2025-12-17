@@ -1,9 +1,60 @@
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Trophy, Users, Shield, Target, Award, Zap, HelpCircle, Crown, Star, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Trophy, Users, Shield, Target, Award, Zap, HelpCircle, Crown, Star, AlertCircle, CheckCircle2, Calculator, Info, Lightbulb } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export default function HowItWorks() {
+  // Calculator State
+  const [runs, setRuns] = useState(0);
+  const [wickets, setWickets] = useState(0);
+  const [catches, setCatches] = useState(0);
+  const [calcResult, setCalcResult] = useState(0);
+
+  const calculatePoints = () => {
+    const points = (runs * 1) + (wickets * 25) + (catches * 8);
+    setCalcResult(points);
+  };
+
+  // Quiz State
+  const [quizStep, setQuizStep] = useState(0);
+  const [quizScore, setQuizScore] = useState(0);
+  const [quizComplete, setQuizComplete] = useState(false);
+
+  const quizQuestions = [
+    {
+      q: "How many points does a Captain earn?",
+      options: ["1x Points", "1.5x Points", "2x Points", "3x Points"],
+      correct: 2
+    },
+    {
+      q: "What is the maximum number of players from one team?",
+      options: ["5 Players", "6 Players", "7 Players", "8 Players"],
+      correct: 2
+    },
+    {
+      q: "How many points for a direct wicket (excluding run-out)?",
+      options: ["10 pts", "20 pts", "25 pts", "50 pts"],
+      correct: 2
+    }
+  ];
+
+  const handleQuizAnswer = (optionIndex: number) => {
+    if (optionIndex === quizQuestions[quizStep].correct) {
+      setQuizScore(prev => prev + 1);
+    }
+    
+    if (quizStep < quizQuestions.length - 1) {
+      setQuizStep(prev => prev + 1);
+    } else {
+      setQuizComplete(true);
+    }
+  };
+
   return (
     <Layout>
       <div className="min-h-screen bg-background pt-20 pb-12">
@@ -143,7 +194,7 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          {/* Detailed Scoring System */}
+          {/* Detailed Scoring System with Tooltips */}
           <div className="mb-24">
             <h2 className="text-3xl font-bold font-rajdhani text-white mb-8 text-center">DETAILED SCORING SYSTEM</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -157,16 +208,27 @@ export default function HowItWorks() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {[
-                    { label: "Run Scored", pts: "+1" },
-                    { label: "Boundary Bonus", pts: "+1" },
-                    { label: "Six Bonus", pts: "+2" },
-                    { label: "30 Run Bonus", pts: "+4" },
-                    { label: "Half Century", pts: "+8" },
-                    { label: "Century", pts: "+16" },
-                    { label: "Duck (Batsman/WK/AR)", pts: "-2", color: "text-red-400" }
-                  ].map((row: { label: string; pts: string; color?: string }, i) => (
-                    <div key={i} className="flex justify-between text-sm border-b border-white/5 pb-2 last:border-0">
-                      <span className="text-muted-foreground">{row.label}</span>
+                    { label: "Run Scored", pts: "+1", tip: "Every single run counts towards your total." },
+                    { label: "Boundary Bonus", pts: "+1", tip: "Additional point for hitting a 4." },
+                    { label: "Six Bonus", pts: "+2", tip: "Additional 2 points for hitting a 6." },
+                    { label: "30 Run Bonus", pts: "+4", tip: "Bonus for crossing the 30-run mark." },
+                    { label: "Half Century", pts: "+8", tip: "Major bonus for scoring 50 runs." },
+                    { label: "Century", pts: "+16", tip: "Massive bonus for scoring 100 runs." },
+                    { label: "Duck (Batsman/WK/AR)", pts: "-2", color: "text-red-400", tip: "Penalty for getting out on 0 runs." }
+                  ].map((row: { label: string; pts: string; color?: string; tip: string }, i) => (
+                    <div key={i} className="flex justify-between text-sm border-b border-white/5 pb-2 last:border-0 group cursor-help">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span className="text-muted-foreground flex items-center gap-1 group-hover:text-white transition-colors">
+                              {row.label} <Info className="w-3 h-3 opacity-0 group-hover:opacity-50" />
+                            </span>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{row.tip}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                       <span className={`font-mono font-bold ${row.color || "text-white"}`}>{row.pts}</span>
                     </div>
                   ))}
@@ -183,15 +245,26 @@ export default function HowItWorks() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {[
-                    { label: "Wicket (Excl. Run Out)", pts: "+25" },
-                    { label: "Bonus (LBW / Bowled)", pts: "+8" },
-                    { label: "3 Wicket Haul", pts: "+4" },
-                    { label: "4 Wicket Haul", pts: "+8" },
-                    { label: "5 Wicket Haul", pts: "+16" },
-                    { label: "Maiden Over", pts: "+12" }
-                  ].map((row: { label: string; pts: string; color?: string }, i) => (
-                    <div key={i} className="flex justify-between text-sm border-b border-white/5 pb-2 last:border-0">
-                      <span className="text-muted-foreground">{row.label}</span>
+                    { label: "Wicket (Excl. Run Out)", pts: "+25", tip: "Points for taking a wicket (Bowled, Catch, LBW, Stumped)." },
+                    { label: "Bonus (LBW / Bowled)", pts: "+8", tip: "Extra points for clean bowled or LBW dismissals." },
+                    { label: "3 Wicket Haul", pts: "+4", tip: "Bonus for taking 3 wickets in a match." },
+                    { label: "4 Wicket Haul", pts: "+8", tip: "Bonus for taking 4 wickets in a match." },
+                    { label: "5 Wicket Haul", pts: "+16", tip: "Major bonus for taking 5 wickets." },
+                    { label: "Maiden Over", pts: "+12", tip: "Points for bowling an over with 0 runs conceded." }
+                  ].map((row: { label: string; pts: string; color?: string; tip: string }, i) => (
+                    <div key={i} className="flex justify-between text-sm border-b border-white/5 pb-2 last:border-0 group cursor-help">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span className="text-muted-foreground flex items-center gap-1 group-hover:text-white transition-colors">
+                              {row.label} <Info className="w-3 h-3 opacity-0 group-hover:opacity-50" />
+                            </span>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{row.tip}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                       <span className={`font-mono font-bold ${row.color || "text-white"}`}>{row.pts}</span>
                     </div>
                   ))}
@@ -208,23 +281,140 @@ export default function HowItWorks() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {[
-                    { label: "Catch", pts: "+8" },
-                    { label: "3 Catch Bonus", pts: "+4" },
-                    { label: "Stumping", pts: "+12" },
-                    { label: "Run Out (Direct)", pts: "+12" },
-                    { label: "Run Out (Thrower/Catcher)", pts: "+6/6" },
-                    { label: "Economy < 5.0", pts: "+6" },
-                    { label: "Economy 5.0 - 5.99", pts: "+4" },
-                    { label: "Economy > 12.0", pts: "-6", color: "text-red-400" }
-                  ].map((row: { label: string; pts: string; color?: string }, i) => (
-                    <div key={i} className="flex justify-between text-sm border-b border-white/5 pb-2 last:border-0">
-                      <span className="text-muted-foreground">{row.label}</span>
+                    { label: "Catch", pts: "+8", tip: "Points for every catch taken." },
+                    { label: "3 Catch Bonus", pts: "+4", tip: "Bonus for taking 3 catches in a match." },
+                    { label: "Stumping", pts: "+12", tip: "Points for a wicketkeeper stumping." },
+                    { label: "Run Out (Direct)", pts: "+12", tip: "Points for a direct hit run out." },
+                    { label: "Run Out (Thrower/Catcher)", pts: "+6/6", tip: "Points split between thrower and catcher." },
+                    { label: "Economy < 5.0", pts: "+6", tip: "Bonus for maintaining a low economy rate." },
+                    { label: "Economy 5.0 - 5.99", pts: "+4", tip: "Bonus for a good economy rate." },
+                    { label: "Economy > 12.0", pts: "-6", color: "text-red-400", tip: "Penalty for an expensive bowling spell." }
+                  ].map((row: { label: string; pts: string; color?: string; tip: string }, i) => (
+                    <div key={i} className="flex justify-between text-sm border-b border-white/5 pb-2 last:border-0 group cursor-help">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span className="text-muted-foreground flex items-center gap-1 group-hover:text-white transition-colors">
+                              {row.label} <Info className="w-3 h-3 opacity-0 group-hover:opacity-50" />
+                            </span>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{row.tip}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                       <span className={`font-mono font-bold ${row.color || "text-white"}`}>{row.pts}</span>
                     </div>
                   ))}
                 </CardContent>
               </Card>
             </div>
+          </div>
+
+          {/* Interactive Tools Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
+            {/* Points Calculator */}
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-white font-rajdhani flex items-center gap-2">
+                  <Calculator className="w-5 h-5 text-primary" /> Points Calculator
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-xs text-muted-foreground">Runs</label>
+                      <Input 
+                        type="number" 
+                        min="0"
+                        value={runs} 
+                        onChange={(e) => setRuns(Number(e.target.value))}
+                        className="bg-black/20 border-white/10 text-white"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs text-muted-foreground">Wickets</label>
+                      <Input 
+                        type="number" 
+                        min="0"
+                        value={wickets} 
+                        onChange={(e) => setWickets(Number(e.target.value))}
+                        className="bg-black/20 border-white/10 text-white"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs text-muted-foreground">Catches</label>
+                      <Input 
+                        type="number" 
+                        min="0"
+                        value={catches} 
+                        onChange={(e) => setCatches(Number(e.target.value))}
+                        className="bg-black/20 border-white/10 text-white"
+                      />
+                    </div>
+                  </div>
+                  <Button onClick={calculatePoints} className="w-full bg-primary text-primary-foreground font-bold">
+                    CALCULATE POINTS
+                  </Button>
+                  <div className="p-4 bg-black/40 rounded-lg text-center">
+                    <div className="text-sm text-muted-foreground mb-1">Total Fantasy Points</div>
+                    <div className="text-3xl font-bold text-white">{calcResult}</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Rules Quiz */}
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-white font-rajdhani flex items-center gap-2">
+                  <Lightbulb className="w-5 h-5 text-yellow-400" /> Rules Quiz
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {!quizComplete ? (
+                  <div className="space-y-6">
+                    <div className="flex justify-between text-sm text-muted-foreground">
+                      <span>Question {quizStep + 1}/{quizQuestions.length}</span>
+                      <span>Score: {quizScore}</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-white">{quizQuestions[quizStep].q}</h3>
+                    <div className="grid grid-cols-1 gap-3">
+                      {quizQuestions[quizStep].options.map((opt, i) => (
+                        <Button 
+                          key={i} 
+                          variant="outline" 
+                          className="justify-start border-white/10 text-white hover:bg-primary/20 hover:text-primary hover:border-primary/50"
+                          onClick={() => handleQuizAnswer(i)}
+                        >
+                          {opt}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-8 space-y-4">
+                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-8 h-8 text-green-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">Quiz Complete!</h3>
+                    <p className="text-muted-foreground">You scored {quizScore} out of {quizQuestions.length}</p>
+                    <Button 
+                      onClick={() => {
+                        setQuizStep(0);
+                        setQuizScore(0);
+                        setQuizComplete(false);
+                      }}
+                      variant="outline"
+                      className="border-primary/50 text-primary hover:bg-primary/10"
+                    >
+                      Try Again
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
 
           {/* FAQ Section */}
