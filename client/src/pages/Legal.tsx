@@ -203,17 +203,17 @@ export default function Legal() {
                       
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">1. Game of Skill</h3>
-                        <p>Fantasy sports are considered a "Game of Skill" under Indian law. The Supreme Court of India has recognized that success in fantasy sports depends on a user's superior knowledge, training, attention, and experience, rather than mere chance.</p>
+                        <p>Fantasy cricket is considered a "Game of Skill" under Indian law. The Supreme Court of India has recognized that success in fantasy sports depends on a user's superior knowledge, training, attention, and experience, rather than mere chance.</p>
                       </section>
                       
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">2. Legal Precedents</h3>
-                        <p>Various High Courts, including the Punjab & Haryana High Court, Bombay High Court, and Rajasthan High Court, have ruled that fantasy sports formats are legitimate business activities protected under Article 19(1)(g) of the Constitution of India.</p>
+                        <p>Several High Courts (including Punjab & Haryana, Bombay, and Rajasthan) have upheld the legality of fantasy sports formats similar to CricketIQ, ruling that they do not amount to gambling or betting.</p>
                       </section>
                       
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">3. Compliance</h3>
-                        <p>CricketIQ strictly adheres to all applicable Indian laws and regulations. We pay GST as required and comply with all tax deduction at source (TDS) norms for winnings.</p>
+                        <p>CricketIQ operates in full compliance with all applicable central and state laws. We continuously monitor legal developments to ensure our platform remains safe, secure, and lawful for all users.</p>
                       </section>
                     </TabsContent>
                   </ScrollArea>
