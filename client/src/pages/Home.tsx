@@ -386,7 +386,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-rajdhani font-bold px-8 mt-4">
+              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-rajdhani font-bold px-8 mt-4" style={{display: 'none'}}>
                 VIEW FULL GUIDE
               </Button>
             </div>
