@@ -1,226 +1,325 @@
 import Layout from "@/components/Layout";
-import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Shield, FileText, Scale, HeartHandshake, AlertTriangle, Lock, Gavel } from "lucide-react";
+import { Shield, Lock, Scale, AlertTriangle, FileText, Gavel } from "lucide-react";
 
 export default function Legal() {
   return (
     <Layout>
       <div className="min-h-screen bg-background pt-20 pb-12">
         <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <h1 className="text-4xl md:text-6xl font-bold font-rajdhani text-white mb-4">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold font-rajdhani text-white mb-4">
               LEGAL & <span className="text-primary">COMPLIANCE</span>
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Transparency, trust, and integrity are the pillars of CricketIQ. Please review our comprehensive policies below.
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our commitment to transparency, fairness, and user protection. Please read these documents carefully as they govern your use of the CricketIQ platform.
             </p>
           </div>
 
-          <Card className="bg-white/5 border-white/10 backdrop-blur-sm max-w-6xl mx-auto overflow-hidden shadow-2xl">
-            <CardContent className="p-0">
-              <Tabs defaultValue="terms" className="flex flex-col lg:flex-row min-h-[800px]">
-                <div className="lg:w-72 bg-black/40 border-r border-white/5 p-4">
-                  <TabsList className="flex-col h-auto w-full bg-transparent space-y-2">
-                    <TabsTrigger value="terms" className="w-full justify-start font-rajdhani font-bold text-lg px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
-                      <FileText className="w-4 h-4 mr-2" /> Terms & Conditions
-                    </TabsTrigger>
-                    <TabsTrigger value="privacy" className="w-full justify-start font-rajdhani font-bold text-lg px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
-                      <Lock className="w-4 h-4 mr-2" /> Privacy Policy
-                    </TabsTrigger>
-                    <TabsTrigger value="fairplay" className="w-full justify-start font-rajdhani font-bold text-lg px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
-                      <Scale className="w-4 h-4 mr-2" /> Fair Play Policy
-                    </TabsTrigger>
-                    <TabsTrigger value="responsible" className="w-full justify-start font-rajdhani font-bold text-lg px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
-                      <HeartHandshake className="w-4 h-4 mr-2" /> Responsible Play
-                    </TabsTrigger>
-                    <TabsTrigger value="disclaimer" className="w-full justify-start font-rajdhani font-bold text-lg px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
-                      <AlertTriangle className="w-4 h-4 mr-2" /> Disclaimer
-                    </TabsTrigger>
-                    <TabsTrigger value="legality" className="w-full justify-start font-rajdhani font-bold text-lg px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
-                      <Gavel className="w-4 h-4 mr-2" /> Legality of Fantasy
-                    </TabsTrigger>
-                  </TabsList>
-                </div>
+          <Tabs defaultValue="terms" className="w-full">
+            <div className="grid md:grid-cols-4 gap-8">
+              <div className="md:col-span-1">
+                <TabsList className="flex flex-col h-auto bg-transparent space-y-2 p-0">
+                  <TabsTrigger 
+                    value="terms" 
+                    className="w-full justify-start px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-transparent data-[state=active]:border-primary/20"
+                  >
+                    <FileText className="w-4 h-4 mr-2" /> Terms & Conditions
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="privacy" 
+                    className="w-full justify-start px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-transparent data-[state=active]:border-primary/20"
+                  >
+                    <Lock className="w-4 h-4 mr-2" /> Privacy Policy
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="fairplay" 
+                    className="w-full justify-start px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-transparent data-[state=active]:border-primary/20"
+                  >
+                    <Scale className="w-4 h-4 mr-2" /> Fair Play Policy
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="responsible" 
+                    className="w-full justify-start px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-transparent data-[state=active]:border-primary/20"
+                  >
+                    <Shield className="w-4 h-4 mr-2" /> Responsible Play
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="legality" 
+                    className="w-full justify-start px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-transparent data-[state=active]:border-primary/20"
+                  >
+                    <Gavel className="w-4 h-4 mr-2" /> Legality
+                  </TabsTrigger>
+                </TabsList>
+              </div>
 
-                <div className="flex-1 bg-black/20 p-6 lg:p-10">
-                  <ScrollArea className="h-[750px] pr-6">
-                    <TabsContent value="terms" className="mt-0 space-y-6 text-muted-foreground leading-relaxed">
-                      <div className="border-b border-white/10 pb-6 mb-6">
-                        <h2 className="text-3xl font-bold font-rajdhani text-white mb-2">Terms and Conditions</h2>
-                        <p className="text-sm font-mono text-primary">Last updated: December 18, 2025</p>
-                      </div>
+              <div className="md:col-span-3">
+                <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+                  <CardContent className="p-6">
+                    <ScrollArea className="h-[800px] pr-4">
                       
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">1. Introduction & Acceptance</h3>
-                        <p>Welcome to CricketIQ ("Platform"), owned and operated by HEALTH MITAN PRIVATE LIMITED. By accessing, registering, or using our Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree, you must immediately discontinue use of the Platform.</p>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">2. Eligibility Criteria</h3>
-                        <ul className="list-disc pl-5 space-y-2">
-                          <li>You must be a natural person and at least 18 years of age.</li>
-                          <li>You must be a resident of India.</li>
-                          <li>Residents of Andhra Pradesh, Assam, Odisha, Telangana, Nagaland, and Sikkim are strictly prohibited from participating in any pay-to-play contests due to state gaming laws.</li>
-                          <li>You must possess a valid email address and mobile number.</li>
-                        </ul>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">3. User Account & Security</h3>
-                        <p>You are responsible for maintaining the confidentiality of your login credentials. Any activity occurring under your account is your sole responsibility. You agree to notify us immediately of any unauthorized access. CricketIQ reserves the right to suspend or terminate accounts found to be in violation of these Terms.</p>
-                      </section>
+                      {/* Terms & Conditions */}
+                      <TabsContent value="terms" className="mt-0 space-y-6">
+                        <div className="border-b border-white/10 pb-4 mb-6">
+                          <h2 className="text-2xl font-bold text-white mb-2">Terms and Conditions</h2>
+                          <p className="text-sm text-muted-foreground">Last Updated: December 18, 2025</p>
+                        </div>
 
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">4. Intellectual Property Rights</h3>
-                        <p>All content, including but not limited to software, text, graphics, logos, and trademarks, is the exclusive property of CricketIQ. Unauthorized use, reproduction, or distribution is strictly prohibited and may result in legal action.</p>
-                      </section>
+                        <div className="space-y-6 text-muted-foreground">
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">1. Introduction and Acceptance</h3>
+                            <p className="mb-2">
+                              Welcome to CricketIQ ("Platform"), owned and operated by Health Mitan Private Limited ("Company"). By accessing, registering, or using our Platform, you ("User") agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you must not use the Platform.
+                            </p>
+                            <p>
+                              These Terms constitute a legally binding agreement between you and the Company. The Company reserves the right to modify these Terms at any time without prior notice. Continued use of the Platform following any changes signifies your acceptance of the modified Terms.
+                            </p>
+                          </section>
 
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">5. Contest Rules & Scoring</h3>
-                        <p>Participation in contests is subject to specific rules regarding team selection, points calculation, and winner determination. These rules are available on the "How to Play" page. CricketIQ reserves the right to modify scoring rules or cancel contests in the event of technical failures or match abandonments.</p>
-                      </section>
-                    </TabsContent>
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">2. Definitions</h3>
+                            <ul className="list-disc pl-5 space-y-2">
+                              <li><strong>"Contest"</strong> refers to any skill-based fantasy cricket competition available on the Platform.</li>
+                              <li><strong>"Virtual Currency"</strong> refers to the in-game points or credits used for gameplay, which have no real-world monetary value.</li>
+                              <li><strong>"User Account"</strong> means the personal profile created by a User to access the Platform.</li>
+                              <li><strong>"Restricted States"</strong> refers to Indian states where online fantasy sports may be regulated or prohibited, including but not limited to Andhra Pradesh, Assam, Nagaland, Odisha, Sikkim, and Telangana.</li>
+                            </ul>
+                          </section>
 
-                    <TabsContent value="privacy" className="mt-0 space-y-6 text-muted-foreground leading-relaxed">
-                      <div className="border-b border-white/10 pb-6 mb-6">
-                        <h2 className="text-3xl font-bold font-rajdhani text-white mb-2">Privacy Policy</h2>
-                        <p className="text-sm font-mono text-primary">Your privacy is our priority.</p>
-                      </div>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">1. Information Collection</h3>
-                        <p>We collect personal information necessary to provide our services, including:</p>
-                        <ul className="list-disc pl-5 space-y-2 mt-2">
-                          <li><strong>Identity Data:</strong> Name, Date of Birth, Gender.</li>
-                          <li><strong>Contact Data:</strong> Email address, Mobile number, Residential address.</li>
-                          <li><strong>Technical Data:</strong> IP address, Device ID, Browser type, and Operating System.</li>
-                        </ul>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">2. Use of Information</h3>
-                        <p>Your data is utilized for:</p>
-                        <ul className="list-disc pl-5 space-y-2 mt-2">
-                          <li>Verifying identity and eligibility.</li>
-                          <li>Processing contest entries and declaring winners.</li>
-                          <li>Improving platform functionality and user experience.</li>
-                          <li>Sending service updates, security alerts, and promotional communications (opt-out available).</li>
-                        </ul>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">3. Data Security & Retention</h3>
-                        <p>We implement robust security measures, including encryption and secure server infrastructure, to protect your data. We retain personal information only as long as necessary to fulfill the purposes outlined in this policy or as required by law.</p>
-                      </section>
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">3. Eligibility</h3>
+                            <p className="mb-2">To use the Platform, you must meet the following criteria:</p>
+                            <ul className="list-disc pl-5 space-y-2">
+                              <li>You must be at least 18 years of age.</li>
+                              <li>You must be a resident of India.</li>
+                              <li>You must not be a resident of any Restricted State.</li>
+                              <li>You must possess a valid mobile number and email address.</li>
+                            </ul>
+                            <p className="mt-2">
+                              The Company reserves the right to request proof of age and residency at any time. Failure to provide such proof may result in the suspension or termination of your User Account.
+                            </p>
+                          </section>
 
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">4. Third-Party Disclosure</h3>
-                        <p>We do not sell or rent your personal data. We may share data with trusted third-party service providers (e.g., payment processors, verification services) solely for operational purposes, under strict confidentiality agreements.</p>
-                      </section>
-                    </TabsContent>
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">4. User Accounts and Security</h3>
+                            <p className="mb-2">
+                              Users are limited to one account per person. Creating multiple accounts to gain an unfair advantage is strictly prohibited. You are responsible for maintaining the confidentiality of your login credentials.
+                            </p>
+                            <p>
+                              You agree to notify the Company immediately of any unauthorized use of your account. The Company shall not be liable for any loss or damage arising from your failure to comply with this section.
+                            </p>
+                          </section>
 
-                    <TabsContent value="fairplay" className="mt-0 space-y-6 text-muted-foreground leading-relaxed">
-                      <div className="border-b border-white/10 pb-6 mb-6">
-                        <h2 className="text-3xl font-bold font-rajdhani text-white mb-2">Fair Play Policy</h2>
-                        <p className="text-sm font-mono text-primary">Ensuring a level playing field for all.</p>
-                      </div>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">1. Equal Conditions</h3>
-                        <p>All users compete under identical rules. Every participant receives the same 100 Credit budget to select their team. Player prices and point systems are fixed and transparent for everyone.</p>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">2. Zero Tolerance for Cheating</h3>
-                        <p>The following actions are strictly prohibited:</p>
-                        <ul className="list-disc pl-5 space-y-2 mt-2">
-                          <li><strong>Multi-Accounting:</strong> Creating multiple accounts to bypass entry limits or manipulate contest outcomes.</li>
-                          <li><strong>Collusion:</strong> Users working together to pool entries or share strategies to gain an unfair advantage.</li>
-                          <li><strong>Automation:</strong> Using bots, scripts, or unauthorized software to automate team selection or contest joining.</li>
-                        </ul>
-                        <p className="mt-2 text-red-400">Violation of these rules will result in immediate permanent suspension and forfeiture of all winnings.</p>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">3. Deadline Integrity</h3>
-                        <p>To prevent unfair advantages based on live match information, all team edits are locked strictly at the official match start time. No changes are permitted after the deadline.</p>
-                      </section>
-                    </TabsContent>
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">5. Intellectual Property Rights</h3>
+                            <p>
+                              All content, trademarks, logos, software, and data on the Platform are the property of the Company or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Platform for personal, non-commercial purposes. You may not copy, modify, distribute, or reverse engineer any part of the Platform without prior written consent.
+                            </p>
+                          </section>
 
-                    <TabsContent value="responsible" className="mt-0 space-y-6 text-muted-foreground leading-relaxed">
-                      <div className="border-b border-white/10 pb-6 mb-6">
-                        <h2 className="text-3xl font-bold font-rajdhani text-white mb-2">Responsible Play</h2>
-                        <p className="text-sm font-mono text-primary">Play smart. Play safe.</p>
-                      </div>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">1. Our Philosophy</h3>
-                        <p>Fantasy sports is a form of entertainment. We are committed to preventing gaming addiction and ensuring our users play within their means. We encourage you to treat CricketIQ as a recreational activity, not a source of income.</p>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">2. User Protection Tools</h3>
-                        <ul className="list-disc pl-5 space-y-2">
-                          <li><strong>Self-Exclusion:</strong> Users can request to temporarily lock their account for 24 hours, 7 days, or 30 days.</li>
-                          <li><strong>Deposit Limits:</strong> (If applicable) Users can set daily or monthly limits on their spending.</li>
-                          <li><strong>Activity Alerts:</strong> Notifications to remind users of extended play sessions.</li>
-                        </ul>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">3. Underage Gaming</h3>
-                        <p>We strictly enforce an 18+ age restriction. We utilize third-party verification services to prevent minors from accessing the platform.</p>
-                      </section>
-                    </TabsContent>
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">6. Limitation of Liability</h3>
+                            <p>
+                              The Platform is provided on an "as-is" and "as-available" basis. The Company makes no warranties, express or implied, regarding the Platform's operation or availability. To the fullest extent permitted by law, the Company shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of the Platform.
+                            </p>
+                          </section>
 
-                    <TabsContent value="disclaimer" className="mt-0 space-y-6 text-muted-foreground leading-relaxed">
-                      <div className="border-b border-white/10 pb-6 mb-6">
-                        <h2 className="text-3xl font-bold font-rajdhani text-white mb-2">Legal Disclaimer</h2>
-                        <p className="text-sm font-mono text-primary">Important legal information.</p>
-                      </div>
-                      
-                      <div className="p-6 bg-red-500/10 border border-red-500/20 rounded-xl mb-6">
-                        <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                          <AlertTriangle className="w-5 h-5 text-red-500" /> Restricted States
-                        </h3>
-                        <p className="text-white/80">
-                          This platform is NOT available to residents of Andhra Pradesh, Assam, Odisha, Telangana, Nagaland, and Sikkim. Users from these states are prohibited from participating in pay-to-play contests.
-                        </p>
-                      </div>
-                      
-                      <p>CricketIQ is a skill-based platform. The game involves an element of financial risk and may be addictive. Please play responsibly and at your own risk.</p>
-                      
-                      <p>CricketIQ is operated by HEALTH MITAN PRIVATE LIMITED. We are not affiliated with any official cricket board, league, or team. All player names and team names are used for identification purposes only.</p>
-                    </TabsContent>
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">7. Dispute Resolution</h3>
+                            <p>
+                              Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts in Raipur, Chhattisgarh, India. Before initiating legal proceedings, Users agree to attempt to resolve the dispute informally by contacting our support team.
+                            </p>
+                          </section>
+                        </div>
+                      </TabsContent>
 
-                    <TabsContent value="legality" className="mt-0 space-y-6 text-muted-foreground leading-relaxed">
-                      <div className="border-b border-white/10 pb-6 mb-6">
-                        <h2 className="text-3xl font-bold font-rajdhani text-white mb-2">Legality of Fantasy Sports</h2>
-                        <p className="text-sm font-mono text-primary">Understanding the legal landscape in India.</p>
-                      </div>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">1. Game of Skill</h3>
-                        <p>Fantasy cricket is considered a "Game of Skill" under Indian law. The Supreme Court of India has recognized that success in fantasy sports depends on a user's superior knowledge, training, attention, and experience, rather than mere chance.</p>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">2. Legal Precedents</h3>
-                        <p>Several High Courts (including Punjab & Haryana, Bombay, and Rajasthan) have upheld the legality of fantasy sports formats similar to CricketIQ, ruling that they do not amount to gambling or betting.</p>
-                      </section>
-                      
-                      <section>
-                        <h3 className="text-xl font-bold text-white mb-3">3. Compliance</h3>
-                        <p>CricketIQ operates in full compliance with all applicable central and state laws. We continuously monitor legal developments to ensure our platform remains safe, secure, and lawful for all users.</p>
-                      </section>
-                    </TabsContent>
-                  </ScrollArea>
-                </div>
-              </Tabs>
-            </CardContent>
-          </Card>
+                      {/* Privacy Policy */}
+                      <TabsContent value="privacy" className="mt-0 space-y-6">
+                        <div className="border-b border-white/10 pb-4 mb-6">
+                          <h2 className="text-2xl font-bold text-white mb-2">Privacy Policy</h2>
+                          <p className="text-sm text-muted-foreground">Effective Date: December 18, 2025</p>
+                        </div>
+
+                        <div className="space-y-6 text-muted-foreground">
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">1. Information Collection</h3>
+                            <p className="mb-2">We collect the following types of information:</p>
+                            <ul className="list-disc pl-5 space-y-2">
+                              <li><strong>Personal Information:</strong> Name, email address, mobile number, date of birth, and state of residence.</li>
+                              <li><strong>Technical Information:</strong> IP address, device type, operating system, and browser type.</li>
+                              <li><strong>Usage Data:</strong> Pages visited, time spent on the Platform, and gameplay history.</li>
+                            </ul>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">2. Use of Information</h3>
+                            <p className="mb-2">We use your information for the following purposes:</p>
+                            <ul className="list-disc pl-5 space-y-2">
+                              <li>To provide and maintain the Platform.</li>
+                              <li>To verify your identity and eligibility.</li>
+                              <li>To prevent fraud and ensure fair play.</li>
+                              <li>To communicate with you regarding updates, promotions, and support.</li>
+                              <li>To analyze user behavior and improve our services.</li>
+                            </ul>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">3. Data Sharing and Disclosure</h3>
+                            <p>
+                              We do not sell your personal information to third parties. We may share your data with trusted service providers who assist us in operating the Platform (e.g., hosting, analytics), subject to strict confidentiality agreements. We may also disclose information if required by law or to protect our rights.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">4. Data Security</h3>
+                            <p>
+                              We implement industry-standard security measures, including encryption and secure socket layer (SSL) technology, to protect your data. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">5. Cookies and Tracking Technologies</h3>
+                            <p>
+                              We use cookies to enhance your experience, remember your preferences, and analyze traffic. You can control cookie settings through your browser, but disabling cookies may limit certain features of the Platform.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">6. User Rights</h3>
+                            <p>
+                              You have the right to access, correct, or delete your personal information. You may also opt-out of marketing communications at any time. To exercise these rights, please contact our Data Protection Officer at privacy@cricketiq.in.
+                            </p>
+                          </section>
+                        </div>
+                      </TabsContent>
+
+                      {/* Fair Play Policy */}
+                      <TabsContent value="fairplay" className="mt-0 space-y-6">
+                        <div className="border-b border-white/10 pb-4 mb-6">
+                          <h2 className="text-2xl font-bold text-white mb-2">Fair Play Policy</h2>
+                          <p className="text-sm text-muted-foreground">Ensuring a Level Playing Field</p>
+                        </div>
+
+                        <div className="space-y-6 text-muted-foreground">
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">1. Zero Tolerance for Cheating</h3>
+                            <p>
+                              CricketIQ is committed to providing a fair and transparent gaming environment. We have a zero-tolerance policy towards any form of cheating, manipulation, or unfair advantage.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">2. Prohibited Activities</h3>
+                            <ul className="list-disc pl-5 space-y-2">
+                              <li><strong>Multiple Accounts:</strong> Creating or operating more than one account per user is strictly forbidden.</li>
+                              <li><strong>Collusion:</strong> Users working together to manipulate contest outcomes or share strategies to disadvantage others.</li>
+                              <li><strong>Automated Scripts (Bots):</strong> Using software, bots, or scripts to automate gameplay or data scraping.</li>
+                              <li><strong>Bonus Abuse:</strong> Exploiting promotional offers or referral systems in a manner inconsistent with their intended purpose.</li>
+                            </ul>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">3. Monitoring and Detection</h3>
+                            <p>
+                              We employ advanced algorithms and manual reviews to detect suspicious activity. This includes monitoring IP addresses, device IDs, and gameplay patterns.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">4. Consequences of Violation</h3>
+                            <p>
+                              If a user is found to be violating this policy, the Company reserves the right to:
+                            </p>
+                            <ul className="list-disc pl-5 space-y-2">
+                              <li>Immediately suspend or permanently ban the User Account.</li>
+                              <li>Forfeit any winnings or virtual currency associated with the account.</li>
+                              <li>Report the activity to relevant legal authorities if necessary.</li>
+                            </ul>
+                          </section>
+                        </div>
+                      </TabsContent>
+
+                      {/* Responsible Play */}
+                      <TabsContent value="responsible" className="mt-0 space-y-6">
+                        <div className="border-b border-white/10 pb-4 mb-6">
+                          <h2 className="text-2xl font-bold text-white mb-2">Responsible Play</h2>
+                          <p className="text-sm text-muted-foreground">Play Smart, Play Safe</p>
+                        </div>
+
+                        <div className="space-y-6 text-muted-foreground">
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">1. Our Philosophy</h3>
+                            <p>
+                              Fantasy cricket is a game of skill and entertainment. It should never be seen as a source of income or a way to recover debts. We encourage all users to play responsibly and within their means.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">2. Age Verification</h3>
+                            <p>
+                              We strictly enforce an 18+ age limit. Users may be required to submit government-issued ID to verify their age. Any account found to belong to a minor will be immediately terminated.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">3. Self-Exclusion Tools</h3>
+                            <p>
+                              We provide tools to help you manage your gameplay:
+                            </p>
+                            <ul className="list-disc pl-5 space-y-2">
+                              <li><strong>Time Limits:</strong> Set daily or weekly limits on the time spent on the Platform.</li>
+                              <li><strong>Self-Exclusion:</strong> Temporarily or permanently lock your account if you feel you need a break.</li>
+                            </ul>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">4. Recognizing Problem Gaming</h3>
+                            <p>
+                              If you find yourself chasing losses, prioritizing gaming over daily responsibilities, or borrowing money to play, you may be developing a problem. We urge you to seek help from professional organizations.
+                            </p>
+                          </section>
+                        </div>
+                      </TabsContent>
+
+                      {/* Legality */}
+                      <TabsContent value="legality" className="mt-0 space-y-6">
+                        <div className="border-b border-white/10 pb-4 mb-6">
+                          <h2 className="text-2xl font-bold text-white mb-2">Legality of Fantasy Cricket</h2>
+                          <p className="text-sm text-muted-foreground">Indian Legal Framework</p>
+                        </div>
+
+                        <div className="space-y-6 text-muted-foreground">
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">1. Game of Skill</h3>
+                            <p>
+                              Fantasy cricket is legally recognized as a "Game of Skill" in India. The Supreme Court of India and various High Courts have ruled that fantasy sports involve a significant amount of skill, knowledge, and judgment, distinguishing them from gambling or betting.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">2. Excluded States</h3>
+                            <p>
+                              Due to specific state laws, we do not offer our services to residents of Andhra Pradesh, Assam, Nagaland, Odisha, Sikkim, and Telangana. Users from these states are prohibited from participating in any contests on the Platform.
+                            </p>
+                          </section>
+
+                          <section>
+                            <h3 className="text-lg font-bold text-white mb-2">3. Compliance</h3>
+                            <p>
+                              CricketIQ complies with all applicable central and state laws. We are committed to maintaining a legal and ethical platform for all our users.
+                            </p>
+                          </section>
+                        </div>
+                      </TabsContent>
+
+                    </ScrollArea>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </Tabs>
         </div>
       </div>
     </Layout>
