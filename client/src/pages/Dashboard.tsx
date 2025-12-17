@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Wallet, Trophy, Users, Clock, ChevronRight, Plus } from "lucide-react";
+import { Star, Trophy, Users, Clock, ChevronRight, Plus, Zap } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Dashboard() {
@@ -27,11 +27,11 @@ export default function Dashboard() {
           <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Wallet Balance</p>
-                <h3 className="text-3xl font-bold font-rajdhani text-white">₹2,450</h3>
+                <p className="text-sm text-muted-foreground mb-1">Skill Rating</p>
+                <h3 className="text-3xl font-bold font-rajdhani text-white">2,450</h3>
               </div>
               <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
-                <Wallet className="w-6 h-6 text-green-400" />
+                <Zap className="w-6 h-6 text-green-400" />
               </div>
             </CardContent>
           </Card>
@@ -49,8 +49,8 @@ export default function Dashboard() {
           <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Total Winnings</p>
-                <h3 className="text-3xl font-bold font-rajdhani text-white">₹15,800</h3>
+                <p className="text-sm text-muted-foreground mb-1">Global Rank</p>
+                <h3 className="text-3xl font-bold font-rajdhani text-white">#158</h3>
               </div>
               <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
                 <Award className="w-6 h-6 text-secondary" />
@@ -92,7 +92,7 @@ export default function Dashboard() {
                       <div className="flex items-center gap-6">
                         <div className="text-right">
                           <div className="text-xs text-muted-foreground">Entry</div>
-                          <div className="font-bold text-white">₹49</div>
+                          <div className="font-bold text-white">Free</div>
                         </div>
                         <div className="text-right">
                           <div className="text-xs text-muted-foreground">Teams</div>

@@ -81,7 +81,7 @@ export default function About() {
               {[
                 "Research player stats and pitch conditions before creating teams.",
                 "Play responsibly and set personal limits on time and budget.",
-                "Verify your account details to ensure smooth withdrawals.",
+                "Verify your account details to secure your profile.",
                 "Respect other players and the community guidelines.",
                 "Keep your login credentials secure and private."
               ].map((item, i) => (
@@ -124,12 +124,12 @@ export default function About() {
               <p className="text-muted-foreground">We provide pro-level analytics and insights directly in the app, helping you make smarter decisions than on any other platform.</p>
             </div>
             <div className="p-8 rounded-2xl bg-background border border-white/10 shadow-xl">
-              <h3 className="text-2xl font-bold font-rajdhani text-white mb-4">Zero Commission Leagues</h3>
-              <p className="text-muted-foreground">We host special zero-commission contests where 100% of the entry fees go into the prize pool.</p>
+              <h3 className="text-2xl font-bold font-rajdhani text-white mb-4">Fair Competition</h3>
+              <p className="text-muted-foreground">We host skill-based contests where your knowledge and strategy determine your success, not luck.</p>
             </div>
             <div className="p-8 rounded-2xl bg-background border border-white/10 shadow-xl">
-              <h3 className="text-2xl font-bold font-rajdhani text-white mb-4">Instant Withdrawals</h3>
-              <p className="text-muted-foreground">Our automated payment system ensures your winnings are transferred to your bank account instantly, 24/7.</p>
+              <h3 className="text-2xl font-bold font-rajdhani text-white mb-4">Global Recognition</h3>
+              <p className="text-muted-foreground">Climb the global leaderboards and earn exclusive badges to showcase your cricket expertise to the world.</p>
             </div>
           </div>
         </div>

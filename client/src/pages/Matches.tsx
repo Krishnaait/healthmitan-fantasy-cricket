@@ -105,8 +105,19 @@ export default function Matches() {
                   </div>
 
                   {/* Action */}
-                  <div className="md:col-span-3 p-6 flex items-center justify-center md:justify-end bg-white/5">
-                    <Link href="/team-builder">
+                  <div className="md:col-span-3 p-6 flex flex-col items-center justify-center gap-3 bg-white/5">
+                    <div className="flex items-center gap-4 w-full justify-center md:justify-end text-sm">
+                      <div className="flex flex-col items-end">
+                        <span className="text-muted-foreground text-xs">REWARDS</span>
+                        <span className="text-green-400 font-bold">XP & Badges</span>
+                      </div>
+                      <div className="h-8 w-px bg-white/10"></div>
+                      <div className="flex flex-col items-end">
+                        <span className="text-muted-foreground text-xs">ENTRY</span>
+                        <span className="text-white font-bold">Free</span>
+                      </div>
+                    </div>
+                    <Link href="/team-builder" className="w-full md:w-auto">
                       <Button className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] transition-all">
                         CREATE TEAM <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>

@@ -123,7 +123,7 @@ export default function Home() {
                 PLAY ANYWHERE, <span className="text-primary">ANYTIME</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8 max-w-xl">
-                Download the official CricketIQ app for the ultimate fantasy experience. Get exclusive app-only contests, instant notifications, and faster withdrawals.
+                Join the official CricketIQ community for the ultimate fantasy experience. Compete with friends, track live stats, and climb the global leaderboards.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button className="h-14 px-8 bg-white text-black hover:bg-gray-200 font-bold text-lg flex items-center gap-3">
@@ -140,9 +140,9 @@ export default function Home() {
                   <Shield className="w-4 h-4 text-green-400" /> 100% Secure
                 </div>
                 <div className="w-1 h-1 rounded-full bg-white/20"></div>
-                <div className="flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-yellow-400" /> Fast Download
-                </div>
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-yellow-400" /> Instant Access
+                  </div>
               </div>
             </div>
             <div className="flex-1 relative">
@@ -202,8 +202,8 @@ export default function Home() {
                 color: "border-secondary/20 bg-secondary/5"
               },
               {
-                title: "Win Prizes",
-                desc: "Top the leaderboard with your team's performance and win exciting rewards.",
+                title: "Climb Ranks",
+                desc: "Top the global leaderboards and earn exclusive badges and recognition.",
                 icon: <Zap className="w-10 h-10 text-purple-400" />,
                 color: "border-purple-500/20 bg-purple-500/5"
               }
@@ -233,8 +233,8 @@ export default function Home() {
               <p className="text-muted-foreground">Registered Users</p>
             </div>
             <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm" style={{display: 'none'}}>
-              <h3 className="text-4xl font-bold font-rajdhani text-secondary mb-2">₹50Cr+</h3>
-              <p className="text-muted-foreground">Winnings Distributed</p>
+              <h3 className="text-4xl font-bold font-rajdhani text-secondary mb-2">#1</h3>
+              <p className="text-muted-foreground">Fantasy Community</p>
             </div>
             <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <h3 className="text-4xl font-bold font-rajdhani text-purple-400 mb-2">24/7</h3>
