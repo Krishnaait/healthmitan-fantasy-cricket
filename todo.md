@@ -31,3 +31,4 @@
 - [x] Update `Login.tsx` and `Register.tsx` to use `AuthContext`
 - [x] Add "Profile Settings" tab to `Dashboard.tsx` with editable form
 - [x] Perform full site audit (Register -> Dashboard -> Edit Profile -> Logout)
+- [x] Hide "Download App" section in `Home.tsx`

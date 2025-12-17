@@ -114,7 +114,7 @@ export default function Home() {
       </section>
 
       {/* Download App Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden" style={{display: 'none'}}>
         <div className="absolute inset-0 bg-primary/5 -z-10"></div>
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
