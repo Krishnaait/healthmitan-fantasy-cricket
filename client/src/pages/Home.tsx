@@ -113,32 +113,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 container">
-        <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white text-center mb-16">
-          TRUSTED BY <span className="text-primary">CHAMPIONS</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { name: "Rahul S.", role: "Pro Player", quote: "The analytics on CricketIQ are unmatched. It helped me win my first mega contest!" },
-            { name: "Priya M.", role: "Cricket Fan", quote: "I love the fair play policy. It feels safe and transparent compared to other apps." },
-            { name: "Amit K.", role: "Strategist", quote: "The team builder interface is so intuitive. Building squads feels like being a real captain." }
-          ].map((t, i) => (
-            <Card key={i} className="bg-white/5 border-white/10 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <div className="flex gap-1 mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg key={star} className="w-5 h-5 text-yellow-500 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
-                  ))}
+      {/* Download App Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5 -z-10"></div>
+        <div className="container">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="flex-1 text-center md:text-left">
+              <h2 className="text-4xl md:text-6xl font-bold font-rajdhani text-white mb-6">
+                PLAY ANYWHERE, <span className="text-primary">ANYTIME</span>
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 max-w-xl">
+                Download the official CricketIQ app for the ultimate fantasy experience. Get exclusive app-only contests, instant notifications, and faster withdrawals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <Button className="h-14 px-8 bg-white text-black hover:bg-gray-200 font-bold text-lg flex items-center gap-3">
+                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current"><path d="M17.5,12.5c-0.6-3,2.2-4.4,2.3-4.5c-1.3-1.8-3.2-2-3.9-2.1c-1.6-0.2-3.2,1-4,1c-0.9,0-2.1-1-3.5-1c-1.8,0-3.5,1-4.4,2.6c-1.9,3.3-0.5,8.2,1.3,10.9c0.9,1.3,2,2.8,3.4,2.7c1.4-0.1,1.9-0.9,3.6-0.9c1.7,0,2.1,0.9,3.6,0.9c1.5,0,2.4-1.3,3.3-2.7c1-1.5,1.4-2.9,1.4-3C20.5,15.5,17.9,14.5,17.5,12.5z M13,5.1C13.7,4.2,14.2,3,14,1.7c-1.1,0-2.5,0.8-3.3,1.7c-0.7,0.8-1.3,2-1.1,3.3C10.8,6.8,12.1,6,13,5.1z"/></svg>
+                  App Store
+                </Button>
+                <Button className="h-14 px-8 bg-transparent border border-white/20 text-white hover:bg-white/5 font-bold text-lg flex items-center gap-3">
+                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current"><path d="M3,20.5V3.5C3,2.9,3.3,2.6,3.7,2.4L19.9,11.8c0.2,0.1,0.2,0.4,0,0.5L3.7,21.6C3.3,21.4,3,21.1,3,20.5z M16.8,11.3L5.2,4.6l6.3,6.3L16.8,11.3z M4.4,17.1l6.4-6.4l-6.4-6.4V17.1z M12.2,13.1l-0.7,0.7l5.4,3.1L12.2,13.1z"/></svg>
+                  Google Play
+                </Button>
+              </div>
+              <div className="mt-8 flex items-center gap-4 justify-center md:justify-start text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-green-400" /> 100% Secure
                 </div>
-                <p className="text-muted-foreground mb-6 italic">"{t.quote}"</p>
-                <div>
-                  <div className="font-bold text-white">{t.name}</div>
-                  <div className="text-xs text-primary">{t.role}</div>
+                <div className="w-1 h-1 rounded-full bg-white/20"></div>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-yellow-400" /> Fast Download
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            </div>
+            <div className="flex-1 relative">
+              <div className="relative z-10 bg-black/40 border border-white/10 rounded-3xl p-4 backdrop-blur-xl max-w-xs mx-auto transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                <div className="aspect-[9/19] bg-gradient-to-b from-gray-900 to-black rounded-2xl overflow-hidden border border-white/5 relative">
+                  {/* Mock App UI */}
+                  <div className="absolute top-0 left-0 right-0 h-14 bg-primary/10 flex items-center justify-between px-4 border-b border-white/5">
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                    <div className="font-rajdhani font-bold text-white">CRICKETIQ</div>
+                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="p-4 mt-14 space-y-4">
+                    <div className="h-32 rounded-xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/5"></div>
+                    <div className="h-20 rounded-xl bg-white/5 border border-white/5"></div>
+                    <div className="h-20 rounded-xl bg-white/5 border border-white/5"></div>
+                    <div className="h-20 rounded-xl bg-white/5 border border-white/5"></div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-md border-t border-white/5 flex justify-around items-center">
+                    <div className="w-8 h-8 rounded-full bg-primary/20"></div>
+                    <div className="w-8 h-8 rounded-full bg-white/5"></div>
+                    <div className="w-8 h-8 rounded-full bg-white/5"></div>
+                    <div className="w-8 h-8 rounded-full bg-white/5"></div>
+                  </div>
+                </div>
+              </div>
+              {/* Decorative Elements */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/20 blur-[100px] -z-10 rounded-full"></div>
+            </div>
+          </div>
         </div>
       </section>
 

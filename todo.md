@@ -16,3 +16,7 @@
 - [x] Add Live Match Ticker to `Home.tsx`
 - [x] Add Testimonials section to `Home.tsx`
 - [x] Perform full site audit for bugs and lag
+- [x] Replace Testimonials section in `Home.tsx` with "Download App" section
+- [x] Fix `Login.tsx` redirection logic (ensure it works reliably)
+- [x] Fix `Register.tsx` redirection logic (ensure it works reliably)
+- [x] Audit and fix any other broken links or UI bugs
