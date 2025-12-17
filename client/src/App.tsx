@@ -5,14 +5,31 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-
+import HowItWorks from "./pages/HowItWorks";
+import Matches from "./pages/Matches";
+import TeamBuilder from "./pages/TeamBuilder";
+import Stats from "./pages/Stats";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Legal from "./pages/Legal";
+import Scoreboard from "./pages/Scoreboard";
 
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
+      <Route path="/" component={Home} />
+      <Route path="/how-it-works" component={HowItWorks} />
+      <Route path="/matches" component={Matches} />
+      <Route path="/team-builder" component={TeamBuilder} />
+      <Route path="/stats" component={Stats} />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/terms" component={Legal} />
+      <Route path="/privacy" component={Legal} />
+      <Route path="/fair-play" component={Legal} />
+      <Route path="/responsible-play" component={Legal} />
+      <Route path="/scoreboard" component={Scoreboard} />
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
