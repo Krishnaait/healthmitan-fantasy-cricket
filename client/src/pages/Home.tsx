@@ -103,7 +103,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-background/50 border-b border-white/5">
+      <section className="py-20 bg-gradient-to-b from-background to-background/50 border-b border-white/5" style={{display: 'none'}}>
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
