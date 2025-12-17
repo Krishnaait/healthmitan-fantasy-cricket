@@ -107,10 +107,10 @@ export default function Home() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <h3 className="text-4xl font-bold font-rajdhani text-primary mb-2">10M+</h3>
+              <h3 className="text-4xl font-bold font-rajdhani text-primary mb-2">49+</h3>
               <p className="text-muted-foreground">Registered Users</p>
             </div>
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm" style={{display: 'none'}}>
               <h3 className="text-4xl font-bold font-rajdhani text-secondary mb-2">₹50Cr+</h3>
               <p className="text-muted-foreground">Winnings Distributed</p>
             </div>
