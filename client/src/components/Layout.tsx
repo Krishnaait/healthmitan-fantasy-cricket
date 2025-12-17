@@ -22,31 +22,29 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* Navbar */}
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center gap-2 font-rajdhani font-bold text-2xl tracking-wider hover:opacity-90 transition-opacity">
-              <div className="relative w-8 h-8 flex items-center justify-center bg-primary/20 rounded-full border border-primary/50">
-                <BarChart2 className="w-5 h-5 text-primary" />
-              </div>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
-                CRICKET<span className="text-primary">IQ</span>
-              </span>
-            </a>
+          <Link href="/" className="flex items-center gap-2 font-rajdhani font-bold text-2xl tracking-wider hover:opacity-90 transition-opacity">
+            <div className="relative w-8 h-8 flex items-center justify-center bg-primary/20 rounded-full border border-primary/50">
+              <BarChart2 className="w-5 h-5 text-primary" />
+            </div>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+              CRICKET<span className="text-primary">IQ</span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary uppercase tracking-wide font-rajdhani",
-                    location === item.path
-                      ? "text-primary drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  {item.label}
-                </a>
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary uppercase tracking-wide font-rajdhani",
+                  location === item.path
+                    ? "text-primary drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
+                    : "text-muted-foreground"
+                )}
+              >
+                {item.label}
               </Link>
             ))}
             <Button variant="outline" className="ml-4 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary font-rajdhani font-bold tracking-wider">
@@ -70,16 +68,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {mobileMenuOpen && (
           <div className="md:hidden border-b border-border/40 bg-background/95 backdrop-blur-xl p-4 flex flex-col gap-4 animate-in slide-in-from-top-5">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a
-                  className={cn(
-                    "text-base font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-white/5",
-                    location === item.path ? "text-primary bg-white/5" : "text-muted-foreground"
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className={cn(
+                  "text-base font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-white/5",
+                  location === item.path ? "text-primary bg-white/5" : "text-muted-foreground"
+                )}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
               </Link>
             ))}
             <div className="flex gap-4 mt-2">
@@ -129,22 +127,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-rajdhani font-bold text-lg mb-4 text-white">Platform</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/how-it-works"><a className="hover:text-primary transition-colors">How It Works</a></Link></li>
-                <li><Link href="/matches"><a className="hover:text-primary transition-colors">Matches</a></Link></li>
-                <li><Link href="/team-builder"><a className="hover:text-primary transition-colors">Team Builder</a></Link></li>
-                <li><Link href="/stats"><a className="hover:text-primary transition-colors">Player Stats</a></Link></li>
-                <li><Link href="/scoreboard"><a className="hover:text-primary transition-colors">Live Scoreboard</a></Link></li>
+                <li><Link href="/how-it-works" className="hover:text-primary transition-colors">How It Works</Link></li>
+                <li><Link href="/matches" className="hover:text-primary transition-colors">Matches</Link></li>
+                <li><Link href="/team-builder" className="hover:text-primary transition-colors">Team Builder</Link></li>
+                <li><Link href="/stats" className="hover:text-primary transition-colors">Player Stats</Link></li>
+                <li><Link href="/scoreboard" className="hover:text-primary transition-colors">Live Scoreboard</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-rajdhani font-bold text-lg mb-4 text-white">Legal & Support</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/terms"><a className="hover:text-primary transition-colors">Terms & Conditions</a></Link></li>
-                <li><Link href="/privacy"><a className="hover:text-primary transition-colors">Privacy Policy</a></Link></li>
-                <li><Link href="/fair-play"><a className="hover:text-primary transition-colors">Fair Play Policy</a></Link></li>
-                <li><Link href="/responsible-play"><a className="hover:text-primary transition-colors">Responsible Play</a></Link></li>
-                <li><Link href="/contact"><a className="hover:text-primary transition-colors">Contact Us</a></Link></li>
+                <li><Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link></li>
+                <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/fair-play" className="hover:text-primary transition-colors">Fair Play Policy</Link></li>
+                <li><Link href="/responsible-play" className="hover:text-primary transition-colors">Responsible Play</Link></li>
+                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
               </ul>
             </div>
 
