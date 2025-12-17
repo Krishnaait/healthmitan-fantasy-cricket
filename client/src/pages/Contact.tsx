@@ -3,111 +3,152 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, MessageSquare } from "lucide-react";
+import { Mail, MapPin, Phone, MessageSquare, Clock, Send, HelpCircle, Shield } from "lucide-react";
 
 export default function Contact() {
   return (
     <Layout>
-      <div className="container py-16">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold font-rajdhani text-white mb-6">
-            GET IN <span className="text-primary">TOUCH</span>
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            Have questions or feedback? We're here to help. Reach out to our support team.
-          </p>
-        </div>
+      <div className="min-h-screen bg-background pt-20 pb-12">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <h1 className="text-4xl md:text-6xl font-bold font-rajdhani text-white mb-6">
+              GET IN <span className="text-primary">TOUCH</span>
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              Have questions, feedback, or need assistance? Our dedicated support team is here to help you 24/7.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
-          <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-bold font-rajdhani text-white mb-6">Send us a Message</h2>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">First Name</label>
-                    <Input placeholder="John" className="bg-black/20 border-white/10 text-white" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Last Name</label>
-                    <Input placeholder="Doe" className="bg-black/20 border-white/10 text-white" />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">Email Address</label>
-                  <Input type="email" placeholder="john@example.com" className="bg-black/20 border-white/10 text-white" />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">Subject</label>
-                  <Input placeholder="How can we help?" className="bg-black/20 border-white/10 text-white" />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">Message</label>
-                  <Textarea placeholder="Type your message here..." className="min-h-[150px] bg-black/20 border-white/10 text-white" />
-                </div>
-
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold h-12 text-lg">
-                  SEND MESSAGE
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-black/20 border border-white/5 rounded-xl p-8">
-              <h3 className="text-xl font-bold font-rajdhani text-white mb-6">Contact Information</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold mb-1">Office Address</h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      HEALTH MITAN PRIVATE LIMITED<br />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Contact Info Column */}
+            <div className="lg:col-span-1 space-y-6">
+              <Card className="bg-white/5 border-white/10 backdrop-blur-sm overflow-hidden">
+                <div className="h-2 bg-primary w-full"></div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold font-rajdhani text-white mb-6 flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-primary" /> Corporate Office
+                  </h3>
+                  <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+                    <p className="font-bold text-white">HEALTH MITAN PRIVATE LIMITED</p>
+                    <p>
                       Ward No - 15, Village Kot, KASDOL,<br />
-                      Near Bajrang Chowk, Raipur, Baigandabari,<br />
-                      Balodabazar Bhatapara, Chhattisgarh, 493335
+                      Near Bajrang Chowk, Raipur,<br />
+                      Baigandabari, Balodabazar Bhatapara,<br />
+                      Chhattisgarh, India - 493335
                     </p>
                   </div>
-                </div>
+                </CardContent>
+              </Card>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-secondary" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold mb-1">Email Support</h4>
-                    <p className="text-muted-foreground text-sm">support@cricketiq.in</p>
-                    <p className="text-muted-foreground text-sm">grievance@cricketiq.in</p>
-                  </div>
-                </div>
+              <Card className="bg-white/5 border-white/10 backdrop-blur-sm overflow-hidden">
+                <div className="h-2 bg-secondary w-full"></div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold font-rajdhani text-white mb-6 flex items-center gap-2">
+                    <Mail className="w-5 h-5 text-secondary" /> Support Channels
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 p-3 bg-black/20 rounded-lg border border-white/5">
+                      <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+                        <HelpCircle className="w-4 h-4 text-secondary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">General Queries</p>
+                        <p className="text-sm font-bold text-white">support@cricketiq.in</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-black/20 rounded-lg border border-white/5">
+                      <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center">
+                        <Shield className="w-4 h-4 text-red-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">Grievance Officer</p>
+                        <p className="text-sm font-bold text-white">grievance@cricketiq.in</p>
+                      </div>
+                    </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                    <MessageSquare className="w-5 h-5 text-purple-400" />
+                    <div className="flex items-center gap-3 p-3 bg-black/20 rounded-lg border border-white/5">
+                      <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center">
+                        <MessageSquare className="w-4 h-4 text-purple-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">Live Chat</p>
+                        <p className="text-sm font-bold text-white">In-App Support</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-white font-bold mb-1">Live Chat</h4>
-                    <p className="text-muted-foreground text-sm">Available Mon-Fri, 9 AM - 6 PM IST</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/5 border-white/10 backdrop-blur-sm overflow-hidden">
+                <div className="h-2 bg-green-500 w-full"></div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold font-rajdhani text-white mb-4 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-green-500" /> Operating Hours
+                  </h3>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Monday - Friday</span>
+                      <span className="text-white font-bold">9:00 AM - 8:00 PM IST</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Weekends</span>
+                      <span className="text-white font-bold">10:00 AM - 6:00 PM IST</span>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-white/10 text-xs text-muted-foreground text-center">
+                      *Critical match-day support available until match end.
+                    </div>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
 
-            <div className="bg-primary/5 border border-primary/20 rounded-xl p-8">
-              <h3 className="text-xl font-bold font-rajdhani text-white mb-4">Grievance Redressal</h3>
-              <p className="text-muted-foreground text-sm mb-4">
-                We are committed to resolving any issues you may face. If you have any complaints regarding our services, please contact our Grievance Officer.
-              </p>
-              <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
-                VIEW GRIEVANCE POLICY
-              </Button>
+            {/* Contact Form Column */}
+            <div className="lg:col-span-2">
+              <Card className="bg-white/5 border-white/10 backdrop-blur-sm h-full">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold font-rajdhani text-white mb-2">Send us a Message</h2>
+                  <p className="text-muted-foreground mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
+                  
+                  <form className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-muted-foreground">First Name</label>
+                        <Input placeholder="Enter your first name" className="bg-black/20 border-white/10 text-white h-12 focus:border-primary/50 transition-colors" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-muted-foreground">Last Name</label>
+                        <Input placeholder="Enter your last name" className="bg-black/20 border-white/10 text-white h-12 focus:border-primary/50 transition-colors" />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-muted-foreground">Email Address</label>
+                        <Input type="email" placeholder="name@example.com" className="bg-black/20 border-white/10 text-white h-12 focus:border-primary/50 transition-colors" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-muted-foreground">Phone Number (Optional)</label>
+                        <Input placeholder="+91 XXXXX XXXXX" className="bg-black/20 border-white/10 text-white h-12 focus:border-primary/50 transition-colors" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-muted-foreground">Subject</label>
+                      <Input placeholder="What is this regarding?" className="bg-black/20 border-white/10 text-white h-12 focus:border-primary/50 transition-colors" />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-muted-foreground">Message</label>
+                      <Textarea placeholder="Type your message here..." className="min-h-[200px] bg-black/20 border-white/10 text-white resize-none focus:border-primary/50 transition-colors" />
+                    </div>
+
+                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold h-14 text-lg shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all hover:scale-[1.01]">
+                      SEND MESSAGE <Send className="ml-2 w-5 h-5" />
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -115,3 +156,5 @@ export default function Contact() {
     </Layout>
   );
 }
+
+
