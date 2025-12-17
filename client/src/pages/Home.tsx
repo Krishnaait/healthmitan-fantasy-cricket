@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Live Match Ticker */}
-      <div className="bg-black/80 border-b border-white/10 py-2 overflow-hidden whitespace-nowrap">
+      <div className="bg-black/80 border-b border-white/10 py-2 overflow-hidden whitespace-nowrap" style={{display: 'none'}}>
         <div className="inline-block animate-marquee">
           <span className="mx-8 text-sm font-mono text-primary">LIVE: IND vs AUS - IND 145/3 (18.2)</span>
           <span className="mx-8 text-sm font-mono text-white">UPCOMING: ENG vs SA - Starts in 2h 30m</span>
