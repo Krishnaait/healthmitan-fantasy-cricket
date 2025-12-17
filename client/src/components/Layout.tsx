@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { label: "Home", path: "/" },
-    { label: "How It Works", path: "/how-it-works" },
+    { label: "How to Play", path: "/how-to-play" },
     { label: "Matches", path: "/matches" },
     { label: "Team Builder", path: "/team-builder" },
     { label: "About", path: "/about" },
@@ -177,7 +177,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-rajdhani font-bold text-lg mb-4 text-white">Platform</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/how-it-works" className="hover:text-primary transition-colors">How It Works</Link></li>
+                <li><Link href="/how-to-play" className="hover:text-primary transition-colors">How to Play</Link></li>
                 <li><Link href="/matches" className="hover:text-primary transition-colors">Matches</Link></li>
                 <li><Link href="/team-builder" className="hover:text-primary transition-colors">Team Builder</Link></li>
                 <li><Link href="/scoreboard" className="hover:text-primary transition-colors">Live Scoreboard</Link></li>

@@ -53,7 +53,7 @@ export default function Home() {
                   START PLAYING FREE <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link href="/how-it-works">
+              <Link href="/how-to-play">
                 <Button variant="outline" size="lg" className="border-primary/30 text-white hover:bg-primary/10 hover:text-primary font-rajdhani font-bold text-lg px-8 h-14 backdrop-blur-sm">
                   VIEW FULL GUIDE
                 </Button>
