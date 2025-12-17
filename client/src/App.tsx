@@ -8,7 +8,8 @@ import Home from "./pages/Home";
 import HowItWorks from "./pages/HowItWorks";
 import Matches from "./pages/Matches";
 import TeamBuilder from "./pages/TeamBuilder";
-import Stats from "./pages/Stats";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Legal from "./pages/Legal";
@@ -21,7 +22,8 @@ function Router() {
       <Route path="/how-it-works" component={HowItWorks} />
       <Route path="/matches" component={Matches} />
       <Route path="/team-builder" component={TeamBuilder} />
-      <Route path="/stats" component={Stats} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/terms" component={Legal} />

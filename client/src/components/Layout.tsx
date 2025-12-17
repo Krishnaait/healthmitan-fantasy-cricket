@@ -13,7 +13,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { label: "How It Works", path: "/how-it-works" },
     { label: "Matches", path: "/matches" },
     { label: "Team Builder", path: "/team-builder" },
-    { label: "Stats", path: "/stats" },
     { label: "About", path: "/about" },
   ];
 
@@ -47,12 +46,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {item.label}
               </Link>
             ))}
-            <Button variant="outline" className="ml-4 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary font-rajdhani font-bold tracking-wider">
-              LOGIN
-            </Button>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-              REGISTER
-            </Button>
+            <Link href="/login">
+              <Button variant="outline" className="ml-4 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary font-rajdhani font-bold tracking-wider">
+                LOGIN
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                REGISTER
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -81,8 +84,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
             <div className="flex gap-4 mt-2">
-              <Button variant="outline" className="flex-1 border-primary/50 text-primary">LOGIN</Button>
-              <Button className="flex-1 bg-primary text-primary-foreground">REGISTER</Button>
+              <Link href="/login" className="flex-1">
+                <Button variant="outline" className="w-full border-primary/50 text-primary">LOGIN</Button>
+              </Link>
+              <Link href="/register" className="flex-1">
+                <Button className="w-full bg-primary text-primary-foreground">REGISTER</Button>
+              </Link>
             </div>
           </div>
         )}
@@ -130,7 +137,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/how-it-works" className="hover:text-primary transition-colors">How It Works</Link></li>
                 <li><Link href="/matches" className="hover:text-primary transition-colors">Matches</Link></li>
                 <li><Link href="/team-builder" className="hover:text-primary transition-colors">Team Builder</Link></li>
-                <li><Link href="/stats" className="hover:text-primary transition-colors">Player Stats</Link></li>
                 <li><Link href="/scoreboard" className="hover:text-primary transition-colors">Live Scoreboard</Link></li>
               </ul>
             </div>

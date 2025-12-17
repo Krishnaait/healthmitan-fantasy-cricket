@@ -76,7 +76,6 @@ export default function Scoreboard() {
               <TabsList className="w-full bg-white/5 border border-white/10">
                 <TabsTrigger value="commentary" className="flex-1 font-rajdhani font-bold">Commentary</TabsTrigger>
                 <TabsTrigger value="scorecard" className="flex-1 font-rajdhani font-bold">Scorecard</TabsTrigger>
-                <TabsTrigger value="stats" className="flex-1 font-rajdhani font-bold">Match Stats</TabsTrigger>
               </TabsList>
               
               <TabsContent value="commentary" className="mt-4 space-y-2">

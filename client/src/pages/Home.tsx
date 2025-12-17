@@ -37,9 +37,11 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold text-lg px-8 h-14 shadow-[0_0_20px_rgba(6,182,212,0.4)]">
-                START PLAYING FREE <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              <Link href="/register">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold text-lg px-8 h-14 shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+                  START PLAYING FREE <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
               <Link href="/how-it-works">
                 <Button variant="outline" size="lg" className="border-primary/30 text-white hover:bg-primary/10 hover:text-primary font-rajdhani font-bold text-lg px-8 h-14 backdrop-blur-sm">
                   HOW IT WORKS
@@ -220,9 +222,11 @@ export default function Home() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Join thousands of Indian cricket fans on the most advanced free-to-play fantasy platform. No money involved, just pure strategy.
           </p>
-          <Button size="lg" className="bg-white text-background hover:bg-white/90 font-rajdhani font-bold text-lg px-10 h-16 shadow-xl">
-            CREATE FREE ACCOUNT
-          </Button>
+          <Link href="/register">
+            <Button size="lg" className="bg-white text-background hover:bg-white/90 font-rajdhani font-bold text-lg px-10 h-16 shadow-xl">
+              CREATE FREE ACCOUNT
+            </Button>
+          </Link>
           <p className="mt-6 text-sm text-muted-foreground">
             By registering, you confirm you are 18+ and not from a restricted state.
           </p>
