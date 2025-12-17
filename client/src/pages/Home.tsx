@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, BarChart2, Brain, Shield, Trophy, Users, Zap } from "lucide-react";
+import { ArrowRight, BarChart2, Brain, Shield, Trophy, Users, Zap, Smartphone, Globe, Award, Target, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -113,305 +113,160 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Download App Section */}
-      <section className="py-24 relative overflow-hidden" style={{display: 'none'}}>
+      {/* Why Choose Us - High Density Grid */}
+      <section className="py-24 bg-black/40 border-y border-white/5">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white mb-4">
+              WHY CHOOSE <span className="text-primary">CRICKETIQ</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We combine cutting-edge technology with deep cricket analytics to provide the most immersive fantasy experience.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <Card className="bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 group">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                  <Brain className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Skill-First Gameplay</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Success on CricketIQ depends on your knowledge of the game, not luck. Analyze pitch reports, player form, and match conditions to build winning teams.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Feature 2 */}
+            <Card className="bg-white/5 border-white/10 hover:border-secondary/50 transition-all duration-300 group">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center mb-6 group-hover:bg-secondary/20 transition-colors">
+                  <Zap className="w-8 h-8 text-secondary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Real-Time Updates</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Get instant score updates, player stats, and leaderboard changes. Our ultra-low latency system ensures you never miss a moment of the action.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Feature 3 */}
+            <Card className="bg-white/5 border-white/10 hover:border-purple-500/50 transition-all duration-300 group">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
+                  <Shield className="w-8 h-8 text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">100% Secure & Fair</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We use advanced algorithms to detect fair play violations. Your data is encrypted, and our platform is certified for security and transparency.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Feature 4 */}
+            <Card className="bg-white/5 border-white/10 hover:border-green-500/50 transition-all duration-300 group">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-6 group-hover:bg-green-500/20 transition-colors">
+                  <Users className="w-8 h-8 text-green-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Vibrant Community</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Join thousands of cricket fans. Create private leagues, challenge friends, and discuss strategies in our active community forums.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Feature 5 */}
+            <Card className="bg-white/5 border-white/10 hover:border-yellow-500/50 transition-all duration-300 group">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center mb-6 group-hover:bg-yellow-500/20 transition-colors">
+                  <Trophy className="w-8 h-8 text-yellow-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Daily Rewards</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Earn rewards just for playing. Complete daily challenges, climb the seasonal leaderboard, and unlock exclusive badges and profile customizations.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Feature 6 */}
+            <Card className="bg-white/5 border-white/10 hover:border-cyan-500/50 transition-all duration-300 group">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 transition-colors">
+                  <Smartphone className="w-8 h-8 text-cyan-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Seamless Experience</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Whether on desktop or mobile, enjoy a buttery-smooth interface designed for speed and ease of use. Play anywhere, anytime.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works - Step by Step */}
+      <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 -z-10"></div>
         <div className="container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="flex-1 text-center md:text-left">
-              <h2 className="text-4xl md:text-6xl font-bold font-rajdhani text-white mb-6">
-                PLAY ANYWHERE, <span className="text-primary">ANYTIME</span>
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8 max-w-xl">
-                Join the official CricketIQ community for the ultimate fantasy experience. Compete with friends, track live stats, and climb the global leaderboards.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <Button className="h-14 px-8 bg-white text-black hover:bg-gray-200 font-bold text-lg flex items-center gap-3">
-                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current"><path d="M17.5,12.5c-0.6-3,2.2-4.4,2.3-4.5c-1.3-1.8-3.2-2-3.9-2.1c-1.6-0.2-3.2,1-4,1c-0.9,0-2.1-1-3.5-1c-1.8,0-3.5,1-4.4,2.6c-1.9,3.3-0.5,8.2,1.3,10.9c0.9,1.3,2,2.8,3.4,2.7c1.4-0.1,1.9-0.9,3.6-0.9c1.7,0,2.1,0.9,3.6,0.9c1.5,0,2.4-1.3,3.3-2.7c1-1.5,1.4-2.9,1.4-3C20.5,15.5,17.9,14.5,17.5,12.5z M13,5.1C13.7,4.2,14.2,3,14,1.7c-1.1,0-2.5,0.8-3.3,1.7c-0.7,0.8-1.3,2-1.1,3.3C10.8,6.8,12.1,6,13,5.1z"/></svg>
-                  App Store
-                </Button>
-                <Button className="h-14 px-8 bg-transparent border border-white/20 text-white hover:bg-white/5 font-bold text-lg flex items-center gap-3">
-                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current"><path d="M3,20.5V3.5C3,2.9,3.3,2.6,3.7,2.4L19.9,11.8c0.2,0.1,0.2,0.4,0,0.5L3.7,21.6C3.3,21.4,3,21.1,3,20.5z M16.8,11.3L5.2,4.6l6.3,6.3L16.8,11.3z M4.4,17.1l6.4-6.4l-6.4-6.4V17.1z M12.2,13.1l-0.7,0.7l5.4,3.1L12.2,13.1z"/></svg>
-                  Google Play
-                </Button>
-              </div>
-              <div className="mt-8 flex items-center gap-4 justify-center md:justify-start text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-green-400" /> 100% Secure
-                </div>
-                <div className="w-1 h-1 rounded-full bg-white/20"></div>
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-yellow-400" /> Instant Access
-                  </div>
-              </div>
-            </div>
-            <div className="flex-1 relative">
-              <div className="relative z-10 bg-black/40 border border-white/10 rounded-3xl p-4 backdrop-blur-xl max-w-xs mx-auto transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <div className="aspect-[9/19] bg-gradient-to-b from-gray-900 to-black rounded-2xl overflow-hidden border border-white/5 relative">
-                  {/* Mock App UI */}
-                  <div className="absolute top-0 left-0 right-0 h-14 bg-primary/10 flex items-center justify-between px-4 border-b border-white/5">
-                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
-                    <div className="font-rajdhani font-bold text-white">CRICKETIQ</div>
-                    <div className="w-6 h-6 rounded-full bg-white/10"></div>
-                  </div>
-                  <div className="p-4 mt-14 space-y-4">
-                    <div className="h-32 rounded-xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/5"></div>
-                    <div className="h-20 rounded-xl bg-white/5 border border-white/5"></div>
-                    <div className="h-20 rounded-xl bg-white/5 border border-white/5"></div>
-                    <div className="h-20 rounded-xl bg-white/5 border border-white/5"></div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-md border-t border-white/5 flex justify-around items-center">
-                    <div className="w-8 h-8 rounded-full bg-primary/20"></div>
-                    <div className="w-8 h-8 rounded-full bg-white/5"></div>
-                    <div className="w-8 h-8 rounded-full bg-white/5"></div>
-                    <div className="w-8 h-8 rounded-full bg-white/5"></div>
-                  </div>
-                </div>
-              </div>
-              {/* Decorative Elements */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/20 blur-[100px] -z-10 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Tournaments Section */}
-      <section className="py-20 bg-black/40 border-y border-white/5">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold font-rajdhani text-white mb-4">
-              FEATURED <span className="text-primary">TOURNAMENTS</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white mb-4">
+              HOW TO <span className="text-primary">PLAY</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Participate in the world's biggest cricket leagues. From international showdowns to domestic T20 leagues, we cover it all.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
-              <div className="h-48 bg-gradient-to-br from-blue-900 to-black relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Trophy className="w-16 h-16 text-white/20 group-hover:text-primary/50 transition-colors duration-300" />
-                </div>
-              </div>
-              <div className="relative z-20 p-6 -mt-12">
-                <div className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3 border border-primary/20">
-                  LIVE NOW
-                </div>
-                <h3 className="text-2xl font-bold font-rajdhani text-white mb-2">Indian T20 League</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  The biggest T20 carnival is here. Create your dream team and compete with millions.
-                </p>
-                <Link href="/matches">
-                  <Button className="w-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white border border-white/10">
-                    View Matches <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
-              <div className="h-48 bg-gradient-to-br from-green-900 to-black relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Shield className="w-16 h-16 text-white/20 group-hover:text-green-400/50 transition-colors duration-300" />
-                </div>
-              </div>
-              <div className="relative z-20 p-6 -mt-12">
-                <div className="inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold mb-3 border border-green-500/20">
-                  UPCOMING
-                </div>
-                <h3 className="text-2xl font-bold font-rajdhani text-white mb-2">World Cup 2025</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  The ultimate glory awaits. Predict the champions and win exclusive rewards.
-                </p>
-                <Link href="/matches">
-                  <Button className="w-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white border border-white/10">
-                    View Schedule <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
-              <div className="h-48 bg-gradient-to-br from-purple-900 to-black relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Zap className="w-16 h-16 text-white/20 group-hover:text-purple-400/50 transition-colors duration-300" />
-                </div>
-              </div>
-              <div className="relative z-20 p-6 -mt-12">
-                <div className="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold mb-3 border border-purple-500/20">
-                  POPULAR
-                </div>
-                <h3 className="text-2xl font-bold font-rajdhani text-white mb-2">Big Bash League</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Experience the thrill of Australian T20 cricket. High scoring matches guaranteed.
-                </p>
-                <Link href="/matches">
-                  <Button className="w-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white border border-white/10">
-                    Join Contest <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-background/50 border-b border-white/5" style={{display: 'none'}}>
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <h3 className="text-4xl font-bold font-rajdhani text-primary mb-2">49+</h3>
-              <p className="text-muted-foreground">Registered Users</p>
-            </div>
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm" style={{display: 'none'}}>
-              <h3 className="text-4xl font-bold font-rajdhani text-secondary mb-2">#1</h3>
-              <p className="text-muted-foreground">Fantasy Community</p>
-            </div>
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <h3 className="text-4xl font-bold font-rajdhani text-purple-400 mb-2">24/7</h3>
-              <p className="text-muted-foreground">Customer Support</p>
-            </div>
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <h3 className="text-4xl font-bold font-rajdhani text-green-400 mb-2">100%</h3>
-              <p className="text-muted-foreground">Secure & Legal</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-24 relative">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white mb-6">BUILT FOR <span className="text-primary">TACTICIANS</span></h2>
-            <p className="text-muted-foreground text-lg">
-              CricketIQ isn't about luck. It's about deep analysis, understanding match conditions, and making calculated decisions.
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Get started in minutes. Follow these simple steps to build your dream team.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Connecting Line */}
+            <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent -z-10"></div>
+
             {[
-              {
-                icon: <Brain className="w-8 h-8 text-primary" />,
-                title: "Pure Skill Gaming",
-                desc: "Success depends entirely on your knowledge of cricket statistics, player form, and match conditions."
-              },
-              {
-                icon: <Zap className="w-8 h-8 text-secondary" />,
-                title: "Real-Time Analytics",
-                desc: "Access professional-grade data visualization and live match insights to make informed decisions."
-              },
-              {
-                icon: <Shield className="w-8 h-8 text-purple-400" />,
-                title: "Zero Risk Platform",
-                desc: "100% free to play with absolutely no real money involvement. Focus on the game, not the gamble."
-              }
-            ].map((feature, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors group">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 rounded-2xl bg-background/50 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold font-rajdhani text-white mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.desc}
-                  </p>
-                </CardContent>
-              </Card>
+              { icon: Target, title: "Select Match", desc: "Choose an upcoming match from the lobby." },
+              { icon: Users, title: "Create Team", desc: "Pick 11 players within 100 credits budget." },
+              { icon: Award, title: "Join Contest", desc: "Enter free contests to compete with others." },
+              { icon: Trophy, title: "Win & Learn", desc: "Track points live and climb the leaderboard." }
+            ].map((step, index) => (
+              <div key={index} className="relative text-center group">
+                <div className="w-24 h-24 mx-auto bg-black border-2 border-primary/30 rounded-full flex items-center justify-center mb-6 group-hover:border-primary group-hover:scale-110 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                  <step.icon className="w-10 h-10 text-primary" />
+                </div>
+                <div className="absolute top-0 right-0 bg-primary text-black font-bold w-8 h-8 rounded-full flex items-center justify-center transform translate-x-1/2 -translate-y-1/2">
+                  {index + 1}
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                <p className="text-sm text-muted-foreground px-4">{step.desc}</p>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-24 bg-black/20 border-y border-white/5">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img src="/images/analytics-bg.jpg" alt="Analytics Dashboard" className="w-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="h-12 w-12 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center text-primary font-bold font-mono text-xl">1</div>
-                    <div className="h-0.5 flex-1 bg-white/10"></div>
-                    <div className="h-12 w-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground font-bold font-mono text-xl">2</div>
-                    <div className="h-0.5 flex-1 bg-white/10"></div>
-                    <div className="h-12 w-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground font-bold font-mono text-xl">3</div>
-                  </div>
-                  <h3 className="text-2xl font-bold font-rajdhani text-white">Select Your Match</h3>
-                  <p className="text-muted-foreground mt-2">Choose from upcoming domestic and international fixtures.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="order-1 lg:order-2 space-y-8">
-              <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white">
-                STRATEGIZE IN <br />
-                <span className="text-secondary">3 SIMPLE STEPS</span>
-              </h2>
-              
-              <div className="space-y-6">
-                {[
-                  {
-                    step: "01",
-                    title: "Analyze & Select",
-                    desc: "Review pitch reports and player stats. Select a match from the upcoming fixtures list."
-                  },
-                  {
-                    step: "02",
-                    title: "Build Your Squad",
-                    desc: "Use your 100 credit budget wisely. Pick 11 players balancing batsmen, bowlers, and all-rounders."
-                  },
-                  {
-                    step: "03",
-                    title: "Compete & Learn",
-                    desc: "Track live performance points. Climb the leaderboard and refine your cricket strategy."
-                  }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-6 group">
-                    <div className="text-4xl font-bold font-rajdhani text-white/10 group-hover:text-primary/50 transition-colors">
-                      {item.step}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-rajdhani font-bold px-8 mt-4" style={{display: 'none'}}>
-                VIEW FULL GUIDE
+          
+          <div className="text-center mt-12">
+            <Link href="/how-to-play">
+              <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
+                Read Detailed Rules
               </Button>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/5"></div>
-        <div className="container relative z-10 text-center">
+      <section className="py-24 bg-gradient-to-r from-primary/20 to-secondary/20 border-y border-white/10">
+        <div className="container text-center">
           <h2 className="text-4xl md:text-6xl font-bold font-rajdhani text-white mb-6">
-            READY TO TEST YOUR <span className="text-primary">CRICKET IQ?</span>
+            READY TO <span className="text-primary">DOMINATE?</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-            Join thousands of Indian cricket fans on the most advanced free-to-play fantasy platform. No money involved, just pure strategy.
+            Join the fastest-growing fantasy cricket community today. It's free, fun, and competitive.
           </p>
           <Link href="/register">
-            <Button size="lg" className="bg-white text-background hover:bg-white/90 font-rajdhani font-bold text-lg px-10 h-16 shadow-xl">
+            <Button size="lg" className="bg-white text-black hover:bg-gray-200 font-rajdhani font-bold text-xl px-12 h-16 shadow-2xl transform hover:scale-105 transition-transform">
               CREATE FREE ACCOUNT
             </Button>
           </Link>
-          <p className="mt-6 text-sm text-muted-foreground">
-            By registering, you confirm you are 18+ and not from a restricted state.
-          </p>
         </div>
       </section>
     </Layout>
