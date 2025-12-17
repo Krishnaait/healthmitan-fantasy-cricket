@@ -1,27 +1,26 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
-import { Info, Plus, Minus, User, Shield, AlertCircle } from "lucide-react";
+import { Info, Plus, Minus, User, Shield, AlertCircle, Trophy, Zap, Target } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
 
 // Mock Data
 const players = [
-  { id: 1, name: "Rohit Sharma", role: "BAT", credits: 9.5, team: "IND", points: 145, image: "/images/player-placeholder.png" },
-  { id: 2, name: "Virat Kohli", role: "BAT", credits: 10.0, team: "IND", points: 182, image: "/images/player-placeholder.png" },
-  { id: 3, name: "Jasprit Bumrah", role: "BOWL", credits: 9.0, team: "IND", points: 130, image: "/images/player-placeholder.png" },
-  { id: 4, name: "Hardik Pandya", role: "AR", credits: 9.0, team: "IND", points: 110, image: "/images/player-placeholder.png" },
-  { id: 5, name: "KL Rahul", role: "WK", credits: 9.0, team: "IND", points: 95, image: "/images/player-placeholder.png" },
-  { id: 6, name: "David Warner", role: "BAT", credits: 9.5, team: "AUS", points: 140, image: "/images/player-placeholder.png" },
-  { id: 7, name: "Steve Smith", role: "BAT", credits: 9.0, team: "AUS", points: 125, image: "/images/player-placeholder.png" },
-  { id: 8, name: "Pat Cummins", role: "BOWL", credits: 9.0, team: "AUS", points: 135, image: "/images/player-placeholder.png" },
-  { id: 9, name: "Glenn Maxwell", role: "AR", credits: 9.0, team: "AUS", points: 115, image: "/images/player-placeholder.png" },
-  { id: 10, name: "Alex Carey", role: "WK", credits: 8.5, team: "AUS", points: 85, image: "/images/player-placeholder.png" },
-  { id: 11, name: "Ravindra Jadeja", role: "AR", credits: 9.0, team: "IND", points: 120, image: "/images/player-placeholder.png" },
-  { id: 12, name: "Mohammed Shami", role: "BOWL", credits: 8.5, team: "IND", points: 105, image: "/images/player-placeholder.png" },
-  { id: 13, name: "Mitchell Starc", role: "BOWL", credits: 9.0, team: "AUS", points: 125, image: "/images/player-placeholder.png" },
-  { id: 14, name: "Suryakumar Yadav", role: "BAT", credits: 9.0, team: "IND", points: 150, image: "/images/player-placeholder.png" },
+  { id: 1, name: "Rohit Sharma", role: "BAT", credits: 9.5, team: "IND", points: 145, sel: 84, form: [10, 45, 120, 5, 32] },
+  { id: 2, name: "Virat Kohli", role: "BAT", credits: 10.0, team: "IND", points: 182, sel: 92, form: [50, 82, 12, 100, 45] },
+  { id: 3, name: "Jasprit Bumrah", role: "BOWL", credits: 9.0, team: "IND", points: 130, sel: 78, form: [25, 50, 0, 75, 25] },
+  { id: 4, name: "Hardik Pandya", role: "AR", credits: 9.0, team: "IND", points: 110, sel: 65, form: [30, 20, 60, 40, 10] },
+  { id: 5, name: "KL Rahul", role: "WK", credits: 9.0, team: "IND", points: 95, sel: 45, form: [15, 30, 45, 10, 20] },
+  { id: 6, name: "David Warner", role: "BAT", credits: 9.5, team: "AUS", points: 140, sel: 80, form: [60, 20, 10, 80, 40] },
+  { id: 7, name: "Steve Smith", role: "BAT", credits: 9.0, team: "AUS", points: 125, sel: 70, form: [40, 50, 30, 20, 60] },
+  { id: 8, name: "Pat Cummins", role: "BOWL", credits: 9.0, team: "AUS", points: 135, sel: 75, form: [50, 25, 50, 25, 50] },
+  { id: 9, name: "Glenn Maxwell", role: "AR", credits: 9.0, team: "AUS", points: 115, sel: 60, form: [20, 80, 10, 40, 30] },
+  { id: 10, name: "Alex Carey", role: "WK", credits: 8.5, team: "AUS", points: 85, sel: 30, form: [10, 20, 30, 10, 15] },
+  { id: 11, name: "Ravindra Jadeja", role: "AR", credits: 9.0, team: "IND", points: 120, sel: 72, form: [40, 30, 50, 20, 40] },
+  { id: 12, name: "Mohammed Shami", role: "BOWL", credits: 8.5, team: "IND", points: 105, sel: 55, form: [25, 25, 50, 0, 25] },
+  { id: 13, name: "Mitchell Starc", role: "BOWL", credits: 9.0, team: "AUS", points: 125, sel: 68, form: [50, 0, 25, 50, 25] },
+  { id: 14, name: "Suryakumar Yadav", role: "BAT", credits: 9.0, team: "IND", points: 150, sel: 88, form: [80, 10, 60, 40, 20] },
 ];
 
 export default function TeamBuilder() {
@@ -126,8 +125,8 @@ export default function TeamBuilder() {
                         >
                           <div className="flex items-center gap-4">
                             <div className="relative">
-                              <div className="w-12 h-12 rounded-full bg-white/10 overflow-hidden">
-                                <User className="w-full h-full p-2 text-muted-foreground" />
+                              <div className="w-12 h-12 rounded-full bg-white/10 overflow-hidden flex items-center justify-center">
+                                <User className="w-6 h-6 text-muted-foreground" />
                               </div>
                               <div className={`absolute -bottom-1 -right-1 text-[10px] font-bold px-1.5 py-0.5 rounded ${player.team === "IND" ? "bg-blue-600" : "bg-yellow-500"} text-white`}>
                                 {player.team}
@@ -135,11 +134,20 @@ export default function TeamBuilder() {
                             </div>
                             <div>
                               <h3 className={`font-bold font-rajdhani ${isSelected ? "text-primary" : "text-white"}`}>{player.name}</h3>
-                              <div className="text-xs text-muted-foreground">Sel by 84% • {player.points} pts</div>
+                              <div className="flex items-center gap-3 text-xs text-muted-foreground mt-1">
+                                <span>Sel: {player.sel}%</span>
+                                <span className="w-1 h-1 rounded-full bg-white/20"></span>
+                                <span>Pts: {player.points}</span>
+                              </div>
                             </div>
                           </div>
 
                           <div className="flex items-center gap-6">
+                            <div className="hidden md:flex gap-0.5 items-end h-6">
+                              {player.form.map((score, i) => (
+                                <div key={i} className="w-1 bg-white/20 rounded-t-sm" style={{height: `${score/2}%`}}></div>
+                              ))}
+                            </div>
                             <div className="text-right">
                               <div className="font-mono font-bold text-white">{player.credits}</div>
                               <div className="text-[10px] text-muted-foreground">Cr</div>
@@ -168,8 +176,8 @@ export default function TeamBuilder() {
             
             <div className="relative z-10 flex-1 p-6 flex flex-col justify-between">
               <div className="text-center">
-                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70">WICKET KEEPERS</h3>
-                <div className="flex justify-center gap-4 mt-2">
+                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70 mb-2">WICKET KEEPERS</h3>
+                <div className="flex justify-center gap-4">
                   {selectedPlayers.filter(id => players.find(p => p.id === id)?.role === "WK").map(id => {
                     const p = players.find(player => player.id === id);
                     return (
@@ -185,8 +193,8 @@ export default function TeamBuilder() {
               </div>
 
               <div className="text-center">
-                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70">BATSMEN</h3>
-                <div className="flex justify-center gap-4 mt-2 flex-wrap">
+                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70 mb-2">BATSMEN</h3>
+                <div className="flex justify-center gap-4 flex-wrap">
                   {selectedPlayers.filter(id => players.find(p => p.id === id)?.role === "BAT").map(id => {
                     const p = players.find(player => player.id === id);
                     return (
@@ -202,8 +210,8 @@ export default function TeamBuilder() {
               </div>
 
               <div className="text-center">
-                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70">ALL ROUNDERS</h3>
-                <div className="flex justify-center gap-4 mt-2 flex-wrap">
+                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70 mb-2">ALL ROUNDERS</h3>
+                <div className="flex justify-center gap-4 flex-wrap">
                   {selectedPlayers.filter(id => players.find(p => p.id === id)?.role === "AR").map(id => {
                     const p = players.find(player => player.id === id);
                     return (
@@ -219,8 +227,8 @@ export default function TeamBuilder() {
               </div>
 
               <div className="text-center">
-                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70">BOWLERS</h3>
-                <div className="flex justify-center gap-4 mt-2 flex-wrap">
+                <h3 className="text-white font-rajdhani font-bold tracking-widest text-sm opacity-70 mb-2">BOWLERS</h3>
+                <div className="flex justify-center gap-4 flex-wrap">
                   {selectedPlayers.filter(id => players.find(p => p.id === id)?.role === "BOWL").map(id => {
                     const p = players.find(player => player.id === id);
                     return (
@@ -236,19 +244,29 @@ export default function TeamBuilder() {
               </div>
             </div>
 
-            <div className="p-4 bg-black/80 backdrop-blur-md border-t border-white/10">
+            <div className="p-4 bg-black/60 backdrop-blur-md border-t border-white/10">
+              <div className="flex justify-between items-center mb-4">
+                <div className="text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div> WK
+                    <div className="w-2 h-2 rounded-full bg-blue-500"></div> BAT
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-purple-500"></div> AR
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div> BOWL
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs text-muted-foreground">Total Credits</div>
+                  <div className="font-mono font-bold text-white">{100 - creditsLeft}/100</div>
+                </div>
+              </div>
               <Button 
-                className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-rajdhani font-bold"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold"
                 disabled={selectedPlayers.length !== 11}
               >
-                CONTINUE
+                SAVE TEAM
               </Button>
-              {selectedPlayers.length !== 11 && (
-                <div className="flex items-center justify-center gap-2 mt-2 text-xs text-destructive">
-                  <AlertCircle className="w-3 h-3" />
-                  <span>Select 11 players to continue</span>
-                </div>
-              )}
             </div>
           </div>
         </div>

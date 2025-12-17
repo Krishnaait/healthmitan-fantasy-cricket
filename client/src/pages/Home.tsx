@@ -55,7 +55,7 @@ export default function Home() {
               </Link>
               <Link href="/how-it-works">
                 <Button variant="outline" size="lg" className="border-primary/30 text-white hover:bg-primary/10 hover:text-primary font-rajdhani font-bold text-lg px-8 h-14 backdrop-blur-sm">
-                  HOW IT WORKS
+                  VIEW FULL GUIDE
                 </Button>
               </Link>
             </div>

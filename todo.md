@@ -32,3 +32,12 @@
 - [x] Add "Profile Settings" tab to `Dashboard.tsx` with editable form
 - [x] Perform full site audit (Register -> Dashboard -> Edit Profile -> Logout)
 - [x] Hide "Download App" section in `Home.tsx`
+- [x] Link "VIEW FULL GUIDE" button in `Home.tsx` to `/how-it-works`
+- [ ] Enhance `HowItWorks.tsx` with detailed guide, scoring system, and FAQ
+- [ ] Enhance `Matches.tsx` with realistic filters and detailed match cards
+- [ ] Enhance `TeamBuilder.tsx` with improved UI and role indicators
+- [ ] Enhance `Scoreboard.tsx` with detailed live match stats
+- [ ] Enhance `Terms.tsx` with professional content and formatting
+- [ ] Enhance `Privacy.tsx` with professional content and formatting
+- [ ] Enhance `FairPlay.tsx` with professional content and formatting
+- [ ] Enhance `ResponsiblePlay.tsx` with professional content and formatting

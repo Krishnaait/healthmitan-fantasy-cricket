@@ -1,57 +1,137 @@
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Shield, FileText, AlertCircle, Scale } from "lucide-react";
 
 export default function Terms() {
   return (
     <Layout>
-      <div className="container py-16">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold font-rajdhani text-white mb-8">TERMS & <span className="text-primary">CONDITIONS</span></h1>
-          
-          <Card className="bg-white/5 border-white/10 backdrop-blur-md">
-            <CardHeader>
-              <CardTitle className="text-white">Last Updated: December 17, 2025</CardTitle>
-            </CardHeader>
-            <CardContent className="text-muted-foreground space-y-6 leading-relaxed">
-              <ScrollArea className="h-[600px] pr-4">
-                <section className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-3">1. Introduction</h3>
-                  <p>Welcome to CricketIQ. By accessing or using our platform, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our services.</p>
-                </section>
+      <div className="min-h-screen bg-background pt-20 pb-12">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <h1 className="text-4xl md:text-5xl font-bold font-rajdhani text-white mb-4">
+                TERMS & <span className="text-primary">CONDITIONS</span>
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                Please read these terms carefully before using the CricketIQ platform.
+              </p>
+            </div>
+            
+            <Card className="bg-white/5 border-white/10 backdrop-blur-md overflow-hidden">
+              <CardHeader className="bg-black/20 border-b border-white/5 p-6">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-primary" /> User Agreement
+                  </CardTitle>
+                  <span className="text-sm text-muted-foreground font-mono">Last Updated: December 18, 2025</span>
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <ScrollArea className="h-[70vh] p-6 md:p-8">
+                  <div className="space-y-8 text-muted-foreground leading-relaxed">
+                    <section>
+                      <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">01</span>
+                        Introduction
+                      </h3>
+                      <p className="mb-4">
+                        Welcome to CricketIQ ("we," "our," or "us"). By accessing or using our website, mobile application, or any other services (collectively, the "Platform"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you must not access or use the Platform.
+                      </p>
+                      <p>
+                        CricketIQ is a skill-based fantasy sports platform designed for entertainment and educational purposes. We provide a simulated environment for users to test their cricket knowledge and strategy.
+                      </p>
+                    </section>
 
-                <section className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-3">2. Eligibility</h3>
-                  <p>To use CricketIQ, you must be at least 18 years of age. By registering, you certify that you are 18 years or older. Residents of the states of Assam, Odisha, Telangana, Nagaland, Sikkim, and Andhra Pradesh are not permitted to participate in pay-to-play contests due to local state laws. Free-to-play contests are open to all residents of India.</p>
-                </section>
+                    <section>
+                      <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">02</span>
+                        Eligibility
+                      </h3>
+                      <div className="bg-white/5 p-4 rounded-lg border border-white/5 mb-4">
+                        <ul className="list-disc pl-5 space-y-2">
+                          <li>You must be at least 18 years of age to register and participate.</li>
+                          <li>You must be a resident of India.</li>
+                          <li>You must have a valid email address and mobile number.</li>
+                        </ul>
+                      </div>
+                      <p>
+                        Residents of Assam, Odisha, Telangana, Nagaland, Sikkim, and Andhra Pradesh are strictly prohibited from participating in any pay-to-play contests (if available) due to state legislations. However, our free-to-play contests are open to all residents of India.
+                      </p>
+                    </section>
 
-                <section className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-3">3. User Accounts</h3>
-                  <p>You are responsible for maintaining the confidentiality of your account credentials. You agree to notify us immediately of any unauthorized use of your account. We reserve the right to suspend or terminate accounts that violate our policies.</p>
-                </section>
+                    <section>
+                      <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">03</span>
+                        Account Security
+                      </h3>
+                      <p className="mb-4">
+                        You are responsible for maintaining the confidentiality of your login credentials. You agree to notify us immediately of any unauthorized use of your account. CricketIQ will not be liable for any loss or damage arising from your failure to comply with this security obligation.
+                      </p>
+                      <p>
+                        We reserve the right to suspend or terminate your account if we suspect any fraudulent activity, violation of fair play rules, or breach of these Terms.
+                      </p>
+                    </section>
 
-                <section className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-3">4. Intellectual Property</h3>
-                  <p>All content, features, and functionality of the CricketIQ platform, including but not limited to text, graphics, logos, and software, are the exclusive property of CricketIQ and are protected by Indian and international copyright laws.</p>
-                </section>
+                    <section>
+                      <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">04</span>
+                        Intellectual Property
+                      </h3>
+                      <p>
+                        All content on the Platform, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software, is the property of CricketIQ or its content suppliers and is protected by Indian and international copyright laws.
+                      </p>
+                    </section>
 
-                <section className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-3">5. Contest Rules</h3>
-                  <p>Each contest on CricketIQ is governed by specific rules regarding scoring, team selection, and winner determination. These rules are available on the "How It Works" page and within each contest's details. By joining a contest, you agree to these specific rules.</p>
-                </section>
+                    <section>
+                      <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">05</span>
+                        Platform Usage
+                      </h3>
+                      <p className="mb-4">
+                        You agree not to use the Platform for any unlawful purpose or in any way that could damage, disable, overburden, or impair the Platform. Specifically, you agree not to:
+                      </p>
+                      <ul className="list-disc pl-5 space-y-2 mb-4">
+                        <li>Use any automated means (bots, scrapers, etc.) to access the Platform.</li>
+                        <li>Attempt to gain unauthorized access to any portion of the Platform.</li>
+                        <li>Interfere with or disrupt the integrity or performance of the Platform.</li>
+                        <li>Create multiple accounts to manipulate contest results.</li>
+                      </ul>
+                    </section>
 
-                <section className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-3">6. Limitation of Liability</h3>
-                  <p>CricketIQ shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service.</p>
-                </section>
+                    <section>
+                      <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">06</span>
+                        Limitation of Liability
+                      </h3>
+                      <p>
+                        To the maximum extent permitted by law, CricketIQ shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Platform.
+                      </p>
+                    </section>
 
-                <section className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-3">7. Governing Law</h3>
-                  <p>These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts located in India.</p>
-                </section>
-              </ScrollArea>
-            </CardContent>
-          </Card>
+                    <section>
+                      <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">07</span>
+                        Governing Law
+                      </h3>
+                      <p>
+                        These Terms shall be governed by and construed in accordance with the laws of India. Any dispute arising out of or in connection with these Terms, including any question regarding its existence, validity, or termination, shall be referred to and finally resolved by the courts of India.
+                      </p>
+                    </section>
+
+                    <div className="pt-8 border-t border-white/10 mt-8">
+                      <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-lg border border-primary/10">
+                        <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <p className="text-sm">
+                          <strong>Contact Us:</strong> If you have any questions about these Terms, please contact us at support@cricketiq.com.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollArea>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </Layout>
