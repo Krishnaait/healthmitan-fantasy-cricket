@@ -102,6 +102,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Key Features Section */}
+      <section className="py-24 relative bg-black/20">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-rajdhani text-white mb-6">
+              YOUR PATH TO <span className="text-primary">VICTORY</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Start your journey to becoming a fantasy cricket champion in three simple steps.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Create Your Team",
+                desc: "Use your cricket knowledge to pick the best 11 players from the match.",
+                icon: <Users className="w-10 h-10 text-primary" />,
+                color: "border-primary/20 bg-primary/5"
+              },
+              {
+                title: "Join Contests",
+                desc: "Compete in various contests, from free entry to high-stakes leagues.",
+                icon: <Trophy className="w-10 h-10 text-secondary" />,
+                color: "border-secondary/20 bg-secondary/5"
+              },
+              {
+                title: "Win Prizes",
+                desc: "Top the leaderboard with your team's performance and win exciting rewards.",
+                icon: <Zap className="w-10 h-10 text-purple-400" />,
+                color: "border-purple-500/20 bg-purple-500/5"
+              }
+            ].map((feature, i) => (
+              <Card key={i} className={`backdrop-blur-sm border ${feature.color} hover:bg-white/5 transition-all duration-300 group`}>
+                <CardContent className="p-8 text-center">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold font-rajdhani text-white mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
       <section className="py-20 bg-gradient-to-b from-background to-background/50 border-b border-white/5" style={{display: 'none'}}>
         <div className="container">
