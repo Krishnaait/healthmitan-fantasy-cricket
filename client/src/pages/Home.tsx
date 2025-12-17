@@ -71,7 +71,7 @@ export default function Home() {
               />
               
               {/* Floating UI Elements */}
-              <div className="absolute top-8 right-8 bg-black/60 backdrop-blur-xl border border-primary/30 p-4 rounded-lg shadow-lg animate-in fade-in zoom-in duration-1000 delay-500">
+              <div className="absolute top-8 right-8 bg-black/60 backdrop-blur-xl border border-primary/30 p-4 rounded-lg shadow-lg animate-in fade-in zoom-in duration-1000 delay-500" style={{display: 'none'}}>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-2 h-2 rounded-full bg-secondary"></div>
                   <span className="text-xs font-mono text-primary uppercase">Win Probability</span>
