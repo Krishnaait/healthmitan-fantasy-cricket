@@ -68,7 +68,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">General Queries</p>
-                        <p className="text-sm font-bold text-white">support@cricketiq.in</p>
+                        <p className="text-sm font-bold text-white">support@healthmitan.in</p>
                       </div>
                     </div>
                     
@@ -78,7 +78,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">Grievance Officer</p>
-                        <p className="text-sm font-bold text-white">grievance@cricketiq.in</p>
+                        <p className="text-sm font-bold text-white">grievance@healthmitan.in</p>
                       </div>
                     </div>
 

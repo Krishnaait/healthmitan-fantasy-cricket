@@ -114,14 +114,14 @@ export default function FairPlay() {
                     <section>
                       <h3 className="text-xl font-bold text-white mb-4">5. Employee Restrictions</h3>
                       <p className="mb-4">
-                        Employees of CricketIQ, its affiliates, and their immediate family members are strictly prohibited from participating in any public pay-to-play contests on the platform. They may only participate in private, employee-only contests which do not involve real money prizes.
+                        Employees of HEALTHMITAN, its affiliates, and their immediate family members are strictly prohibited from participating in any public pay-to-play contests on the platform. They may only participate in private, employee-only contests which do not involve real money prizes.
                       </p>
                     </section>
 
                     <section>
                       <h3 className="text-xl font-bold text-white mb-4">6. Reporting Violations</h3>
                       <p>
-                        If you suspect any user of violating our Fair Play Policy, please report it immediately to our support team at fairplay@cricketiq.com. All reports are investigated thoroughly and kept confidential.
+                        If you suspect any user of violating our Fair Play Policy, please report it immediately to our support team at fairplay@healthmitan.in. All reports are investigated thoroughly and kept confidential.
                       </p>
                     </section>
                   </div>

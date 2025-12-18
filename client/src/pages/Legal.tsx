@@ -14,7 +14,7 @@ export default function Legal() {
               LEGAL & <span className="text-primary">COMPLIANCE</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Transparency, trust, and integrity are the pillars of CricketIQ. Please review our comprehensive policies below.
+              Transparency, trust, and integrity are the pillars of HEALTHMITAN. Please review our comprehensive policies below.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function Legal() {
                       
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">1. Introduction & Acceptance</h3>
-                        <p>Welcome to CricketIQ ("Platform"), owned and operated by HEALTH MITAN PRIVATE LIMITED. By accessing, registering, or using our Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree, you must immediately discontinue use of the Platform.</p>
+                        <p>Welcome to HEALTHMITAN ("Platform"), owned and operated by HEALTH MITAN PRIVATE LIMITED. By accessing, registering, or using our Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree, you must immediately discontinue use of the Platform.</p>
                       </section>
                       
                       <section>
@@ -70,17 +70,17 @@ export default function Legal() {
                       
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">3. User Account & Security</h3>
-                        <p>You are responsible for maintaining the confidentiality of your login credentials. Any activity occurring under your account is your sole responsibility. You agree to notify us immediately of any unauthorized access. CricketIQ reserves the right to suspend or terminate accounts found to be in violation of these Terms.</p>
+                        <p>You are responsible for maintaining the confidentiality of your login credentials. Any activity occurring under your account is your sole responsibility. You agree to notify us immediately of any unauthorized access. HEALTHMITAN reserves the right to suspend or terminate accounts found to be in violation of these Terms.</p>
                       </section>
 
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">4. Intellectual Property Rights</h3>
-                        <p>All content, including but not limited to software, text, graphics, logos, and trademarks, is the exclusive property of CricketIQ. Unauthorized use, reproduction, or distribution is strictly prohibited and may result in legal action.</p>
+                        <p>All content, including but not limited to software, text, graphics, logos, and trademarks, is the exclusive property of HEALTHMITAN. Unauthorized use, reproduction, or distribution is strictly prohibited and may result in legal action.</p>
                       </section>
 
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">5. Contest Rules & Scoring</h3>
-                        <p>Participation in contests is subject to specific rules regarding team selection, points calculation, and winner determination. These rules are available on the "How to Play" page. CricketIQ reserves the right to modify scoring rules or cancel contests in the event of technical failures or match abandonments.</p>
+                        <p>Participation in contests is subject to specific rules regarding team selection, points calculation, and winner determination. These rules are available on the "How to Play" page. HEALTHMITAN reserves the right to modify scoring rules or cancel contests in the event of technical failures or match abandonments.</p>
                       </section>
                     </TabsContent>
 
@@ -168,7 +168,7 @@ export default function Legal() {
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-white mb-3">1. Age Restrictions (18+)</h3>
-                              <p className="text-muted-foreground mb-4">CricketIQ is strictly for users 18 years of age and above.</p>
+                              <p className="text-muted-foreground mb-4">HEALTHMITAN is strictly for users 18 years of age and above.</p>
                               <ul className="space-y-2 text-sm text-muted-foreground">
                                 <li className="flex items-center gap-2">
                                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -251,7 +251,7 @@ export default function Legal() {
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-white mb-3">4. Social Responsibility</h3>
-                              <p className="text-muted-foreground mb-4">Be a positive member of the CricketIQ community.</p>
+                              <p className="text-muted-foreground mb-4">Be a positive member of the HEALTHMITAN community.</p>
                               <ul className="space-y-2 text-sm text-muted-foreground">
                                 <li className="flex items-center gap-2">
                                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -337,8 +337,8 @@ export default function Legal() {
                                   <span className="text-primary font-mono">1800-599-0019</span>
                                 </div>
                                 <div className="bg-black/20 p-3 rounded flex justify-between items-center">
-                                  <span className="text-white font-medium">CricketIQ Support</span>
-                                  <span className="text-primary font-mono">support@cricketiq.in</span>
+                                  <span className="text-white font-medium">HEALTHMITAN Support</span>
+                                  <span className="text-primary font-mono">support@healthmitan.in</span>
                                 </div>
                               </div>
                             </div>
@@ -363,9 +363,9 @@ export default function Legal() {
                         </p>
                       </div>
                       
-                      <p>CricketIQ is a skill-based platform. The game involves an element of financial risk and may be addictive. Please play responsibly and at your own risk.</p>
+                      <p>HEALTHMITAN is a skill-based platform. The game involves an element of financial risk and may be addictive. Please play responsibly and at your own risk.</p>
                       
-                      <p>CricketIQ is operated by HEALTH MITAN PRIVATE LIMITED. We are not affiliated with any official cricket board, league, or team. All player names and team names are used for identification purposes only.</p>
+                      <p>HEALTHMITAN is operated by HEALTH MITAN PRIVATE LIMITED. We are not affiliated with any official cricket board, league, or team. All player names and team names are used for identification purposes only.</p>
                     </TabsContent>
 
                     {/* Legality */}
@@ -387,7 +387,7 @@ export default function Legal() {
                       
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">3. Compliance</h3>
-                        <p>CricketIQ complies with all applicable central and state laws. We are committed to maintaining a legal and ethical platform for all our users.</p>
+                        <p>HEALTHMITAN complies with all applicable central and state laws. We are committed to maintaining a legal and ethical platform for all our users.</p>
                       </section>
                     </TabsContent>
 

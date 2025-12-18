@@ -134,7 +134,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Skill-First Gameplay</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Success on CricketIQ depends on your knowledge of the game, not luck. Analyze pitch reports, player form, and match conditions to build winning teams.
+                  Success on HEALTHMITAN depends on your knowledge of the game, not luck. Analyze pitch reports, player form, and match conditions to build winning teams.
                 </p>
               </CardContent>
             </Card>

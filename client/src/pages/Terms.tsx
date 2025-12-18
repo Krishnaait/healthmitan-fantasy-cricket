@@ -14,7 +14,7 @@ export default function Terms() {
                 TERMS & <span className="text-primary">CONDITIONS</span>
               </h1>
               <p className="text-muted-foreground text-lg">
-                Please read these terms carefully before using the CricketIQ platform.
+                Please read these terms carefully before using the HEALTHMITAN platform.
               </p>
             </div>
             
@@ -36,10 +36,10 @@ export default function Terms() {
                         Introduction
                       </h3>
                       <p className="mb-4">
-                        Welcome to CricketIQ ("we," "our," or "us"). By accessing or using our website, mobile application, or any other services (collectively, the "Platform"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you must not access or use the Platform.
+                        Welcome to HEALTHMITAN ("we," "our," or "us"). By accessing or using our website, mobile application, or any other services (collectively, the "Platform"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you must not access or use the Platform.
                       </p>
                       <p>
-                        CricketIQ is a skill-based fantasy sports platform designed for entertainment and educational purposes. We provide a simulated environment for users to test their cricket knowledge and strategy.
+                        HEALTHMITAN is a skill-based fantasy sports platform designed for entertainment and educational purposes. We provide a simulated environment for users to test their cricket knowledge and strategy.
                       </p>
                     </section>
 
@@ -66,7 +66,7 @@ export default function Terms() {
                         Account Security
                       </h3>
                       <p className="mb-4">
-                        You are responsible for maintaining the confidentiality of your login credentials. You agree to notify us immediately of any unauthorized use of your account. CricketIQ will not be liable for any loss or damage arising from your failure to comply with this security obligation.
+                        You are responsible for maintaining the confidentiality of your login credentials. You agree to notify us immediately of any unauthorized use of your account. HEALTHMITAN will not be liable for any loss or damage arising from your failure to comply with this security obligation.
                       </p>
                       <p>
                         We reserve the right to suspend or terminate your account if we suspect any fraudulent activity, violation of fair play rules, or breach of these Terms.
@@ -79,7 +79,7 @@ export default function Terms() {
                         Intellectual Property
                       </h3>
                       <p>
-                        All content on the Platform, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software, is the property of CricketIQ or its content suppliers and is protected by Indian and international copyright laws.
+                        All content on the Platform, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software, is the property of HEALTHMITAN or its content suppliers and is protected by Indian and international copyright laws.
                       </p>
                     </section>
 
@@ -105,7 +105,7 @@ export default function Terms() {
                         Limitation of Liability
                       </h3>
                       <p>
-                        To the maximum extent permitted by law, CricketIQ shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Platform.
+                        To the maximum extent permitted by law, HEALTHMITAN shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Platform.
                       </p>
                     </section>
 
@@ -123,7 +123,7 @@ export default function Terms() {
                       <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-lg border border-primary/10">
                         <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                         <p className="text-sm">
-                          <strong>Contact Us:</strong> If you have any questions about these Terms, please contact us at support@cricketiq.com.
+                          <strong>Contact Us:</strong> If you have any questions about these Terms, please contact us at support@healthmitan.in.
                         </p>
                       </div>
                     </div>

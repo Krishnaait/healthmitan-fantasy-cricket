@@ -74,7 +74,7 @@ export default function Privacy() {
                       <ul className="list-disc pl-5 space-y-2 mb-4">
                         <li><strong>Service Providers:</strong> We may share your information with third-party vendors, consultants, and other service providers who need access to such information to carry out work on our behalf.</li>
                         <li><strong>Legal Requirements:</strong> We may disclose your information if we believe disclosure is in accordance with any applicable law, regulation, or legal process.</li>
-                        <li><strong>Protection of Rights:</strong> We may disclose information if we believe your actions are inconsistent with our user agreements or policies, or to protect the rights, property, and safety of CricketIQ or others.</li>
+                        <li><strong>Protection of Rights:</strong> We may disclose information if we believe your actions are inconsistent with our user agreements or policies, or to protect the rights, property, and safety of HEALTHMITAN or others.</li>
                       </ul>
                     </section>
 
@@ -95,7 +95,7 @@ export default function Privacy() {
                     <section>
                       <h3 className="text-xl font-bold text-white mb-4">6. Your Rights</h3>
                       <p className="mb-4">
-                        You have the right to access, correct, or delete your personal information. You may also have the right to restrict or object to certain processing of your data. To exercise these rights, please contact us at privacy@cricketiq.com.
+                        You have the right to access, correct, or delete your personal information. You may also have the right to restrict or object to certain processing of your data. To exercise these rights, please contact us at privacy@healthmitan.in.
                       </p>
                     </section>
 

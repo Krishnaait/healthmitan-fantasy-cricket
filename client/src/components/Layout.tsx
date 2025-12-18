@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <BarChart2 className="w-5 h-5 text-primary" />
             </div>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
-              CRICKET<span className="text-primary">IQ</span>
+              HEALTH<span className="text-primary">MITAN</span>
             </span>
           </Link>
 
@@ -156,7 +156,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <div className="w-8 h-8 flex items-center justify-center bg-primary/20 rounded-full border border-primary/50">
                   <BarChart2 className="w-5 h-5 text-primary" />
                 </div>
-                <span>CRICKET<span className="text-primary">IQ</span></span>
+                <span>HEALTH<span className="text-primary">MITAN</span></span>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 India's premier skill-based fantasy cricket platform. Built for strategy, powered by data, and designed for the true cricket tactician.
@@ -209,7 +209,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     <p>Ward No - 15, Village Kot, KASDOL, Near Bajrang Chowk, Raipur, Baigandabari, Balodabazar Bhatapara, Chhattisgarh, 493335</p>
                   </div>
                 </div>
-                <p className="pt-2">support@cricketiq.in</p>
+                <p className="pt-2">support@healthmitan.in</p>
               </div>
             </div>
           </div>

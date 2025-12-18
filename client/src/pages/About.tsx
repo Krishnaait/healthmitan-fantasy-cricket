@@ -18,7 +18,7 @@ export default function About() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-purple-500">FANTASY CRICKET</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              CricketIQ is India's premier free-to-play educational fantasy platform. We are built by cricket lovers, for cricket lovers, with a mission to turn every fan into a master strategist.
+              HEALTHMITAN is India's premier free-to-play educational fantasy platform. We are built by cricket lovers, for cricket lovers, with a mission to turn every fan into a master strategist.
             </p>
           </div>
         </div>
@@ -43,13 +43,13 @@ export default function About() {
               <h2 className="text-4xl font-bold font-rajdhani text-white">OUR STORY</h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  The idea for CricketIQ was born in a small living room during the nail-biting final of the 2023 World Cup. As we debated captaincy decisions and field placements, we realized something crucial: <span className="text-white font-bold">Cricket fans are the smartest sports fans in the world.</span>
+                  The idea for HEALTHMITAN was born in a small living room during the nail-biting final of the 2023 World Cup. As we debated captaincy decisions and field placements, we realized something crucial: <span className="text-white font-bold">Cricket fans are the smartest sports fans in the world.</span>
                 </p>
                 <p>
                   Yet, most fantasy platforms were purely transactional—focused on money rather than the mind. They reduced the beautiful complexity of cricket to mere gambling. We wanted to change that.
                 </p>
                 <p>
-                  We set out to build a platform that honors the intellect of the fan. A place where your knowledge of pitch reports, player form, and match-ups is the only currency that matters. After two years of development, rigorous testing, and countless cups of chai, CricketIQ was launched with a singular promise: <span className="text-primary font-bold">Skill First, Always Free.</span>
+                  We set out to build a platform that honors the intellect of the fan. A place where your knowledge of pitch reports, player form, and match-ups is the only currency that matters. After two years of development, rigorous testing, and countless cups of chai, HEALTHMITAN was launched with a singular promise: <span className="text-primary font-bold">Skill First, Always Free.</span>
                 </p>
                 <p>
                   Today, we are a growing community of strategists, analysts, and die-hard fans who come together not just to play, but to learn and master the art of cricket strategy.
@@ -90,7 +90,7 @@ export default function About() {
                 </div>
                 <h2 className="text-3xl font-bold font-rajdhani text-white mb-6">Our Vision</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed flex-grow mb-4">
-                  To become the global standard for educational fantasy sports. We envision a world where CricketIQ is the training ground for the next generation of cricket analysts, commentators, and coaches.
+                  To become the global standard for educational fantasy sports. We envision a world where HEALTHMITAN is the training ground for the next generation of cricket analysts, commentators, and coaches.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed flex-grow">
                   We see a future where our community of "Cricket Strategists" sets the benchmark for insightful cricket discussion, where knowledge is celebrated, and every match is an opportunity to learn, grow, and connect with fellow enthusiasts worldwide.
@@ -145,16 +145,16 @@ export default function About() {
           </div>
         </div>
 
-        {/* Why CricketIQ - Elaborated */}
+        {/* Why HEALTHMITAN - Elaborated */}
         <div className="container mb-24">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 sticky top-24">
               <h2 className="text-4xl md:text-6xl font-bold font-rajdhani text-white mb-8 leading-tight">
                 WHY CHOOSE <br/>
-                <span className="text-primary">CRICKETIQ?</span>
+                <span className="text-primary">HEALTHMITAN?</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                In a sea of fantasy apps, we stand apart. Here is what makes the CricketIQ experience truly unique.
+                In a sea of fantasy apps, we stand apart. Here is what makes the HEALTHMITAN experience truly unique.
               </p>
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 blur-3xl rounded-full" />
@@ -252,7 +252,7 @@ export default function About() {
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-white font-bold text-sm uppercase tracking-wider opacity-70">Contact Email</h4>
-                  <p className="text-lg text-white">support@cricketiq.in</p>
+                  <p className="text-lg text-white">support@healthmitan.in</p>
                 </div>
               </div>
             </div>

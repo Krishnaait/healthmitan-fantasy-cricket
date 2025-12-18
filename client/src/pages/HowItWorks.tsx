@@ -65,7 +65,7 @@ export default function HowItWorks() {
               MASTER THE <span className="text-primary">GAME</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              CricketIQ is a strategy-first platform. Learn the rules, analyze the data, and build your legacy. Follow this comprehensive guide to start your journey.
+              HEALTHMITAN is a strategy-first platform. Learn the rules, analyze the data, and build your legacy. Follow this comprehensive guide to start your journey.
             </p>
           </div>
 
@@ -425,10 +425,10 @@ export default function HowItWorks() {
             <Accordion type="single" collapsible className="w-full space-y-4">
               <AccordionItem value="item-1" className="border border-white/10 rounded-lg bg-white/5 px-4">
                 <AccordionTrigger className="text-white hover:text-primary font-rajdhani font-bold text-lg">
-                  Is CricketIQ free to play?
+                  Is HEALTHMITAN free to play?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed">
-                  Yes! CricketIQ is a 100% free-to-play educational platform designed for skill development. There are no entry fees, and no real money is involved. You compete for Global Rank, XP, and bragging rights.
+                  Yes! HEALTHMITAN is a 100% free-to-play educational platform designed for skill development. There are no entry fees, and no real money is involved. You compete for Global Rank, XP, and bragging rights.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2" className="border border-white/10 rounded-lg bg-white/5 px-4">
