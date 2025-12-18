@@ -243,7 +243,11 @@ export default function About() {
                   <p className="text-lg text-white border-b border-white/10 pb-4">Free-to-play, Skill-based Fantasy Sports</p>
                 </div>
                 <div className="space-y-2 md:col-span-2">
-                  <h4 className="text-white font-bold text-sm uppercase tracking-wider opacity-70">Registered Address</h4>
+                  <h4 className="text-white font-bold text-sm uppercase tracking-wider opacity-70">Head Office</h4>
+                  <p className="text-lg text-white border-b border-white/10 pb-4">915, First Floor, Dhanush Plaza, Near Gopalan Arch, Mysore Road, Opp. Indian Oil, Above SBI Bank, Ideal Homes, Rajarajeshwari Nagar, Bengaluru, Karnataka 560098, India</p>
+                </div>
+                <div className="space-y-2 md:col-span-2">
+                  <h4 className="text-white font-bold text-sm uppercase tracking-wider opacity-70">Regional Office</h4>
                   <p className="text-lg text-white border-b border-white/10 pb-4">Ward No - 15, Village Kot, KASDOL, Near Bajrang Chowk, Raipur, Baigandabari, Balodabazar Bhatapara, Chhattisgarh, 493335</p>
                 </div>
                 <div className="space-y-2">

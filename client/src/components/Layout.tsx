@@ -199,7 +199,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <h3 className="font-rajdhani font-bold text-lg mb-4 text-white">Contact</h3>
               <div className="space-y-3 text-sm text-muted-foreground">
                 <p className="font-bold text-white">HEALTH MITAN PRIVATE LIMITED</p>
-                <p>Ward No - 15, Village Kot, KASDOL, Near Bajrang Chowk, Raipur, Baigandabari, Balodabazar Bhatapara, Chhattisgarh, 493335</p>
+                <div className="space-y-2">
+                  <div>
+                    <span className="text-xs font-bold text-primary uppercase tracking-wider">Head Office</span>
+                    <p>915, First Floor, Dhanush Plaza, Near Gopalan Arch, Mysore Road, Opp. Indian Oil, Above SBI Bank, Ideal Homes, Rajarajeshwari Nagar, Bengaluru, Karnataka 560098, India</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-primary uppercase tracking-wider">Regional Office</span>
+                    <p>Ward No - 15, Village Kot, KASDOL, Near Bajrang Chowk, Raipur, Baigandabari, Balodabazar Bhatapara, Chhattisgarh, 493335</p>
+                  </div>
+                </div>
                 <p className="pt-2">support@cricketiq.in</p>
               </div>
             </div>

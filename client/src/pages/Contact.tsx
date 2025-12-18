@@ -30,12 +30,27 @@ export default function Contact() {
                   </h3>
                   <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
                     <p className="font-bold text-white">HEALTH MITAN PRIVATE LIMITED</p>
-                    <p>
-                      Ward No - 15, Village Kot, KASDOL,<br />
-                      Near Bajrang Chowk, Raipur,<br />
-                      Baigandabari, Balodabazar Bhatapara,<br />
-                      Chhattisgarh, India - 493335
-                    </p>
+                    
+                    <div className="pt-2">
+                      <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Head Office</p>
+                      <p>
+                        915, First Floor, Dhanush Plaza,<br />
+                        Near Gopalan Arch, Mysore Road,<br />
+                        Opp. Indian Oil, Above SBI Bank,<br />
+                        Ideal Homes, Rajarajeshwari Nagar,<br />
+                        Bengaluru, Karnataka 560098, India
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-white/10">
+                      <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Regional Office</p>
+                      <p>
+                        Ward No - 15, Village Kot, KASDOL,<br />
+                        Near Bajrang Chowk, Raipur,<br />
+                        Baigandabari, Balodabazar Bhatapara,<br />
+                        Chhattisgarh, India - 493335
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
