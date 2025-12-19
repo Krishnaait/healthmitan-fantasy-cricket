@@ -24,8 +24,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-rajdhani font-bold text-2xl tracking-wider hover:opacity-90 transition-opacity">
-            <div className="relative w-8 h-8 flex items-center justify-center bg-primary/20 rounded-full border border-primary/50">
-              <BarChart2 className="w-5 h-5 text-primary" />
+            <div className="relative w-10 h-10 flex items-center justify-center">
+              <img src="/images/logo.png" alt="HEALTHMITAN Logo" className="w-full h-full object-contain" />
             </div>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
               HEALTH<span className="text-primary">MITAN</span>
@@ -153,8 +153,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-rajdhani font-bold text-2xl">
-                <div className="w-8 h-8 flex items-center justify-center bg-primary/20 rounded-full border border-primary/50">
-                  <BarChart2 className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <img src="/images/logo.png" alt="HEALTHMITAN Logo" className="w-full h-full object-contain" />
                 </div>
                 <span>HEALTH<span className="text-primary">MITAN</span></span>
               </div>
