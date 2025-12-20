@@ -55,7 +55,7 @@ export default function Legal() {
                       
                       <section>
                         <h3 className="text-xl font-bold text-white mb-3">1. Introduction & Acceptance</h3>
-                        <p>Welcome to HEALTHMITAN ("Platform"), owned and operated by HEALTH MITAN PRIVATE LIMITED. By accessing, registering, or using our Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree, you must immediately discontinue use of the Platform.</p>
+                        <p>Welcome to HEALTHMITAN ("Platform"), owned and operated by HEALTH MITAN PRIVATE LIMITED (CIN: U86909CT2023PTC014998, PAN: AAGCH9149C). By accessing, registering, or using our Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree, you must immediately discontinue use of the Platform.</p>
                       </section>
                       
                       <section>
@@ -365,7 +365,7 @@ export default function Legal() {
                       
                       <p>HEALTHMITAN is a skill-based platform. The game involves an element of financial risk and may be addictive. Please play responsibly and at your own risk.</p>
                       
-                      <p>HEALTHMITAN is operated by HEALTH MITAN PRIVATE LIMITED. We are not affiliated with any official cricket board, league, or team. All player names and team names are used for identification purposes only.</p>
+                      <p>HEALTHMITAN is operated by HEALTH MITAN PRIVATE LIMITED (CIN: U86909CT2023PTC014998, PAN: AAGCH9149C). We are not affiliated with any official cricket board, league, or team. All player names and team names are used for identification purposes only.</p>
                     </TabsContent>
 
                     {/* Legality */}

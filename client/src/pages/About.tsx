@@ -70,8 +70,11 @@ export default function About() {
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
                   <Target className="w-8 h-8 text-primary" />
                 </div>
-                <h2 className="text-3xl font-bold font-rajdhani text-white mb-6">Our Mission</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed flex-grow mb-4">
+             <h3 className="text-2xl font-bold font-rajdhani text-white mb-6">Company Details</h3>
+                <div className="mb-6 space-y-2">
+                  <p className="text-white"><span className="text-muted-foreground">CIN:</span> U86909CT2023PTC014998</p>
+                  <p className="text-white"><span className="text-muted-foreground">PAN:</span> AAGCH9149C</p>
+                </div>                <p className="text-lg text-muted-foreground leading-relaxed flex-grow mb-4">
                   To democratize cricket analytics and strategy. We aim to create a safe, educational, and entertaining ecosystem where fans of all ages can test their cricketing acumen without financial barriers.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed flex-grow">
@@ -244,11 +247,11 @@ export default function About() {
                 </div>
                 <div className="space-y-2 md:col-span-2">
                   <h4 className="text-white font-bold text-sm uppercase tracking-wider opacity-70">Head Office</h4>
-                  <p className="text-lg text-white border-b border-white/10 pb-4">915, First Floor, Dhanush Plaza, Near Gopalan Arch, Mysore Road, Opp. Indian Oil, Above SBI Bank, Ideal Homes, Rajarajeshwari Nagar, Bengaluru, Karnataka 560098, India</p>
+                  <p className="text-lg text-white border-b border-white/10 pb-4">C/O MURIT LAL KARSH, vill KOT, KASDOL, Kasdol, Raipur, Chattisgarh, 493335-India, India</p>
                 </div>
                 <div className="space-y-2 md:col-span-2">
                   <h4 className="text-white font-bold text-sm uppercase tracking-wider opacity-70">Regional Office</h4>
-                  <p className="text-lg text-white border-b border-white/10 pb-4">Ward No - 15, Village Kot, KASDOL, Near Bajrang Chowk, Raipur, Baigandabari, Balodabazar Bhatapara, Chhattisgarh, 493335</p>
+                  <p className="text-lg text-white border-b border-white/10 pb-4">915, First Floor, Dhanush Plaza, Near Gopalan Arch, Mysore Road, Opp. Indian Oil, Above SBI Bank, Ideal Homes, Rajarajeshwari Nagar, Bengaluru, Karnataka 560098, India</p>
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-white font-bold text-sm uppercase tracking-wider opacity-70">Contact Email</h4>

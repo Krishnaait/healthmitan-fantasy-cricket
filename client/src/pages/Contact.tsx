@@ -30,25 +30,28 @@ export default function Contact() {
                   </h3>
                   <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
                     <p className="font-bold text-white">HEALTH MITAN PRIVATE LIMITED</p>
+                    <div className="space-y-1">
+                      <p className="text-xs text-muted-foreground">CIN: U86909CT2023PTC014998</p>
+                      <p className="text-xs text-muted-foreground">PAN: AAGCH9149C</p>
+                    </div>
                     
                     <div className="pt-2">
                       <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Head Office</p>
                       <p>
-                        915, First Floor, Dhanush Plaza,<br />
-                        Near Gopalan Arch, Mysore Road,<br />
-                        Opp. Indian Oil, Above SBI Bank,<br />
-                        Ideal Homes, Rajarajeshwari Nagar,<br />
-                        Bengaluru, Karnataka 560098, India
+                        C/O MURIT LAL KARSH, vill KOT, KASDOL,<br />
+                        Kasdol, Raipur, Chattisgarh,<br />
+                        493335-India, India
                       </p>
                     </div>
 
                     <div className="pt-2 border-t border-white/10">
                       <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Regional Office</p>
                       <p>
-                        Ward No - 15, Village Kot, KASDOL,<br />
-                        Near Bajrang Chowk, Raipur,<br />
-                        Baigandabari, Balodabazar Bhatapara,<br />
-                        Chhattisgarh, India - 493335
+                        915, First Floor, Dhanush Plaza,<br />
+                        Near Gopalan Arch, Mysore Road,<br />
+                        Opp. Indian Oil, Above SBI Bank,<br />
+                        Ideal Homes, Rajarajeshwari Nagar,<br />
+                        Bengaluru, Karnataka 560098, India
                       </p>
                     </div>
                   </div>
