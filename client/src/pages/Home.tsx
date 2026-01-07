@@ -8,16 +8,7 @@ import { MatchesSection } from "@/components/MatchesSection";
 export default function Home() {
   return (
     <Layout>
-      {/* Live Match Ticker */}
-      <div className="bg-black/80 border-b border-white/10 py-2 overflow-hidden whitespace-nowrap" style={{display: 'none'}}>
-        <div className="inline-block animate-marquee">
-          <span className="mx-8 text-sm font-mono text-primary">LIVE: IND vs AUS - IND 145/3 (18.2)</span>
-          <span className="mx-8 text-sm font-mono text-white">UPCOMING: ENG vs SA - Starts in 2h 30m</span>
-          <span className="mx-8 text-sm font-mono text-secondary">RESULT: NZ vs PAK - NZ won by 15 runs</span>
-          <span className="mx-8 text-sm font-mono text-primary">LIVE: MI vs CSK - MI 45/0 (5.1)</span>
-          <span className="mx-8 text-sm font-mono text-white">UPCOMING: KKR vs RCB - Starts in 5h 15m</span>
-        </div>
-      </div>
+
 
       {/* Matches Section */}
       <MatchesSection 
@@ -89,17 +80,7 @@ export default function Home() {
                 className="rounded-xl w-full h-auto"
               />
               
-              {/* Floating UI Elements */}
-              <div className="absolute top-8 right-8 bg-black/60 backdrop-blur-xl border border-primary/30 p-4 rounded-lg shadow-lg animate-in fade-in zoom-in duration-1000 delay-500" style={{display: 'none'}}>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span className="text-xs font-mono text-primary uppercase">Win Probability</span>
-                </div>
-                <div className="text-2xl font-rajdhani font-bold text-white">68%</div>
-                <div className="h-1 w-32 bg-white/10 rounded-full mt-2 overflow-hidden">
-                  <div className="h-full bg-secondary w-[68%]"></div>
-                </div>
-              </div>
+
 
               <div className="absolute bottom-8 left-8 bg-black/60 backdrop-blur-xl border border-primary/30 p-4 rounded-lg shadow-lg animate-in fade-in zoom-in duration-1000 delay-700">
                 <div className="flex items-center gap-3 mb-2">
