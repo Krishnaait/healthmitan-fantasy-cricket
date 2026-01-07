@@ -173,7 +173,7 @@ export async function getMatchSquad(matchId: string): Promise<Squad[]> {
       const squads: Squad[] = [];
 
       // Process each team's squad
-      for (const [teamId, teamData]: any) {
+      for (const [teamId, teamData] of Object.entries(data)) {
         if (typeof teamData === 'object' && teamData.players) {
           squads.push({
             teamId,
