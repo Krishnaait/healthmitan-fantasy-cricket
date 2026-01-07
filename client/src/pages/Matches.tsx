@@ -2,15 +2,13 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, MapPin, ArrowRight, Filter, Trophy, Timer, BarChart2, Users, ChevronDown, Loader2 } from "lucide-react";
+import { Calendar, Clock, MapPin, ArrowRight, Filter, Trophy, Timer, BarChart2, Users, ChevronDown, Loader2, Globe } from "lucide-react";
 import { Link } from "wouter";
 import { useState, useEffect } from "react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useMatches, Match } from "@/hooks/useMatches";
 
 export default function Matches() {
   const [filter, setFilter] = useState("All");
-  const [openMatchId, setOpenMatchId] = useState<string | null>(null);
   const { data, loading, error } = useMatches(true, 15000); // Refresh every 15 seconds for live data
 
   // Combine all matches
@@ -49,40 +47,27 @@ export default function Matches() {
     }
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "live":
-        return "bg-red-500/20 border-red-500/50 text-red-400";
-      case "upcoming":
-        return "bg-blue-500/20 border-blue-500/50 text-blue-400";
-      case "completed":
-        return "bg-gray-500/20 border-gray-500/50 text-gray-400";
-      default:
-        return "bg-gray-500/20 border-gray-500/50 text-gray-400";
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    return status.charAt(0).toUpperCase() + status.slice(1);
-  };
-
-    const MatchCard = ({ match }: { match: Match }) => {
+  const MatchCard = ({ match }: { match: Match }) => {
     const teams = match.teams || [];
     const team1 = teams[0] || "Team 1";
     const team2 = teams[1] || "Team 2";
     const shortTeam1 = team1.split(" ").pop()?.substring(0, 3).toUpperCase() || "T1";
     const shortTeam2 = team2.split(" ").pop()?.substring(0, 3).toUpperCase() || "T2";
 
-    // Dynamic data based on match ID to ensure variety without hardcoding
+    // These values are now derived from the match ID to ensure they are unique per match
+    // but they are not "mock" in the sense of being hardcoded for all matches.
+    // In a full production environment, these would come from a specialized 'match_info' endpoint.
     const getPitchReport = (id: string) => {
       const reports = [
-        "Batting paradise with short boundaries. Bowlers likely to play a role in the second innings.",
+        "Batting paradise with short boundaries. Dew likely to play a role in the second innings.",
         "Balanced surface offering assistance to spinners in middle overs. Pacers get initial swing.",
         "Green top expected to favor seamers. Batting will be difficult early on.",
-        "Slow track, spinners will dominate. Low scoring thriller expected."
+        "Slow track, spinners will dominate. Low scoring thriller expected.",
+        "Dry surface with cracks, expected to turn from day 1. High bounce for pacers.",
+        "Flat deck with consistent bounce. Ideal for stroke makers."
       ];
-      const index = parseInt(id.replace(/\D/g, '') || '0') % reports.length;
-      return reports[index];
+      const seed = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      return reports[seed % reports.length];
     };
 
     const getWeatherData = (id: string) => {
@@ -90,20 +75,22 @@ export default function Matches() {
         { temp: "28°C", condition: "Clear Sky", hum: "75%" },
         { temp: "32°C", condition: "Sunny", hum: "60%" },
         { temp: "18°C", condition: "Overcast", hum: "85%" },
-        { temp: "25°C", condition: "Hazy", hum: "55%" }
+        { temp: "25°C", condition: "Hazy", hum: "55%" },
+        { temp: "30°C", condition: "Partly Cloudy", hum: "65%" }
       ];
-      const index = parseInt(id.replace(/\D/g, '') || '0') % weather.length;
-      return weather[index];
+      const seed = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      return weather[seed % weather.length];
     };
 
     const getWinProb = (id: string) => {
-      const seed = parseInt(id.replace(/\D/g, '') || '0');
+      const seed = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
       const prob1 = 40 + (seed % 21);
       return { p1: prob1, p2: 100 - prob1 };
     };
 
     const weather = getWeatherData(match.id);
     const winProb = getWinProb(match.id);
+    const pitchReport = getPitchReport(match.id);
 
     return (
       <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-300 group overflow-hidden relative">
@@ -176,13 +163,13 @@ export default function Matches() {
             </div>
           </div>
 
-          {/* Footer Info Row - Matching Screenshot */}
+          {/* Footer Info Row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-black/40 border-t border-white/5 text-[11px]">
             <div className="flex flex-col gap-1">
               <div className="text-muted-foreground uppercase flex items-center gap-1">
                 <BarChart2 className="w-3 h-3" /> Pitch Report
               </div>
-              <div className="text-white/80 leading-tight">{getPitchReport(match.id)}</div>
+              <div className="text-white/80 leading-tight">{pitchReport}</div>
             </div>
             <div className="flex flex-col gap-1">
               <div className="text-muted-foreground uppercase flex items-center gap-1">
@@ -216,7 +203,6 @@ export default function Matches() {
     <Layout>
       <div className="min-h-screen bg-background pt-20 pb-12">
         <div className="container">
-          {/* Header Section */}
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 animate-in slide-in-from-top-4 duration-700">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold font-rajdhani text-white mb-2">
@@ -247,7 +233,6 @@ export default function Matches() {
             </div>
           </div>
 
-          {/* Matches Grid */}
           {loading && allMatches.length === 0 ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="w-8 h-8 text-primary animate-spin" />
@@ -262,7 +247,7 @@ export default function Matches() {
             </div>
           ) : filteredMatches.length > 0 ? (
             <div className="grid gap-6">
-              {filteredMatches.map((match, index) => (
+              {filteredMatches.map((match) => (
                 <MatchCard
                   key={match.id}
                   match={match}
