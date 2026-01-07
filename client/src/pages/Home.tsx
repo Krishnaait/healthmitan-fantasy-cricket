@@ -19,6 +19,13 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Matches Section */}
+      <MatchesSection 
+        title="FEATURED MATCHES" 
+        description="Join live contests and compete with players worldwide"
+        limit={4}
+      />
+
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-16">
         {/* Background Image with Overlay */}
@@ -253,13 +260,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Matches Section */}
-      <MatchesSection 
-        title="FEATURED MATCHES" 
-        description="Join live contests and compete with players worldwide"
-        limit={4}
-      />
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-primary/20 to-secondary/20 border-y border-white/10">
