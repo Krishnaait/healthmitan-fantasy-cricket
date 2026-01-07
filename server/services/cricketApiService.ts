@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const CRICAPI_KEY = process.env.CRICAPI_KEY || '1a822521-d7e0-46ff-98d3-3e51020863f3';
+// Use the PAID Cricket Data API key for reliable, complete data
+const CRICAPI_KEY = '1a822521-d7e0-46ff-98d3-3e51020863f3';
 const CRICAPI_BASE_URL = 'https://api.cricapi.com/v1';
 
 interface Match {
@@ -61,45 +62,77 @@ export async function getMatches(): Promise<Match[]> {
       return cache[cacheKey].data;
     }
 
-    const response = await axios.get(`${CRICAPI_BASE_URL}/matches`, {
-      params: {
-        apikey: CRICAPI_KEY,
-      },
+    // First try to get current matches (live + upcoming)
+    let allMatches: any[] = [];
+    
+    try {
+      const currentResponse = await axios.get(`${CRICAPI_BASE_URL}/currentMatches`, {
+        params: {
+          apikey: CRICAPI_KEY,
+          offset: 0,
+        },
+      });
+      
+      if (currentResponse.data.status === 200 && currentResponse.data.data) {
+        allMatches = [...allMatches, ...currentResponse.data.data];
+      }
+    } catch (e) {
+      console.warn('Current matches fetch failed, trying all matches endpoint');
+    }
+    
+    // Also fetch all matches to get completed ones
+    try {
+      const allResponse = await axios.get(`${CRICAPI_BASE_URL}/matches`, {
+        params: {
+          apikey: CRICAPI_KEY,
+          offset: 0,
+        },
+      });
+      
+      if (allResponse.data.status === 200 && allResponse.data.data) {
+        // Merge and deduplicate
+        const matchIds = new Set(allMatches.map((m: any) => m.id));
+        allResponse.data.data.forEach((match: any) => {
+          if (!matchIds.has(match.id)) {
+            allMatches.push(match);
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('All matches fetch failed');
+    }
+    
+    if (allMatches.length === 0) {
+      return [];
+    }
+    
+    // Sort by date (most recent first)
+    allMatches.sort((a: any, b: any) => {
+      const dateA = new Date(a.dateTimeGMT || a.date || 0);
+      const dateB = new Date(b.dateTimeGMT || b.date || 0);
+      return dateB.getTime() - dateA.getTime();
     });
 
-    if (response.data.status === 'success') {
-      const matches = response.data.data || [];
-      
-      // Sort by date (most recent first)
-      matches.sort((a: any, b: any) => {
-        const dateA = new Date(a.dateTimeGMT || a.date || 0);
-        const dateB = new Date(b.dateTimeGMT || b.date || 0);
-        return dateB.getTime() - dateA.getTime(); // Descending order
-      });
+    const formattedMatches: Match[] = allMatches.map((match: any) => ({
+      id: match.id,
+      name: match.name,
+      matchType: match.matchType || 'T20',
+      status: match.status || 'scheduled',
+      venue: match.venue,
+      date: match.date,
+      dateTimeGMT: match.dateTimeGMT,
+      teams: match.teams || [],
+      teamInfo: match.teamInfo || [],
+      score: match.score || [],
+      currentInning: match.currentInning,
+      runRate: match.runRate,
+      target: match.target,
+      matchStarted: match.matchStarted || false,
+      matchEnded: match.matchEnded || false,
+    }));
 
-      const formattedMatches: Match[] = matches.map((match: any) => ({
-        id: match.id,
-        name: match.name,
-        matchType: match.matchType || 'T20',
-        status: match.status || 'scheduled',
-        venue: match.venue,
-        date: match.date,
-        dateTimeGMT: match.dateTimeGMT,
-        teams: match.teams || [],
-        teamInfo: match.teamInfo || [],
-        score: match.score || [],
-        currentInning: match.currentInning,
-        runRate: match.runRate,
-        target: match.target,
-        matchStarted: match.matchStarted || false,
-        matchEnded: match.matchEnded || false,
-      }));
-
-      cache[cacheKey] = { data: formattedMatches, timestamp: Date.now() };
-      return formattedMatches;
-    }
-
-    return [];
+    cache[cacheKey] = { data: formattedMatches, timestamp: Date.now() };
+    return formattedMatches;
   } catch (error) {
     console.error('Error fetching matches:', error);
     return [];
