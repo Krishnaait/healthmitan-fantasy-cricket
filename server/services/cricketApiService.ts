@@ -70,21 +70,14 @@ export async function getMatches(): Promise<Match[]> {
     if (response.data.status === 'success') {
       const matches = response.data.data || [];
       
-      // Filter out past matches and sort by date
-      const now = new Date();
-      const futureMatches = matches.filter((match: any) => {
-        const matchDate = new Date(match.dateTimeGMT || match.date || 0);
-        return matchDate >= now;
-      });
-
-      // Sort by date
-      futureMatches.sort((a: any, b: any) => {
+      // Sort by date (most recent first)
+      matches.sort((a: any, b: any) => {
         const dateA = new Date(a.dateTimeGMT || a.date || 0);
         const dateB = new Date(b.dateTimeGMT || b.date || 0);
-        return dateA.getTime() - dateB.getTime();
+        return dateB.getTime() - dateA.getTime(); // Descending order
       });
 
-      const formattedMatches: Match[] = futureMatches.map((match: any) => ({
+      const formattedMatches: Match[] = matches.map((match: any) => ({
         id: match.id,
         name: match.name,
         matchType: match.matchType || 'T20',
