@@ -1,129 +1,175 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Users, Star, Shield, ArrowRight, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  ArrowLeft,
+  Users,
+  Crown,
+  Shield,
+  Loader2,
+  Check,
+  AlertCircle,
+} from "lucide-react";
+import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
-import { fetchMatchSquad } from "@/hooks/useMatches";
-import { toast } from "sonner";
 
 interface Player {
   id: string;
   name: string;
   role: string;
-  team: string;
+  credits?: number;
 }
 
-export default function TeamBuilder() {
-  const [location] = useLocation();
-  const params = new URLSearchParams(location.split("?")[1]);
-  const matchId = params.get("matchId");
+interface Squad {
+  teamId: string;
+  teamName: string;
+  players: Player[];
+}
 
-  const [players, setPlayers] = useState<Player[]>([]);
-  const [selectedPlayers, setSelectedPlayers] = useState<string[]>([]);
+interface Match {
+  id: string;
+  name: string;
+  teams?: string[];
+}
+
+const TOTAL_CREDITS = 100;
+const MAX_PLAYERS = 11;
+
+export default function TeamBuilder() {
+  const [, setLocation] = useLocation();
+  const [matchId, setMatchId] = useState<string | null>(null);
+  const [match, setMatch] = useState<Match | null>(null);
+  const [squads, setSquads] = useState<Squad[]>([]);
+  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
   const [captain, setCaptain] = useState<string | null>(null);
   const [viceCaptain, setViceCaptain] = useState<string | null>(null);
+  const [teamName, setTeamName] = useState("");
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [step, setStep] = useState(1);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("matchId");
+    if (id) {
+      setMatchId(id);
+    }
+  }, []);
 
   useEffect(() => {
     if (!matchId) return;
 
-    const loadSquad = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const squadData = await fetchMatchSquad(matchId);
-        
-        const allPlayers: Player[] = [];
-        if (squadData && Array.isArray(squadData)) {
-          squadData.forEach((team: any) => {
-            if (team.players && Array.isArray(team.players)) {
-              team.players.forEach((p: any) => {
-                allPlayers.push({
-                  id: p.id,
-                  name: p.name,
-                  role: p.role || "Player",
-                  team: team.teamName
-                });
-              });
-            }
-          });
+
+        const matchResponse = await fetch(`/api/matches/${matchId}`);
+        const matchData = await matchResponse.json();
+        if (matchData.success) {
+          setMatch(matchData.data);
         }
-        setPlayers(allPlayers);
-      } catch (error) {
-        console.error("Error loading squad:", error);
-        toast.error("Failed to load match squad");
+
+        const squadResponse = await fetch(`/api/matches/${matchId}/squad`);
+        const squadData = await squadResponse.json();
+        if (squadData.success) {
+          const squadsArray = Array.isArray(squadData.data)
+            ? squadData.data
+            : Object.values(squadData.data || {});
+          setSquads(squadsArray as Squad[]);
+        }
+
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError("Failed to load match and squad data");
       } finally {
         setLoading(false);
       }
     };
 
-    loadSquad();
+    fetchData();
   }, [matchId]);
 
-  const togglePlayer = (playerId: string) => {
-    if (selectedPlayers.includes(playerId)) {
-      setSelectedPlayers(selectedPlayers.filter(id => id !== playerId));
-      if (captain === playerId) setCaptain(null);
-      if (viceCaptain === playerId) setViceCaptain(null);
+  const totalCreditsUsed = selectedPlayers.reduce(
+    (sum, player) => sum + (player.credits || 0),
+    0
+  );
+  const creditsRemaining = TOTAL_CREDITS - totalCreditsUsed;
+
+  const togglePlayer = (player: Player) => {
+    if (selectedPlayers.find((p) => p.id === player.id)) {
+      setSelectedPlayers(selectedPlayers.filter((p) => p.id !== player.id));
+      if (captain === player.id) setCaptain(null);
+      if (viceCaptain === player.id) setViceCaptain(null);
     } else {
-      if (selectedPlayers.length >= 11) {
-        toast.error("You can only select 11 players");
-        return;
+      if (selectedPlayers.length < MAX_PLAYERS) {
+        setSelectedPlayers([...selectedPlayers, player]);
       }
-      setSelectedPlayers([...selectedPlayers, playerId]);
     }
   };
 
-  const handleSaveTeam = async () => {
-    if (selectedPlayers.length !== 11) {
-      toast.error("Please select exactly 11 players");
+  const saveTeam = async () => {
+    if (!teamName.trim()) {
+      alert("Please enter a team name");
       return;
     }
+
     if (!captain || !viceCaptain) {
-      toast.error("Please select a Captain and Vice-Captain");
+      alert("Please select captain and vice-captain");
       return;
     }
 
     try {
-      setSaving(true);
-      const teamData = {
-        userId: 1, // Mock user ID for now
-        matchId,
-        teamName: `My Team ${Date.now()}`,
-        captainId: captain,
-        viceCaptainId: viceCaptain,
-        players: players.filter(p => selectedPlayers.includes(p.id))
-      };
-
       const response = await fetch("/api/teams", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(teamData)
+        body: JSON.stringify({
+          matchId,
+          name: teamName,
+          players: selectedPlayers.map((p) => p.id),
+          captainId: captain,
+          viceCaptainId: viceCaptain,
+          totalCreditsUsed,
+        }),
       });
 
       const result = await response.json();
       if (result.success) {
-        toast.success("Team saved successfully!");
+        alert("Team created successfully!");
+        setLocation(`/dashboard/matches/${matchId}/contests`);
       } else {
-        throw new Error(result.error);
+        alert(result.error || "Failed to create team");
       }
-    } catch (error) {
-      toast.error("Failed to save team");
-    } finally {
-      setSaving(false);
+    } catch (err) {
+      console.error("Error saving team:", err);
+      alert("Error saving team");
     }
   };
 
-  if (!matchId) {
+  if (loading) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white">No Match Selected</h2>
-            <p className="text-muted-foreground mt-2">Please select a match from the Matches page.</p>
+        <div className="min-h-screen bg-background pt-20 pb-12 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <Loader2 className="w-8 h-8 text-primary animate-spin" />
+            <p className="text-muted-foreground">Loading squad data...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error || !match) {
+    return (
+      <Layout>
+        <div className="min-h-screen bg-background pt-20 pb-12 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <AlertCircle className="w-8 h-8 text-red-500" />
+            <p className="text-muted-foreground">{error || "Match not found"}</p>
+            <Link href="/matches">
+              <Button className="mt-4">Back to Matches</Button>
+            </Link>
           </div>
         </div>
       </Layout>
@@ -132,108 +178,276 @@ export default function TeamBuilder() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-background pt-24 pb-12">
+      <div className="min-h-screen bg-background pt-20 pb-12">
         <div className="container">
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-8">
-            <div className="w-full lg:w-2/3">
-              <div className="mb-8">
-                <h1 className="text-3xl font-bold text-white font-rajdhani">SELECT <span className="text-primary">YOUR 11</span></h1>
-                <p className="text-muted-foreground">Choose players from both teams to build your ultimate squad.</p>
-              </div>
+          <div className="flex items-center gap-4 mb-8">
+            <Link href="/matches">
+              <Button variant="ghost" size="icon">
+                <ArrowLeft className="w-4 h-4" />
+              </Button>
+            </Link>
+            <div>
+              <h1 className="text-3xl font-bold font-rajdhani text-white">
+                Create Your <span className="text-primary">Team</span>
+              </h1>
+              <p className="text-muted-foreground">{match.name}</p>
+            </div>
+          </div>
 
-              {loading ? (
-                <div className="flex justify-center py-20">
-                  <Loader2 className="w-10 h-10 text-primary animate-spin" />
-                </div>
-              ) : (
-                <div className="grid gap-3">
-                  {players.map(player => (
-                    <Card 
-                      key={player.id}
-                      className={`bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer ${selectedPlayers.includes(player.id) ? 'border-primary/50 bg-primary/5' : ''}`}
-                      onClick={() => togglePlayer(player.id)}
-                    >
-                      <CardContent className="p-4 flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${selectedPlayers.includes(player.id) ? 'bg-primary text-black' : 'bg-white/10 text-white'}`}>
-                            {player.name[0]}
-                          </div>
-                          <div>
-                            <div className="font-bold text-white">{player.name}</div>
-                            <div className="text-xs text-muted-foreground uppercase tracking-wider">{player.team} • {player.role}</div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {selectedPlayers.includes(player.id) && (
-                            <>
-                              <Button 
-                                size="sm" 
-                                variant={captain === player.id ? "default" : "outline"}
-                                className="h-8 w-8 p-0 rounded-full"
-                                onClick={(e) => { e.stopPropagation(); setCaptain(player.id); if(viceCaptain === player.id) setViceCaptain(null); }}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              {step === 1 && (
+                <div className="space-y-6">
+                  <Card className="bg-white/5 border-white/10">
+                    <CardHeader>
+                      <CardTitle className="text-white">Team Name</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <input
+                        type="text"
+                        placeholder="Enter your team name"
+                        value={teamName}
+                        onChange={(e) => setTeamName(e.target.value)}
+                        className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-muted-foreground focus:outline-none focus:border-primary"
+                      />
+                    </CardContent>
+                  </Card>
+
+                  {squads.map((squad) => (
+                    <Card key={squad.teamId} className="bg-white/5 border-white/10">
+                      <CardHeader>
+                        <CardTitle className="text-white">{squad.teamName}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {squad.players.map((player) => {
+                            const isSelected = selectedPlayers.find(
+                              (p) => p.id === player.id
+                            );
+
+                            return (
+                              <button
+                                key={player.id}
+                                onClick={() => togglePlayer(player)}
+                                className={`p-3 rounded-lg border-2 transition-all text-left ${
+                                  isSelected
+                                    ? "bg-primary/20 border-primary"
+                                    : "bg-white/5 border-white/10 hover:border-white/20"
+                                }`}
                               >
-                                C
-                              </Button>
-                              <Button 
-                                size="sm" 
-                                variant={viceCaptain === player.id ? "secondary" : "outline"}
-                                className="h-8 w-8 p-0 rounded-full"
-                                onClick={(e) => { e.stopPropagation(); setViceCaptain(player.id); if(captain === player.id) setCaptain(null); }}
-                              >
-                                VC
-                              </Button>
-                            </>
-                          )}
-                          {selectedPlayers.includes(player.id) ? <CheckCircle2 className="text-primary w-6 h-6" /> : <div className="w-6 h-6 rounded-full border-2 border-white/10"></div>}
+                                <div className="flex items-start justify-between">
+                                  <div className="flex-1">
+                                    <p className="font-semibold text-white">{player.name}</p>
+                                    <p className="text-xs text-muted-foreground">
+                                      {player.role}
+                                    </p>
+                                  </div>
+                                  {isSelected && (
+                                    <Check className="w-4 h-4 text-primary" />
+                                  )}
+                                </div>
+                              </button>
+                            );
+                          })}
                         </div>
                       </CardContent>
                     </Card>
                   ))}
                 </div>
               )}
+
+              {step === 2 && (
+                <div className="space-y-6">
+                  <Card className="bg-white/5 border-white/10">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Crown className="w-5 h-5 text-yellow-500" /> Select Captain
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {selectedPlayers.map((player) => (
+                          <button
+                            key={player.id}
+                            onClick={() => setCaptain(player.id)}
+                            className={`p-3 rounded-lg border-2 transition-all text-left ${
+                              captain === player.id
+                                ? "bg-yellow-500/20 border-yellow-500"
+                                : "bg-white/5 border-white/10 hover:border-white/20"
+                            }`}
+                          >
+                            <p className="font-semibold text-white">{player.name}</p>
+                            <p className="text-xs text-muted-foreground">{player.role}</p>
+                          </button>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-white/5 border-white/10">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Shield className="w-5 h-5 text-blue-500" /> Select Vice-Captain
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {selectedPlayers.map((player) => (
+                          <button
+                            key={player.id}
+                            onClick={() => setViceCaptain(player.id)}
+                            disabled={captain === player.id}
+                            className={`p-3 rounded-lg border-2 transition-all text-left ${
+                              viceCaptain === player.id
+                                ? "bg-blue-500/20 border-blue-500"
+                                : captain === player.id
+                                  ? "bg-white/5 border-white/10 opacity-50 cursor-not-allowed"
+                                  : "bg-white/5 border-white/10 hover:border-white/20"
+                            }`}
+                          >
+                            <p className="font-semibold text-white">{player.name}</p>
+                            <p className="text-xs text-muted-foreground">{player.role}</p>
+                          </button>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
+              {step === 3 && (
+                <Card className="bg-white/5 border-white/10">
+                  <CardHeader>
+                    <CardTitle className="text-white">Team Preview</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <p className="text-muted-foreground text-sm">Team Name</p>
+                      <p className="text-white font-semibold">{teamName}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground text-sm">Players ({selectedPlayers.length}/11)</p>
+                      <div className="space-y-2 mt-2">
+                        {selectedPlayers.map((player) => (
+                          <div
+                            key={player.id}
+                            className="flex items-center justify-between p-2 bg-white/5 rounded-lg"
+                          >
+                            <div>
+                              <p className="text-white">{player.name}</p>
+                              <p className="text-xs text-muted-foreground">{player.role}</p>
+                            </div>
+                            <div className="flex gap-2">
+                              {captain === player.id && (
+                                <Badge className="bg-yellow-500/20 text-yellow-400">
+                                  C
+                                </Badge>
+                              )}
+                              {viceCaptain === player.id && (
+                                <Badge className="bg-blue-500/20 text-blue-400">VC</Badge>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
-            <div className="w-full lg:w-1/3 sticky top-24">
-              <Card className="bg-black/40 border-white/10 backdrop-blur-md">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-6 font-rajdhani border-b border-white/5 pb-4">TEAM SUMMARY</h3>
-                  
-                  <div className="space-y-4 mb-8">
-                    <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Players Selected</span>
-                      <span className="text-white font-bold">{selectedPlayers.length} / 11</span>
-                    </div>
-                    <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden">
-                      <div className="bg-primary h-full transition-all duration-500" style={{ width: `${(selectedPlayers.length / 11) * 100}%` }}></div>
-                    </div>
+            <div className="space-y-4">
+              <Card className="bg-white/5 border-white/10">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Users className="w-4 h-4" /> Credits
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Total</span>
+                    <span className="text-white font-semibold">{TOTAL_CREDITS}</span>
                   </div>
-
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">C</div>
-                      <div>
-                        <div className="text-xs text-muted-foreground uppercase">Captain</div>
-                        <div className="text-white font-bold">{captain ? players.find(p => p.id === captain)?.name : "Not Selected"}</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary font-bold">VC</div>
-                      <div>
-                        <div className="text-xs text-muted-foreground uppercase">Vice-Captain</div>
-                        <div className="text-white font-bold">{viceCaptain ? players.find(p => p.id === viceCaptain)?.name : "Not Selected"}</div>
-                      </div>
-                    </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Used</span>
+                    <span className="text-white font-semibold">{totalCreditsUsed}</span>
                   </div>
-
-                  <Button 
-                    className="w-full bg-primary text-black font-bold h-12 text-lg hover:bg-primary/90"
-                    disabled={selectedPlayers.length !== 11 || !captain || !viceCaptain || saving}
-                    onClick={handleSaveTeam}
-                  >
-                    {saving ? <Loader2 className="animate-spin mr-2" /> : "SAVE TEAM"}
-                  </Button>
+                  <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary transition-all"
+                      style={{ width: `${(totalCreditsUsed / TOTAL_CREDITS) * 100}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Remaining</span>
+                    <span
+                      className={`font-semibold ${
+                        creditsRemaining >= 0 ? "text-green-400" : "text-red-400"
+                      }`}
+                    >
+                      {creditsRemaining}
+                    </span>
+                  </div>
                 </CardContent>
               </Card>
+
+              <Card className="bg-white/5 border-white/10">
+                <CardHeader>
+                  <CardTitle className="text-white">Players Selected</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold text-primary">
+                    {selectedPlayers.length}/{MAX_PLAYERS}
+                  </p>
+                </CardContent>
+              </Card>
+
+              <div className="space-y-2">
+                {step === 1 && (
+                  <Button
+                    onClick={() => setStep(2)}
+                    disabled={selectedPlayers.length !== MAX_PLAYERS}
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    Select Captain
+                  </Button>
+                )}
+                {step === 2 && (
+                  <>
+                    <Button
+                      onClick={() => setStep(1)}
+                      variant="outline"
+                      className="w-full"
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      onClick={() => setStep(3)}
+                      disabled={!captain || !viceCaptain}
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
+                      Preview
+                    </Button>
+                  </>
+                )}
+                {step === 3 && (
+                  <>
+                    <Button
+                      onClick={() => setStep(2)}
+                      variant="outline"
+                      className="w-full"
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      onClick={saveTeam}
+                      className="w-full bg-green-600 text-white hover:bg-green-700"
+                    >
+                      Save Team
+                    </Button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
