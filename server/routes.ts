@@ -1,23 +1,21 @@
 import { Router, Request, Response } from "express";
 import {
-  getAllMatches,
-  getLiveMatches,
-  getUpcomingMatches,
-  getCompletedMatches,
+  getLiveMatchesFiltered,
+  getUpcomingMatchesFiltered,
+  getCompletedMatchesFiltered,
   getMatchDetails,
   getMatchSquad,
   getSeries,
   convertToIST,
-  getLiveMatchesFiltered,
-  getUpcomingMatchesFiltered,
-  getCompletedMatchesFiltered,
 } from "./cricketApi.js";
+import { db } from "./db/index.js";
+import { userTeams, teamPlayers, users } from "./db/schema.js";
+import { eq } from "drizzle-orm";
 
 const router = Router();
 
-/**
- * GET /api/matches - Get all matches categorized by status
- */
+// --- Cricket API Routes ---
+
 router.get("/api/matches", async (req: Request, res: Response) => {
   try {
     const [live, upcoming, completed] = await Promise.all([
@@ -42,159 +40,77 @@ router.get("/api/matches", async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error("Error fetching matches:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch matches",
-    });
+    res.status(500).json({ success: false, error: "Failed to fetch matches" });
   }
 });
 
-/**
- * GET /api/matches/live - Get live matches only
- */
-router.get("/api/matches/live", async (req: Request, res: Response) => {
-  try {
-    const matches = await getLiveMatchesFiltered();
-    const formattedMatches = matches.map((match) => ({
-      ...match,
-      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
-    }));
-    res.json({
-      success: true,
-      data: formattedMatches,
-    });
-  } catch (error) {
-    console.error("Error fetching live matches:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch live matches",
-    });
-  }
-});
-
-/**
- * GET /api/matches/upcoming - Get upcoming matches only
- */
-router.get("/api/matches/upcoming", async (req: Request, res: Response) => {
-  try {
-    const matches = await getUpcomingMatchesFiltered();
-    const formattedMatches = matches.map((match) => ({
-      ...match,
-      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
-    }));
-    res.json({
-      success: true,
-      data: formattedMatches,
-    });
-  } catch (error) {
-    console.error("Error fetching upcoming matches:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch upcoming matches",
-    });
-  }
-});
-
-/**
- * GET /api/matches/completed - Get completed matches only
- */
-router.get("/api/matches/completed", async (req: Request, res: Response) => {
-  try {
-    const matches = await getCompletedMatchesFiltered();
-    const formattedMatches = matches.map((match) => ({
-      ...match,
-      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
-    }));
-    res.json({
-      success: true,
-      data: formattedMatches,
-    });
-  } catch (error) {
-    console.error("Error fetching completed matches:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch completed matches",
-    });
-  }
-});
-
-/**
- * GET /api/matches/:id - Get specific match details
- */
 router.get("/api/matches/:id", async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const match = await getMatchDetails(id);
-
-    if (!match) {
-      return res.status(404).json({
-        success: false,
-        error: "Match not found",
-      });
-    }
-
-    const formattedMatch = {
-      ...match,
-      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
-    };
-
-    res.json({
-      success: true,
-      data: formattedMatch,
-    });
+    const match = await getMatchDetails(req.params.id);
+    if (!match) return res.status(404).json({ success: false, error: "Match not found" });
+    res.json({ success: true, data: { ...match, dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date } });
   } catch (error) {
-    console.error("Error fetching match details:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch match details",
-    });
+    res.status(500).json({ success: false, error: "Failed to fetch match details" });
   }
 });
 
-/**
- * GET /api/matches/:id/squad - Get match squad
- */
 router.get("/api/matches/:id/squad", async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const squad = await getMatchSquad(id);
-
-    if (!squad) {
-      return res.status(404).json({
-        success: false,
-        error: "Squad not found",
-      });
-    }
-
-    res.json({
-      success: true,
-      data: squad,
-    });
+    const squad = await getMatchSquad(req.params.id);
+    if (!squad) return res.status(404).json({ success: false, error: "Squad not found" });
+    res.json({ success: true, data: squad });
   } catch (error) {
-    console.error("Error fetching squad:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch squad",
-    });
+    res.status(500).json({ success: false, error: "Failed to fetch squad" });
   }
 });
 
-/**
- * GET /api/series - Get all series
- */
-router.get("/api/series", async (req: Request, res: Response) => {
+// --- Database Routes ---
+
+router.post("/api/teams", async (req: Request, res: Response) => {
   try {
-    const series = await getSeries();
-    res.json({
-      success: true,
-      data: series,
+    const { userId, matchId, teamName, captainId, viceCaptainId, players } = req.body;
+
+    // 1. Create the user team
+    const [teamResult] = await db.insert(userTeams).values({
+      userId,
+      matchId,
+      teamName,
+      captainId,
+      viceCaptainId,
     });
+
+    const teamId = (teamResult as any).insertId;
+
+    // 2. Add players to the team
+    const playerValues = players.map((p: any) => ({
+      userTeamId: teamId,
+      playerId: p.id,
+      playerName: p.name,
+      playerRole: p.role,
+      playerTeam: p.team,
+    }));
+
+    await db.insert(teamPlayers).values(playerValues);
+
+    res.json({ success: true, data: { teamId } });
   } catch (error) {
-    console.error("Error fetching series:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch series",
+    console.error("Error saving team:", error);
+    res.status(500).json({ success: false, error: "Failed to save team" });
+  }
+});
+
+router.get("/api/users/:userId/teams", async (req: Request, res: Response) => {
+  try {
+    const userId = parseInt(req.params.userId);
+    const teams = await db.query.userTeams.findMany({
+      where: eq(userTeams.userId, userId),
+      with: {
+        // You'd need to define relations in schema.ts for this to work perfectly with findMany
+      }
     });
+    res.json({ success: true, data: teams });
+  } catch (error) {
+    res.status(500).json({ success: false, error: "Failed to fetch user teams" });
   }
 });
 
