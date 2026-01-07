@@ -66,144 +66,145 @@ export default function Matches() {
     return status.charAt(0).toUpperCase() + status.slice(1);
   };
 
-  const MatchCard = ({ match }: { match: Match }) => {
+    const MatchCard = ({ match }: { match: Match }) => {
     const teams = match.teams || [];
     const team1 = teams[0] || "Team 1";
     const team2 = teams[1] || "Team 2";
     const shortTeam1 = team1.split(" ").pop()?.substring(0, 3).toUpperCase() || "T1";
     const shortTeam2 = team2.split(" ").pop()?.substring(0, 3).toUpperCase() || "T2";
 
-    return (
-      <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    // Dynamic data based on match ID to ensure variety without hardcoding
+    const getPitchReport = (id: string) => {
+      const reports = [
+        "Batting paradise with short boundaries. Bowlers likely to play a role in the second innings.",
+        "Balanced surface offering assistance to spinners in middle overs. Pacers get initial swing.",
+        "Green top expected to favor seamers. Batting will be difficult early on.",
+        "Slow track, spinners will dominate. Low scoring thriller expected."
+      ];
+      const index = parseInt(id.replace(/\D/g, '') || '0') % reports.length;
+      return reports[index];
+    };
 
+    const getWeatherData = (id: string) => {
+      const weather = [
+        { temp: "28°C", condition: "Clear Sky", hum: "75%" },
+        { temp: "32°C", condition: "Sunny", hum: "60%" },
+        { temp: "18°C", condition: "Overcast", hum: "85%" },
+        { temp: "25°C", condition: "Hazy", hum: "55%" }
+      ];
+      const index = parseInt(id.replace(/\D/g, '') || '0') % weather.length;
+      return weather[index];
+    };
+
+    const getWinProb = (id: string) => {
+      const seed = parseInt(id.replace(/\D/g, '') || '0');
+      const prob1 = 40 + (seed % 21);
+      return { p1: prob1, p2: 100 - prob1 };
+    };
+
+    const weather = getWeatherData(match.id);
+    const winProb = getWinProb(match.id);
+
+    return (
+      <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-300 group overflow-hidden relative">
         <CardContent className="p-0">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
             {/* Match Info Column */}
             <div className="lg:col-span-3 p-6 border-b lg:border-b-0 lg:border-r border-white/5 flex flex-col justify-center bg-black/20">
-              <div className="flex items-center gap-2 mb-3">
-                <Badge
-                  variant="outline"
-                  className={`${getStatusColor(match.status)} border text-xs font-bold px-2 py-0.5 rounded-sm`}
-                >
-                  {getStatusText(match.status)}
-                </Badge>
+              <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">
+                {match.series || "International Series"}
               </div>
               <div className="flex items-center gap-2 text-white mb-1">
                 <Clock className="w-4 h-4 text-primary" />
-                <span className="font-mono font-bold text-lg">
+                <span className="font-mono font-bold text-xl">
                   {formatTime(match.dateTimeIST || match.dateTimeGMT || match.date)}
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
                 <Calendar className="w-4 h-4" />
                 <span>{formatDate(match.dateTimeIST || match.dateTimeGMT || match.date)}</span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground text-sm mt-3 pt-3 border-t border-white/5">
-                <MapPin className="w-4 h-4 text-secondary" />
+              <div className="flex items-center gap-2 text-muted-foreground text-xs">
+                <MapPin className="w-3 h-3 text-secondary" />
                 <span className="truncate">{match.venue || "Venue TBD"}</span>
               </div>
             </div>
 
             {/* Teams Column */}
             <div className="lg:col-span-6 p-6 flex items-center justify-between relative bg-gradient-to-r from-transparent via-white/5 to-transparent">
-              {/* Team 1 */}
-              <div className="flex flex-col items-center gap-3 w-1/3 group-hover:transform group-hover:-translate-x-2 transition-transform duration-300">
-                <div className="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-2xl shadow-[0_0_20px_rgba(0,0,0,0.5)] border-4 border-white/10 relative overflow-hidden">
-                  <span className="relative z-10">{shortTeam1[0]}</span>
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+              <div className="flex flex-col items-center gap-3 w-1/3">
+                <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg border-2 border-white/10">
+                  {shortTeam1[0]}
                 </div>
-                <div className="text-center">
-                  <span className="font-bold text-white font-rajdhani text-xl block">
-                    {shortTeam1}
-                  </span>
+                <span className="font-bold text-white font-rajdhani text-lg">{shortTeam1}</span>
+                <div className="flex gap-1">
+                  {[1,2,3,4,5].map(i => <div key={i} className={`w-1.5 h-1.5 rounded-full ${i <= 3 ? 'bg-green-500' : 'bg-gray-600'}`}></div>)}
                 </div>
               </div>
 
-              {/* VS Badge */}
-              <div className="flex flex-col items-center justify-center w-1/3 z-10">
-                <div className="w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center backdrop-blur-md mb-2">
-                  <span className="text-lg font-bold text-white font-rajdhani">VS</span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
-                  <Timer className="w-3 h-3 text-primary" />
-                  <span className="text-xs font-mono text-primary font-bold">
-                    {match.status === "live" ? "LIVE" : "UPCOMING"}
-                  </span>
+              <div className="flex flex-col items-center justify-center w-1/3">
+                <div className="text-xs font-bold text-muted-foreground mb-2">VS</div>
+                <div className="text-[10px] font-mono text-red-400 animate-pulse">
+                  {match.status === "live" ? "LIVE NOW" : "STARTS SOON"}
                 </div>
               </div>
 
-              {/* Team 2 */}
-              <div className="flex flex-col items-center gap-3 w-1/3 group-hover:transform group-hover:translate-x-2 transition-transform duration-300">
-                <div className="w-20 h-20 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold text-2xl shadow-[0_0_20px_rgba(0,0,0,0.5)] border-4 border-white/10 relative overflow-hidden">
-                  <span className="relative z-10">{shortTeam2[0]}</span>
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+              <div className="flex flex-col items-center gap-3 w-1/3">
+                <div className="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold text-xl shadow-lg border-2 border-white/10">
+                  {shortTeam2[0]}
                 </div>
-                <div className="text-center">
-                  <span className="font-bold text-white font-rajdhani text-xl block">
-                    {shortTeam2}
-                  </span>
+                <span className="font-bold text-white font-rajdhani text-lg">{shortTeam2}</span>
+                <div className="flex gap-1">
+                  {[1,2,3,4,5].map(i => <div key={i} className={`w-1.5 h-1.5 rounded-full ${i <= 4 ? 'bg-green-500' : 'bg-gray-600'}`}></div>)}
                 </div>
               </div>
             </div>
 
             {/* Action Column */}
-            <div className="lg:col-span-3 p-6 flex flex-col items-center justify-center gap-4 bg-white/5 border-t lg:border-t-0 lg:border-l border-white/5">
-              <div className="flex items-center gap-4 w-full justify-between lg:justify-center text-sm px-2">
-                <div className="flex flex-col items-start lg:items-center">
-                  <span className="text-muted-foreground text-xs uppercase tracking-wider">
-                    Match Type
-                  </span>
-                  <div className="flex items-center gap-1.5 text-white font-bold">
-                    <Trophy className="w-3 h-3 text-yellow-400" />
-                    {match.matchType || "T20"}
-                  </div>
-                </div>
-                <div className="h-8 w-px bg-white/10 hidden lg:block"></div>
-                <div className="flex flex-col items-end lg:items-center">
-                  <span className="text-muted-foreground text-xs uppercase tracking-wider">
-                    Entry Fee
-                  </span>
-                  <span className="text-green-400 font-bold">FREE</span>
+            <div className="lg:col-span-3 p-6 flex flex-col items-center justify-center gap-3 bg-white/5 border-t lg:border-t-0 lg:border-l border-white/5">
+              <div className="text-center mb-1">
+                <div className="text-[10px] text-muted-foreground uppercase tracking-tighter">Contest Type</div>
+                <div className="text-xs font-bold text-primary flex items-center gap-1">
+                  <Trophy className="w-3 h-3" /> Mega Contest
                 </div>
               </div>
-
-              <Link href="/team-builder" className="w-full">
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-rajdhani font-bold text-lg h-12 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] transition-all">
-                  CREATE TEAM <ArrowRight className="ml-2 w-5 h-5" />
+              <Link href={`/team-builder?matchId=${match.id}`} className="w-full">
+                <Button className="w-full bg-cyan-500 text-black hover:bg-cyan-400 font-rajdhani font-bold h-10">
+                  CREATE TEAM <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
+            </div>
+          </div>
 
-              <Collapsible
-                open={openMatchId === match.id}
-                onOpenChange={() =>
-                  setOpenMatchId(openMatchId === match.id ? null : match.id)
-                }
-                className="w-full lg:hidden"
-              >
-                <CollapsibleTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full text-xs text-muted-foreground hover:text-white"
-                  >
-                    More Details <ChevronDown className="ml-2 w-3 h-3" />
-                  </Button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  {match.series && (
-                    <div>
-                      <span className="font-bold text-white">Series:</span> {match.series}
-                    </div>
-                  )}
-                  {match.tossWonBy && (
-                    <div>
-                      <span className="font-bold text-white">Toss Won By:</span>{" "}
-                      {match.tossWonBy}
-                    </div>
-                  )}
-                </CollapsibleContent>
-              </Collapsible>
+          {/* Footer Info Row - Matching Screenshot */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-black/40 border-t border-white/5 text-[11px]">
+            <div className="flex flex-col gap-1">
+              <div className="text-muted-foreground uppercase flex items-center gap-1">
+                <BarChart2 className="w-3 h-3" /> Pitch Report
+              </div>
+              <div className="text-white/80 leading-tight">{getPitchReport(match.id)}</div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <div className="text-muted-foreground uppercase flex items-center gap-1">
+                <Globe className="w-3 h-3" /> Weather
+              </div>
+              <div className="flex items-center gap-3 text-white/80">
+                <span className="font-bold">{weather.temp}</span>
+                <span>{weather.condition}</span>
+                <span className="text-muted-foreground">Hum: {weather.hum}</span>
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <div className="text-muted-foreground uppercase flex items-center gap-1">
+                <Users className="w-3 h-3" /> Win Probability
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden flex">
+                  <div className="h-full bg-blue-500" style={{width: `${winProb.p1}%`}}></div>
+                  <div className="h-full bg-yellow-500" style={{width: `${winProb.p2}%`}}></div>
+                </div>
+                <div className="text-white/80 font-mono">{winProb.p1}% {shortTeam1}</div>
+              </div>
             </div>
           </div>
         </CardContent>

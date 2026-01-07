@@ -52,7 +52,26 @@ export function useMatches(autoRefresh: boolean = true, refreshInterval: number 
       const result = await response.json();
       
       if (result.success && result.data) {
-        setData(result.data);
+        // Fetch full details for each match to ensure we have series, venue, etc.
+        const fetchDetails = async (matches: Match[]) => {
+          return Promise.all(matches.map(async (m) => {
+            try {
+              const res = await fetch(`/api/matches/${m.id}`);
+              const detail = await res.json();
+              return detail.success ? detail.data : m;
+            } catch {
+              return m;
+            }
+          }));
+        };
+
+        const [live, upcoming, completed] = await Promise.all([
+          fetchDetails(result.data.live),
+          fetchDetails(result.data.upcoming),
+          fetchDetails(result.data.completed)
+        ]);
+
+        setData({ live, upcoming, completed });
         setError(null);
       } else {
         throw new Error("Invalid response format");
