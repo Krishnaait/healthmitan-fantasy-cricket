@@ -204,7 +204,13 @@ export async function getUpcomingMatchesFiltered(): Promise<Match[]> {
 export async function getCompletedMatchesFiltered(): Promise<Match[]> {
   const allMatches = await getAllMatches();
   return allMatches
-    .filter((match) => match.status === "completed" || match.status === "result")
+    .filter((match) => 
+      match.status.toLowerCase().includes("won by") || 
+      match.status.toLowerCase().includes("result") ||
+      match.status.toLowerCase().includes("draw") ||
+      match.status.toLowerCase().includes("tied") ||
+      match.status.toLowerCase().includes("abandoned")
+    )
     .sort((a, b) => {
       const dateA = new Date(a.dateTimeGMT || a.date || 0);
       const dateB = new Date(b.dateTimeGMT || b.date || 0);
@@ -217,5 +223,10 @@ export async function getCompletedMatchesFiltered(): Promise<Match[]> {
  */
 export async function getLiveMatchesFiltered(): Promise<Match[]> {
   const allMatches = await getAllMatches();
-  return allMatches.filter((match) => match.status === "live" || match.status === "inprogress");
+  return allMatches.filter((match) => 
+    match.status.toLowerCase().includes("live") || 
+    match.status.toLowerCase().includes("inprogress") ||
+    match.status.toLowerCase().includes("batting") ||
+    match.status.toLowerCase().includes("bowling")
+  );
 }
