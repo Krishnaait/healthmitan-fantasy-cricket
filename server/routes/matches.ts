@@ -26,12 +26,12 @@ router.get('/', async (req: Request, res: Response) => {
         dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
       };
       
-      const status = match.status.toLowerCase();
-      if (status.includes('live') || status.includes('inprogress')) {
+      // Use matchStarted and matchEnded flags for accurate categorization
+      if (match.matchStarted === true && match.matchEnded === false) {
         live.push(formattedMatch);
-      } else if (status.includes('completed') || status.includes('finished') || status.includes('won')) {
+      } else if (match.matchEnded === true) {
         completed.push(formattedMatch);
-      } else {
+      } else if (match.matchStarted === false && match.matchEnded === false) {
         upcoming.push(formattedMatch);
       }
     });

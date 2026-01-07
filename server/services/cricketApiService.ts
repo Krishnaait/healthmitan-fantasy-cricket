@@ -91,6 +91,8 @@ export async function getMatches(): Promise<Match[]> {
         currentInning: match.currentInning,
         runRate: match.runRate,
         target: match.target,
+        matchStarted: match.matchStarted || false,
+        matchEnded: match.matchEnded || false,
       }));
 
       cache[cacheKey] = { data: formattedMatches, timestamp: Date.now() };
