@@ -10,10 +10,24 @@ export default function Home() {
     <Layout>
 
 
-      {/* Matches Section */}
+      {/* Live Matches Section */}
       <MatchesSection 
-        title="FEATURED MATCHES" 
-        description="Join live contests and compete with players worldwide"
+        category="live"
+        title="LIVE" 
+        limit={4}
+      />
+
+      {/* Upcoming Matches Section */}
+      <MatchesSection 
+        category="upcoming"
+        title="UPCOMING" 
+        limit={4}
+      />
+
+      {/* Completed Matches Section */}
+      <MatchesSection 
+        category="completed"
+        title="COMPLETED" 
         limit={4}
       />
 

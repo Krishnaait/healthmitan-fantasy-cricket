@@ -1,9 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Calendar, MapPin, ArrowRight, Trophy, Loader2 } from "lucide-react";
-import { Link } from "wouter";
+import { Clock, MapPin, ArrowRight, Loader2, AlertCircle } from "lucide-react";
+import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface Match {
   id: string;
@@ -12,12 +13,21 @@ interface Match {
   status: string;
   venue?: string;
   dateTimeIST?: string;
+  dateTimeGMT?: string;
   teams?: string[];
 }
 
-export default function MatchesSection() {
+interface MatchesSectionProps {
+  category: "live" | "upcoming" | "completed";
+  title: string;
+  limit?: number;
+}
+
+export default function MatchesSection({ category, title, limit = 4 }: MatchesSectionProps) {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
+  const { isAuthenticated } = useAuth();
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -25,12 +35,11 @@ export default function MatchesSection() {
         const response = await fetch("/api/matches");
         const result = await response.json();
         if (result.success) {
-          // Show only live and upcoming matches on homepage, limited to 4
-          const combined = [...result.data.live, ...result.data.upcoming].slice(0, 4);
-          setMatches(combined);
+          const categoryMatches = result.data[category] || [];
+          setMatches(categoryMatches.slice(0, limit));
         }
       } catch (err) {
-        console.error("Error fetching matches for homepage:", err);
+        console.error(`Error fetching ${category} matches:`, err);
       } finally {
         setLoading(false);
       }
@@ -39,24 +48,70 @@ export default function MatchesSection() {
     fetchMatches();
     const interval = setInterval(fetchMatches, 15000);
     return () => clearInterval(interval);
-  }, []);
+  }, [category, limit]);
+
+  const handleCreateTeam = (matchId: string) => {
+    if (!isAuthenticated) {
+      setLocation("/login");
+      return;
+    }
+    setLocation(`/team-builder?matchId=${matchId}`);
+  };
+
+  const formatTime = (dateString?: string) => {
+    if (!dateString) return "TBD";
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+    } catch {
+      return "TBD";
+    }
+  };
+
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "TBD";
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      });
+    } catch {
+      return "TBD";
+    }
+  };
+
+  const getTeamAbbr = (teamName: string) => {
+    return teamName.split(" ").pop()?.substring(0, 3).toUpperCase() || "T";
+  };
 
   if (loading && matches.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <Loader2 className="w-6 h-6 text-primary animate-spin" />
+      <div className="flex items-center justify-center py-8">
+        <Loader2 className="w-5 h-5 text-primary animate-spin" />
       </div>
     );
   }
 
-  if (matches.length === 0) return null;
+  if (matches.length === 0) {
+    return (
+      <div className="flex items-center justify-center py-8 text-muted-foreground">
+        <AlertCircle className="w-4 h-4 mr-2" />
+        No {category} matches available
+      </div>
+    );
+  }
 
   return (
-    <section className="py-12 bg-black/20">
+    <section className="py-12">
       <div className="container">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold font-rajdhani text-white">
-            FEATURED <span className="text-primary">MATCHES</span>
+            {title} <span className="text-primary">MATCHES</span>
           </h2>
           <Link href="/matches">
             <Button variant="ghost" className="text-primary hover:text-primary/80">
@@ -65,50 +120,69 @@ export default function MatchesSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {matches.map((match) => (
-            <Card key={match.id} className="bg-white/5 border-white/10 hover:border-primary/30 transition-all">
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <Badge variant="secondary" className="bg-primary/20 text-primary border-none">
-                    {match.matchType || "T20"}
-                  </Badge>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {matches.map((match) => {
+            const team1 = match.teams?.[0] || "Team 1";
+            const team2 = match.teams?.[1] || "Team 2";
+            const team1Abbr = getTeamAbbr(team1);
+            const team2Abbr = getTeamAbbr(team2);
+
+            return (
+              <Card
+                key={match.id}
+                className="bg-white/5 border-white/10 hover:border-primary/30 transition-all overflow-hidden"
+              >
+                <CardContent className="p-4">
+                  {/* Header */}
+                  <div className="flex justify-between items-center mb-3">
+                    <Badge variant="secondary" className="bg-primary/20 text-primary border-none text-[10px]">
+                      {match.matchType || "T20"}
+                    </Badge>
+                    <div className="text-[10px] text-muted-foreground">
+                      {formatDate(match.dateTimeIST || match.dateTimeGMT)}
+                    </div>
+                  </div>
+
+                  {/* Teams */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-center flex-1">
+                      <div className="w-10 h-10 rounded-full bg-blue-600 mx-auto mb-1 flex items-center justify-center text-white font-bold text-xs">
+                        {team1Abbr[0]}
+                      </div>
+                      <div className="text-xs font-bold text-white truncate">{team1Abbr}</div>
+                    </div>
+                    <div className="px-2 text-[10px] font-bold text-muted-foreground">VS</div>
+                    <div className="text-center flex-1">
+                      <div className="w-10 h-10 rounded-full bg-yellow-500 mx-auto mb-1 flex items-center justify-center text-white font-bold text-xs">
+                        {team2Abbr[0]}
+                      </div>
+                      <div className="text-xs font-bold text-white truncate">{team2Abbr}</div>
+                    </div>
+                  </div>
+
+                  {/* Time */}
+                  <div className="flex items-center gap-1 text-[10px] text-muted-foreground mb-3 px-2">
                     <Clock className="w-3 h-3" />
-                    {match.dateTimeIST ? new Date(match.dateTimeIST).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) : "TBD"}
+                    {formatTime(match.dateTimeIST || match.dateTimeGMT)}
                   </div>
-                </div>
 
-                <div className="flex items-center justify-between mb-6">
-                  <div className="text-center flex-1">
-                    <div className="w-12 h-12 rounded-full bg-blue-600 mx-auto mb-2 flex items-center justify-center text-white font-bold">
-                      {match.teams?.[0]?.[0] || "T"}
-                    </div>
-                    <div className="text-sm font-bold text-white truncate">{match.teams?.[0] || "Team 1"}</div>
-                  </div>
-                  <div className="px-4 text-xs font-bold text-muted-foreground">VS</div>
-                  <div className="text-center flex-1">
-                    <div className="w-12 h-12 rounded-full bg-yellow-500 mx-auto mb-2 flex items-center justify-center text-white font-bold">
-                      {match.teams?.[1]?.[0] || "T"}
-                    </div>
-                    <div className="text-sm font-bold text-white truncate">{match.teams?.[1] || "Team 2"}</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                  {/* Venue */}
+                  <div className="flex items-center gap-1 text-[10px] text-muted-foreground mb-3 px-2">
                     <MapPin className="w-3 h-3" />
-                    <span className="truncate max-w-[120px]">{match.venue || "Venue TBD"}</span>
+                    <span className="truncate">{match.venue || "Venue TBD"}</span>
                   </div>
-                  <Link href={`/team-builder?matchId=${match.id}`}>
-                    <Button size="sm" className="bg-primary text-primary-foreground h-8 text-xs font-bold">
-                      CREATE TEAM
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+
+                  {/* Button */}
+                  <Button
+                    onClick={() => handleCreateTeam(match.id)}
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-8 text-xs font-bold"
+                  >
+                    {isAuthenticated ? "CREATE TEAM" : "LOGIN TO PLAY"}
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
