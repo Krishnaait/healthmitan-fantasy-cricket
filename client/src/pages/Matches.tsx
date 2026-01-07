@@ -11,7 +11,7 @@ import { useMatches, Match } from "@/hooks/useMatches";
 export default function Matches() {
   const [filter, setFilter] = useState("All");
   const [openMatchId, setOpenMatchId] = useState<string | null>(null);
-  const { data, loading, error } = useMatches(30000); // Refresh every 30 seconds
+  const { data, loading, error } = useMatches(true, 15000); // Refresh every 15 seconds for live data
 
   // Combine all matches
   const allMatches = [...data.live, ...data.upcoming, ...data.completed];
@@ -39,9 +39,10 @@ export default function Matches() {
     if (!dateString) return "Time TBD";
     try {
       const date = new Date(dateString);
-      return date.toLocaleTimeString("en-US", {
+      return date.toLocaleTimeString("en-IN", {
         hour: "2-digit",
         minute: "2-digit",
+        hour12: true,
       });
     } catch {
       return dateString;
@@ -91,12 +92,12 @@ export default function Matches() {
               <div className="flex items-center gap-2 text-white mb-1">
                 <Clock className="w-4 h-4 text-primary" />
                 <span className="font-mono font-bold text-lg">
-                  {formatTime(match.dateTimeGMT || match.date)}
+                  {formatTime(match.dateTimeIST || match.dateTimeGMT || match.date)}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Calendar className="w-4 h-4" />
-                <span>{formatDate(match.dateTimeGMT || match.date)}</span>
+                <span>{formatDate(match.dateTimeIST || match.dateTimeGMT || match.date)}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground text-sm mt-3 pt-3 border-t border-white/5">
                 <MapPin className="w-4 h-4 text-secondary" />

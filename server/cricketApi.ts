@@ -158,3 +158,64 @@ export async function getSeries(): Promise<any[]> {
     return [];
   }
 }
+
+/**
+ * Convert GMT time to IST (Indian Standard Time)
+ */
+export function convertToIST(dateString: string): string {
+  try {
+    const date = new Date(dateString);
+    const istDate = new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    return istDate.toLocaleString('en-IN', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+  } catch {
+    return dateString;
+  }
+}
+
+/**
+ * Get upcoming matches with proper filtering
+ */
+export async function getUpcomingMatchesFiltered(): Promise<Match[]> {
+  const allMatches = await getAllMatches();
+  const now = new Date();
+  
+  return allMatches
+    .filter((match) => {
+      const matchDate = new Date(match.dateTimeGMT || match.date || 0);
+      return matchDate >= now && (match.status === "upcoming" || match.status === "scheduled");
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.dateTimeGMT || a.date || 0);
+      const dateB = new Date(b.dateTimeGMT || b.date || 0);
+      return dateA.getTime() - dateB.getTime();
+    });
+}
+
+/**
+ * Get completed matches with proper filtering
+ */
+export async function getCompletedMatchesFiltered(): Promise<Match[]> {
+  const allMatches = await getAllMatches();
+  return allMatches
+    .filter((match) => match.status === "completed" || match.status === "result")
+    .sort((a, b) => {
+      const dateA = new Date(a.dateTimeGMT || a.date || 0);
+      const dateB = new Date(b.dateTimeGMT || b.date || 0);
+      return dateB.getTime() - dateA.getTime();
+    });
+}
+
+/**
+ * Get live matches with proper filtering
+ */
+export async function getLiveMatchesFiltered(): Promise<Match[]> {
+  const allMatches = await getAllMatches();
+  return allMatches.filter((match) => match.status === "live" || match.status === "inprogress");
+}

@@ -7,6 +7,10 @@ import {
   getMatchDetails,
   getMatchSquad,
   getSeries,
+  convertToIST,
+  getLiveMatchesFiltered,
+  getUpcomingMatchesFiltered,
+  getCompletedMatchesFiltered,
 } from "./cricketApi.js";
 
 const router = Router();
@@ -17,17 +21,23 @@ const router = Router();
 router.get("/api/matches", async (req: Request, res: Response) => {
   try {
     const [live, upcoming, completed] = await Promise.all([
-      getLiveMatches(),
-      getUpcomingMatches(),
-      getCompletedMatches(),
+      getLiveMatchesFiltered(),
+      getUpcomingMatchesFiltered(),
+      getCompletedMatchesFiltered(),
     ]);
+
+    const formatMatches = (matches: any[]) =>
+      matches.map((match) => ({
+        ...match,
+        dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
+      }));
 
     res.json({
       success: true,
       data: {
-        live,
-        upcoming,
-        completed,
+        live: formatMatches(live),
+        upcoming: formatMatches(upcoming),
+        completed: formatMatches(completed),
       },
     });
   } catch (error) {
@@ -44,10 +54,14 @@ router.get("/api/matches", async (req: Request, res: Response) => {
  */
 router.get("/api/matches/live", async (req: Request, res: Response) => {
   try {
-    const matches = await getLiveMatches();
+    const matches = await getLiveMatchesFiltered();
+    const formattedMatches = matches.map((match) => ({
+      ...match,
+      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
+    }));
     res.json({
       success: true,
-      data: matches,
+      data: formattedMatches,
     });
   } catch (error) {
     console.error("Error fetching live matches:", error);
@@ -63,10 +77,14 @@ router.get("/api/matches/live", async (req: Request, res: Response) => {
  */
 router.get("/api/matches/upcoming", async (req: Request, res: Response) => {
   try {
-    const matches = await getUpcomingMatches();
+    const matches = await getUpcomingMatchesFiltered();
+    const formattedMatches = matches.map((match) => ({
+      ...match,
+      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
+    }));
     res.json({
       success: true,
-      data: matches,
+      data: formattedMatches,
     });
   } catch (error) {
     console.error("Error fetching upcoming matches:", error);
@@ -82,10 +100,14 @@ router.get("/api/matches/upcoming", async (req: Request, res: Response) => {
  */
 router.get("/api/matches/completed", async (req: Request, res: Response) => {
   try {
-    const matches = await getCompletedMatches();
+    const matches = await getCompletedMatchesFiltered();
+    const formattedMatches = matches.map((match) => ({
+      ...match,
+      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
+    }));
     res.json({
       success: true,
-      data: matches,
+      data: formattedMatches,
     });
   } catch (error) {
     console.error("Error fetching completed matches:", error);
@@ -111,9 +133,14 @@ router.get("/api/matches/:id", async (req: Request, res: Response) => {
       });
     }
 
+    const formattedMatch = {
+      ...match,
+      dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
+    };
+
     res.json({
       success: true,
-      data: match,
+      data: formattedMatch,
     });
   } catch (error) {
     console.error("Error fetching match details:", error);

@@ -39,11 +39,12 @@ function MatchCard({ match }: { match: Match }) {
     if (!dateString) return "Date TBD";
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString("en-US", {
+      return date.toLocaleString("en-IN", {
         month: "short",
         day: "numeric",
         hour: "2-digit",
         minute: "2-digit",
+        hour12: true,
       });
     } catch {
       return dateString;
@@ -88,7 +89,7 @@ function MatchCard({ match }: { match: Match }) {
         <div className="space-y-2 mb-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-primary" />
-            <span>{formatDate(match.dateTimeGMT || match.date)}</span>
+            <span>{formatDate(match.dateTimeIST || match.dateTimeGMT || match.date)}</span>
           </div>
           {match.venue && (
             <div className="flex items-center gap-2">
@@ -119,7 +120,7 @@ export function MatchesSection({
   description = "Join the action and create your fantasy team",
   limit = 4,
 }: MatchesSectionProps) {
-  const { data, loading, error } = useMatches(60000); // Refresh every 60 seconds
+  const { data, loading, error } = useMatches(true, 15000); // Refresh every 15 seconds for live data
 
   // Combine and limit matches
   const allMatches = [
