@@ -10,27 +10,6 @@ export default function Home() {
     <Layout>
 
 
-      {/* Live Matches Section */}
-      <MatchesSection 
-        category="live"
-        title="LIVE" 
-        limit={4}
-      />
-
-      {/* Upcoming Matches Section */}
-      <MatchesSection 
-        category="upcoming"
-        title="UPCOMING" 
-        limit={4}
-      />
-
-      {/* Completed Matches Section */}
-      <MatchesSection 
-        category="completed"
-        title="COMPLETED" 
-        limit={4}
-      />
-
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-16">
         {/* Background Image with Overlay */}
@@ -115,6 +94,27 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Live Matches Section */}
+      <MatchesSection 
+        category="live"
+        title="LIVE" 
+        limit={4}
+      />
+
+      {/* Upcoming Matches Section */}
+      <MatchesSection 
+        category="upcoming"
+        title="UPCOMING" 
+        limit={4}
+      />
+
+      {/* Completed Matches Section */}
+      <MatchesSection 
+        category="completed"
+        title="COMPLETED" 
+        limit={4}
+      />
 
       {/* Why Choose Us - High Density Grid */}
       <section className="py-24 bg-black/40 border-y border-white/5">

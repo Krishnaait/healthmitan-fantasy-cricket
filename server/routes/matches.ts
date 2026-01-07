@@ -10,16 +10,39 @@ import {
 
 const router = express.Router();
 
-// Get all matches
+// Get all matches categorized by status
 router.get('/', async (req: Request, res: Response) => {
   try {
     const matches = await getMatches();
-    res.json({
-      success: true,
-      data: matches.map((match) => ({
+    
+    // Categorize matches by status
+    const live: any[] = [];
+    const upcoming: any[] = [];
+    const completed: any[] = [];
+    
+    matches.forEach((match) => {
+      const formattedMatch = {
         ...match,
         dateTimeIST: match.dateTimeGMT ? convertToIST(match.dateTimeGMT) : match.date,
-      })),
+      };
+      
+      const status = match.status.toLowerCase();
+      if (status.includes('live') || status.includes('inprogress')) {
+        live.push(formattedMatch);
+      } else if (status.includes('completed') || status.includes('finished') || status.includes('won')) {
+        completed.push(formattedMatch);
+      } else {
+        upcoming.push(formattedMatch);
+      }
+    });
+    
+    res.json({
+      success: true,
+      data: {
+        live,
+        upcoming,
+        completed,
+      },
     });
   } catch (error) {
     console.error('Error in GET /matches:', error);
