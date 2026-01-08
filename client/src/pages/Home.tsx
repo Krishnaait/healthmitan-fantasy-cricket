@@ -95,26 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Live Matches Section */}
-      <MatchesSection 
-        category="live"
-        title="LIVE" 
-        limit={4}
-      />
 
-      {/* Upcoming Matches Section */}
-      <MatchesSection 
-        category="upcoming"
-        title="UPCOMING" 
-        limit={4}
-      />
-
-      {/* Completed Matches Section */}
-      <MatchesSection 
-        category="completed"
-        title="COMPLETED" 
-        limit={4}
-      />
 
       {/* Why Choose Us - High Density Grid */}
       <section className="py-24 bg-black/40 border-y border-white/5">
